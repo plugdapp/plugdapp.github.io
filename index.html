@@ -292,6 +292,14 @@ nav.tabs .ti{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1
 .steps{padding-left:22px;line-height:1.9}
 .foot{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .foot img{mix-blend-mode:screen}
+.rolepick{border:0;padding:0;margin:0}
+.rolepick legend{font-size:.88rem;color:var(--muted);font-weight:500;margin-bottom:8px}
+.chipcheck{cursor:pointer}
+.chipcheck input{position:absolute;opacity:0;pointer-events:none}
+.chipcheck span{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:7px 14px;color:var(--muted);font-size:.92rem}
+.chipcheck input:checked + span{background:linear-gradient(95deg,var(--blue),var(--violet));border-color:transparent;color:#fff;font-weight:700}
+.chipcheck input:checked + span::before{content:"✓ "}
+.chipcheck input:focus-visible + span{outline:2px solid var(--peacock);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -406,6 +414,7 @@ function isPast(g){return !!g.date&&g.date<todayStr();}
 function daysSince(date){return (Date.now()-new Date(date+'T23:59:00').getTime())/86400000;}
 function newId(prefix){return prefix+Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
 function deepMerge(a,b){const o={...(a||{})};for(const k in b){const v=b[k];if(v&&typeof v==='object'&&!Array.isArray(v)&&o[k]&&typeof o[k]==='object'&&!Array.isArray(o[k]))o[k]=deepMerge(o[k],v);else o[k]=v;}return o;}
+function rolesOf(p){p=p||{};return Array.isArray(p.roles)&&p.roles.length?p.roles.filter(r=>ROLES.includes(r)):(p.role?[p.role]:[]);}
 function profile(id){return S.data.profiles[id];}
 function nameOf(id){const p=profile(id);return (p&&p.stageName)||'Unknown member';}
 function gigsArr(){return Object.values(S.data.gigs);}
@@ -846,16 +855,16 @@ function talentList(){
   let ids=Object.keys(S.data.profiles).filter(id=>{
     const p=S.data.profiles[id];
     if(isRemoved(id)&&!S.isOwner)return false;
-    if(T.role!=='All'&&p.role!==T.role)return false;
+    if(T.role!=='All'&&!rolesOf(p).includes(T.role))return false;
     if(!geoOk(p.city,T.state,T.near,T.radius))return false;
-    if(q){const hay=[p.stageName,p.city,p.role,(p.skills||[]).join(' ')].join(' ').toLowerCase();if(!hay.includes(q))return false;}
+    if(q){const hay=[p.stageName,p.city,rolesOf(p).join(' '),(p.skills||[]).join(' ')].join(' ').toLowerCase();if(!hay.includes(q))return false;}
     return true;
   });
   ids.sort((a,b)=>visibility(b)-visibility(a));
   if(S.loading&&!ids.length)return '<div class="skel"></div>'.repeat(3);
   if(!ids.length)return `<div class="empty" style="grid-column:1/-1">No one matches that search yet.</div>`;
   const cards=ids.map(id=>{const p=S.data.profiles[id];return `<a class="card pro ${p.vip?'isvip':''}" href="#profile-${esc(id)}">
-    <div class="pro-head">${avatar(id,'lg')}<div><h3>${esc(p.stageName)}</h3><p class="meta">${esc(p.role)}${p.city?' · '+esc(p.city):''}</p></div></div>
+    <div class="pro-head">${avatar(id,'lg')}<div><h3>${esc(p.stageName)}</h3><p class="meta">${esc(rolesOf(p).join(' · '))}${p.city?' · '+esc(p.city):''}</p></div></div>
     <div class="row">${vipHtml(id)}${lvlHtml(id)}${tierHtml(id)}${relHtml(id)}</div>
     <div class="row">${ratingMini(id)}${(p.videos||[]).length?`<span class="fine">▶ ${(p.videos||[]).length} video${(p.videos||[]).length>1?'s':''}</span>`:''}</div>
     ${(p.skills||[]).length?`<div class="tags">${(p.skills||[]).slice(0,4).map(s=>`<span class="tag">${esc(s)}</span>`).join('')}</div>`:''}
@@ -890,7 +899,7 @@ function profileView(id){
       ${avatar(id,'xl')}
       <div style="flex:1;min-width:200px">
         <h1>${esc(p.stageName)}</h1>
-        <p class="meta" style="margin-top:6px">${esc(p.role)}${p.city?' · '+esc(p.city):''}${since?' · Member since '+esc(since):''}</p>
+        <p class="meta" style="margin-top:6px">${esc(rolesOf(p).join(' · '))}${p.city?' · '+esc(p.city):''}${since?' · Member since '+esc(since):''}</p>
         <div class="row" style="margin-top:10px">${(S.isOwner||id===S.me)&&strikes(id)?`<span class="badge rel lowrel">${strikes(id)} strike${strikes(id)>1?'s':''}${isRemoved(id)?' · removed':''}</span>`:''}${vipHtml(id)}${lvlHtml(id)}${tierHtml(id)}${r.count?starsHtml(r.avg):''}</div>
       </div>
       <div class="row">${isMe?`<a class="btn ghost" href="#me">Edit profile</a>`:''}${S.isOwner?`<button class="btn ${p.vip?'ghost':'gold'} sm" data-act="vip" data-id="${esc(id)}">${p.vip?'Remove VIP':'Make VIP'}</button><button class="btn ghost sm" data-act="strike" data-v="1" data-id="${esc(id)}">Add strike</button>${strikes(id)?`<button class="btn ghost sm" data-act="strike" data-v="0" data-id="${esc(id)}">Clear strikes</button>`:''}`:''}</div>
@@ -985,7 +994,7 @@ function profileForm(inModal){
   const p=profile(S.me)||{};
   return `<form class="f" data-form="profile">
     <label class="full">Stage or business name<input id="p-name" required maxlength="60" value="${esc(p.stageName||'')}" ${inModal?'autofocus':''}></label>
-    <label>What you do<select id="p-role">${ROLES.map(r=>`<option ${p.role===r?'selected':''}>${esc(r)}</option>`).join('')}</select></label>
+    <fieldset class="full rolepick"><legend>What you do (pick all that apply)</legend><div class="chips">${ROLES.map(r=>`<label class="chipcheck"><input type="checkbox" name="p-roles" value="${esc(r)}" ${rolesOf(p).includes(r)?'checked':''}><span>${esc(r)}</span></label>`).join('')}</div></fieldset>
     <label>City<select id="p-city" required>${cityOptions(p.city||'','Choose a city')}</select></label>
     <label class="full">Skills and genres, separated by commas<input id="p-skills" maxlength="200" placeholder="Gospel, R&B, background vocals" value="${esc((p.skills||[]).join(', '))}"></label>
     <label>Your price (you set it)<input id="p-rate" maxlength="40" placeholder="$200 per set" value="${esc(p.rate||'')}"></label>
@@ -1074,7 +1083,7 @@ function openNewPassword(){
   <form class="f" data-form="newpw"><label class="full">New password (at least 8 characters)<input id="np-pw" type="password" required minlength="8" autocomplete="new-password" autofocus></label>
   <div class="btns full"><button class="btn" type="submit">Save password</button></div></form>`);
 }
-function isStandalone(){return window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;}
+function isStandalone(){try{return (window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||window.navigator.standalone===true;}catch(e){return false;}}
 function installBtn(){return isStandalone()?'':`<button class="btn teal sm" data-act="install" style="margin-top:14px">📲 Get the Plug’d app</button>`;}
 function openInstallHelp(){
   const ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
@@ -1319,13 +1328,15 @@ document.addEventListener('submit',async e=>{
 
   if(kind==='profile'){
     const prev=profile(S.me)||{};
-    const data={...strip(prev),stageName:v('p-name'),role:ROLES.includes(v('p-role'))?v('p-role'):ROLES[0],city:v('p-city'),rate:v('p-rate'),
+    const data={...strip(prev),stageName:v('p-name'),roles:[...f.querySelectorAll('input[name=p-roles]:checked')].map(x=>x.value).filter(x=>ROLES.includes(x)),city:v('p-city'),rate:v('p-rate'),
       skills:v('p-skills').split(',').map(s=>s.trim()).filter(Boolean).slice(0,10),bio:v('p-bio'),contact:v('p-contact'),
       createdAt:prev.createdAt||now(),updatedAt:now(),agreedRulesAt:prev.agreedRulesAt||now()};
     delete data.link;
     const myContact=data.contact;
     if(S.mode==='live'){delete data.contact;const cr=await SB.from('contacts').upsert({user_id:S.me,contact:myContact});if(cr.error){writeError(cr.error);done();return;}S.contacts[S.me]=myContact;}
     if(hasContact(data.bio)||hasContact((data.skills||[]).join(' '))||hasContact(data.rate)){toast(CONTACT_MSG);done();return;}
+    if(!data.roles.length){toast('Pick at least one thing you do.');done();return;}
+    data.role=data.roles[0];
     if(!data.stageName||!data.city){toast('Add your name and city.');done();return;}
     if(!(await save('profiles',S.me,data))){done();return;}
     const next=afterProfile;
