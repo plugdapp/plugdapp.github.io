@@ -358,6 +358,30 @@ nav.tabs a{font-weight:500}
 .chip,.chipcheck span{border-radius:8px;font-size:.82rem}
 .badge{font-size:.68rem;font-weight:600;border-radius:6px}
 .lineup{display:flex;flex-direction:column;gap:12px}
+details.msel{position:relative}
+details.msel>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;font-size:.88rem;color:var(--muted);user-select:none;white-space:nowrap}
+details.msel>summary::-webkit-details-marker{display:none}
+details.msel>summary b{color:var(--text);font-weight:600;max-width:180px;overflow:hidden;text-overflow:ellipsis}
+details.msel[open]>summary{border-color:var(--blue)}
+details.msel .caret{font-size:.7rem}
+.mpanel{position:absolute;z-index:30;top:calc(100% + 6px);left:0;width:min(340px,86vw);padding:12px;border-radius:12px;background:#10102e;border:1px solid var(--line);box-shadow:0 16px 40px rgba(0,0,0,.55)}
+.mchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.mchip{border:1px solid var(--line);background:transparent;color:var(--text);border-radius:8px;padding:6px 10px;font:inherit;font-size:.84rem;cursor:pointer}
+.mchip.on{background:rgba(43,108,255,.18);border-color:var(--blue);color:#fff;font-weight:600}
+.rules ul{padding-left:20px;margin:8px 0}
+.rules li{margin:4px 0}
+/* Rules, Terms and Privacy pages: cleaner document styling */
+.rules{padding:26px 26px 30px}
+.rules h2{display:flex;align-items:center;gap:12px;font-size:1.02rem;font-weight:700;letter-spacing:-.01em;color:#fff;margin:26px 0 10px;padding-top:24px;border-top:1px solid var(--line)}
+.rules h2:first-child{margin-top:0;padding-top:0;border-top:0}
+.rules .secnum{flex:none;display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;font-size:.8rem;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--blue),var(--peacock))}
+.rules p,.rules li{font-size:.93rem;line-height:1.7;color:#b3b1d3;max-width:70ch}
+.rules p{margin:0 0 10px}
+.rules p b,.rules li b{color:#fff;font-weight:600}
+.rules ul{padding-left:18px;margin:6px 0 10px}
+.rules li::marker{color:var(--peacock)}
+.rules a{color:#7fc4ff}
+@media (max-width:560px){.rules{padding:20px 18px 24px}.rules h2{font-size:.98rem}}
 .updbar{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;z-index:60;display:flex;align-items:center;gap:12px;padding:10px 12px 10px 16px;border-radius:12px;background:#12123a;border:1px solid var(--blue);box-shadow:0 10px 30px rgba(0,0,0,.5);font-size:.9rem;width:max-content;max-width:calc(100% - 24px)}
 @media (max-width:640px){.updbar{bottom:calc(84px + env(safe-area-inset-bottom))}}
 nav.tabs a[hidden]{display:none!important}
@@ -413,8 +437,11 @@ nav.tabs a[hidden]{display:none!important}
 (function(){
 "use strict";
 const COLLS=['profiles','gigs','applications','reviews'];
-const ROLES=['Vocalist','Musician','Music Director','Band','Sound engineer','DJ','Host / MC','Organizer / Venue'];
-const GIG_ROLES=['Vocalist','Musician','Music Director','Band','Sound engineer','DJ','Host / MC'];
+const INSTRUMENTS=['Drummer','Bassist','Keys / Piano','Guitarist','Horns','Strings'];
+const ROLES=['Vocalist','Musician',...INSTRUMENTS,'Music Director','Band','Sound engineer','DJ','Host / MC','Organizer / Venue'];
+const GIG_ROLES=['Vocalist','Musician',...INSTRUMENTS,'Music Director','Band','Sound engineer','DJ','Host / MC'];
+// 'Musician' means any instrument: a Musician gig shows up for every instrument, and the Musician filter shows every instrument gig.
+function roleMatch(role,sel){if(!sel.length)return true;if(sel.includes(role))return true;if(role==='Musician'&&sel.some(r=>INSTRUMENTS.includes(r)))return true;if(INSTRUMENTS.includes(role)&&sel.includes('Musician'))return true;return false;}
 const EVENT_TYPES=['Paid gig','Open mic','Showcase','Audition','Jam session'];
 const PAY_TYPES=['flat','per hour','per set'];
 const STATES={NC:'North Carolina',SC:'South Carolina',VA:'Virginia'};
@@ -446,9 +473,9 @@ const LEVELS=[{name:'Newcomer',min:0},{name:'Active',min:5},{name:'Featured',min
 const PAY_METHODS=['Cash','Cash App','Zelle','Venmo','PayPal','Check','Other'];
 
 const S={contacts:{},mode:'loading',loading:true,me:null,isOwner:false,canWrite:false,note:'',data:{profiles:{},gigs:{},applications:{},reviews:{}}};
-const F={q:'',role:'All',type:'All',state:'All',near:'',radius:50,openOnly:true};
-const T={q:'',role:'All',state:'All',near:'',radius:50};
-const C={y:null,m:null,state:'All',type:'All'};
+const F={q:'',roles:[],types:[],state:'All',near:'',radius:50,openOnly:true};
+const T={q:'',roles:[],state:'All',near:'',radius:50};
+const C={y:null,m:null,state:'All',types:[]};
 const CFG=window.PLUGD_CONFIG||{};
 let SB=null,afterProfile=null,deferredInstall=null;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;});
@@ -457,25 +484,25 @@ window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredIns
 const DEMO={
  profiles:{
   'demo-maya':{stageName:'Maya Sol',role:'Vocalist',city:'Charlotte, NC',rate:'$250 per set',skills:['R&B','Neo-soul','Background vocals','Jazz standards'],bio:'Lead and background vocalist. Ten years singing everything from Sunday service to supper clubs. I learn charts fast and show up early.',link:'',videos:[{kind:'link',url:'https://www.tiktok.com/@mayasolsings',caption:'Live at NoDa, Sept'}],createdAt:'2025-03-02'},
-  'demo-dre':{stageName:'Dre Keys',role:'Musician',city:'Greensboro, NC',rate:'$200 per service',skills:['Keys','Hammond organ','Gospel','Music direction'],bio:'Keyboardist and music director. Gospel roots, jazz ears. Available for services, concerts and studio sessions.',link:'',createdAt:'2024-11-15'},
+  'demo-dre':{stageName:'Dre Keys',role:'Keys / Piano',roles:['Keys / Piano','Music Director'],city:'Greensboro, NC',rate:'$200 per service',skills:['Keys','Hammond organ','Gospel','Music direction'],bio:'Keyboardist and music director. Gospel roots, jazz ears. Available for services, concerts and studio sessions.',link:'',createdAt:'2024-11-15'},
   'demo-lena':{stageName:'Lena Brooks',role:'Sound engineer',city:'Raleigh, NC',rate:'$45 per hour',skills:['Live mixing','Behringer X32','Church AV','Monitor mixes'],bio:'Front-of-house and monitor engineer. I bring my own mics and DI boxes, and I stay until the last cable is wrapped.',link:'',createdAt:'2024-08-20'},
   'demo-jay':{stageName:'DJ Jaybird',role:'DJ',city:'Fayetteville, NC',rate:'$400 per event',skills:['Weddings','Hip-hop','Afrobeats','Line dances'],bio:'Open-format DJ for weddings, birthdays and military balls. Full sound and lighting package available.',link:'',vip:true,createdAt:'2025-06-11'},
   'demo-tasha':{stageName:'Tasha Grant',role:'Organizer / Venue',city:'Durham, NC',rate:'',skills:['Showcases','Concert production','Booking'],bio:'I produce live showcases and holiday concerts around the Triangle. I pay on time and treat artists right.',link:'',createdAt:'2024-05-01'},
   'demo-velvet':{stageName:'Velvet Room Lounge',role:'Organizer / Venue',city:'Greensboro, NC',rate:'',skills:['Live music venue','Jazz nights','Open mic'],bio:'Downtown listening room with live music Thursday through Sunday. 120 capacity, in-house PA.',link:'',createdAt:'2024-02-10'},
-  'demo-marcus':{stageName:'Marcus Hill',role:'Musician',city:'Fayetteville, NC',rate:'$175 per gig',skills:['Drums','Gospel','Funk','Click track'],bio:'Pocket drummer for gospel, funk and R&B. Comfortable with tracks, in-ears and last-minute setlists.',link:'',createdAt:'2025-01-19'},
+  'demo-marcus':{stageName:'Marcus Hill',role:'Drummer',city:'Fayetteville, NC',rate:'$175 per gig',skills:['Drums','Gospel','Funk','Click track'],bio:'Pocket drummer for gospel, funk and R&B. Comfortable with tracks, in-ears and last-minute setlists.',link:'',createdAt:'2025-01-19'},
   'demo-nia':{stageName:'Nia Carter',role:'Vocalist',city:'Richmond, VA',rate:'$300 per set',skills:['Wedding band','Soul','Pop covers','Bandleader'],bio:'Bandleader and lead vocalist for Nia & the Northside, a six-piece wedding and event band covering Virginia and the Carolinas.',link:'',vip:true,createdAt:'2025-04-22'},
   'demo-soda':{stageName:'Soda City Sound Collective',role:'Organizer / Venue',city:'Columbia, SC',rate:'',skills:['Open mics','Showcases','Artist development'],bio:'Artist collective running monthly open mics and showcases in Columbia and Charleston.',link:'',createdAt:'2025-02-14'}
  },
  gigs:{
   g1:{title:'Vocalist for Sunday Jazz Night',eventType:'Paid gig',role:'Vocalist',date:'2026-12-06',time:'20:00',city:'Greensboro, NC',venue:'Velvet Room Lounge',pay:300,payType:'flat',negotiable:false,description:'Two 45-minute sets of jazz standards with our house trio. Rehearsal at 6 PM. Dinner included.',posterId:'demo-velvet',status:'open',createdAt:'2026-11-08T15:00:00Z'},
-  g2:{title:'Keys player for holiday concert',eventType:'Paid gig',role:'Musician',date:'2026-12-19',time:'18:30',city:'Durham, NC',venue:'Carolina Theatre',pay:250,payType:'flat',negotiable:true,description:'Seasonal concert with a 30-voice choir. Charts sent a week ahead, one rehearsal on Dec 17.',posterId:'demo-tasha',status:'open',createdAt:'2026-11-10T13:00:00Z'},
+  g2:{title:'Keys player for holiday concert',eventType:'Paid gig',role:'Keys / Piano',occasion:'Concert or festival',date:'2026-12-19',time:'18:30',city:'Durham, NC',venue:'Carolina Theatre',pay:250,payType:'flat',negotiable:true,description:'Seasonal concert with a 30-voice choir. Charts sent a week ahead, one rehearsal on Dec 17.',posterId:'demo-tasha',status:'open',createdAt:'2026-11-10T13:00:00Z'},
   g3:{title:'Front-of-house engineer for spring showcase',eventType:'Paid gig',role:'Sound engineer',date:'2027-03-14',time:'17:00',city:'Durham, NC',venue:'',pay:350,payType:'flat',negotiable:false,description:'Eight acts, quick changeovers. Venue has an X32. Load-in at 2 PM.',posterId:'demo-tasha',status:'open',createdAt:'2026-11-12T18:00:00Z'},
   g4:{title:"DJ for New Year's Eve party",eventType:'Paid gig',role:'DJ',date:'2026-12-31',time:'21:00',city:'Greensboro, NC',venue:'Velvet Room Lounge',pay:600,payType:'flat',negotiable:false,description:'9 PM to 1 AM. Grown and sexy crowd: R&B, old school, house. Countdown at midnight.',posterId:'demo-velvet',status:'open',createdAt:'2026-11-09T20:00:00Z'},
-  g5:{title:'Drummer for gospel brunch',eventType:'Paid gig',role:'Musician',date:'2026-10-18',time:'11:00',city:'Greensboro, NC',venue:'Velvet Room Lounge',pay:200,payType:'flat',description:'Two-hour gospel brunch with keys and bass.',posterId:'demo-velvet',status:'booked',bookedId:'demo-marcus',confirms:{'demo-velvet':'2026-10-18T15:00:00Z','demo-marcus':'2026-10-18T16:00:00Z'},payment:{amount:200,method:'Cash App',paidAt:'2026-10-18T15:05:00Z',receivedAt:'2026-10-18T16:00:00Z'},createdAt:'2026-09-30T12:00:00Z'},
+  g5:{title:'Drummer for gospel brunch',eventType:'Paid gig',role:'Drummer',occasion:'Bar, restaurant or club',date:'2026-10-18',time:'11:00',city:'Greensboro, NC',venue:'Velvet Room Lounge',pay:200,payType:'flat',description:'Two-hour gospel brunch with keys and bass.',posterId:'demo-velvet',status:'booked',bookedId:'demo-marcus',confirms:{'demo-velvet':'2026-10-18T15:00:00Z','demo-marcus':'2026-10-18T16:00:00Z'},payment:{amount:200,method:'Cash App',paidAt:'2026-10-18T15:05:00Z',receivedAt:'2026-10-18T16:00:00Z'},createdAt:'2026-09-30T12:00:00Z'},
   g6:{title:'Host for open mic night',eventType:'Paid gig',role:'Host / MC',date:'2026-11-21',time:'19:00',city:'Greensboro, NC',venue:'Velvet Room Lounge',pay:150,payType:'flat',negotiable:false,description:'Keep the list moving, hype the room, introduce 15 to 20 performers.',posterId:'demo-velvet',status:'open',createdAt:'2026-11-11T16:00:00Z'},
   g7:{title:'Sound for album release party',eventType:'Paid gig',role:'Sound engineer',date:'2026-09-27',time:'19:00',city:'Charlotte, NC',venue:'',pay:45,payType:'per hour',description:'Six-piece band plus two guest vocalists.',posterId:'demo-maya',status:'booked',bookedId:'demo-lena',confirms:{'demo-maya':'2026-09-28T10:00:00Z','demo-lena':'2026-09-28T11:00:00Z'},payment:{amount:270,method:'Zelle',paidAt:'2026-09-28T10:00:00Z',receivedAt:'2026-09-28T11:00:00Z'},createdAt:'2026-09-01T12:00:00Z'},
   g8:{title:'Songwriters open mic',eventType:'Open mic',role:'Vocalist',date:'2026-12-03',time:'19:30',city:'Columbia, SC',venue:'The Vista Room',pay:0,payType:'flat',negotiable:false,description:'Two songs per performer. Sign up here and you are guaranteed a slot. Acoustic guitar and keyboard on stage.',posterId:'demo-soda',status:'open',createdAt:'2026-11-12T12:00:00Z'},
-  g9:{title:'Bass player for wedding band',eventType:'Paid gig',role:'Musician',date:'2027-01-16',time:'17:00',city:'Richmond, VA',venue:'',pay:275,payType:'flat',negotiable:true,description:'Four-hour reception, Motown to current pop. Setlist and charts provided. Black attire.',posterId:'demo-nia',status:'open',createdAt:'2026-11-13T12:00:00Z'},
+  g9:{title:'Bass player for wedding band',eventType:'Paid gig',role:'Bassist',occasion:'Wedding',date:'2027-01-16',time:'17:00',city:'Richmond, VA',venue:'',pay:275,payType:'flat',negotiable:true,description:'Four-hour reception, Motown to current pop. Setlist and charts provided. Black attire.',posterId:'demo-nia',status:'open',createdAt:'2026-11-13T12:00:00Z'},
   g10:{title:'New Voices of the Carolinas showcase',eventType:'Showcase',role:'Vocalist',date:'2026-12-12',time:'18:00',city:'Charleston, SC',venue:'Harbor Hall',pay:100,payType:'flat',negotiable:false,description:'Eight emerging artists, 15 minutes each. Industry guests in the room. Every performer gets a stipend.',posterId:'demo-soda',status:'open',createdAt:'2026-11-12T14:00:00Z'}
  },
  applications:{
@@ -514,7 +541,7 @@ function deepMerge(a,b){const o={...(a||{})};for(const k in b){const v=b[k];if(v
 function rolesOf(p){p=p||{};return Array.isArray(p.roles)&&p.roles.length?p.roles.filter(r=>ROLES.includes(r)):(p.role?[p.role]:[]);}
 function rateFor(p,r){p=p||{};if(p.rates&&typeof p.rates==='object'&&p.rates[r])return String(p.rates[r]);return rolesOf(p)[0]===r?(p.rate||''):'';}
 function priceEntries(p){return rolesOf(p).filter(r=>r!=='Organizer / Venue'&&rateFor(p,r)).map(r=>[r,rateFor(p,r)]);}
-const RATE_PH={'Vocalist':'$200 per set','Musician':'$175 per gig','Music Director':'$350 per event','Band':'$1,500 per event','Sound engineer':'$45 per hour','DJ':'$400 per event','Host / MC':'$150 per event'};
+const RATE_PH={'Vocalist':'$200 per set','Musician':'$175 per gig','Drummer':'$175 per gig','Bassist':'$175 per gig','Keys / Piano':'$200 per gig','Guitarist':'$175 per gig','Horns':'$175 per gig','Strings':'$200 per gig','Music Director':'$350 per event','Band':'$1,500 per event','Sound engineer':'$45 per hour','DJ':'$400 per event','Host / MC':'$150 per event'};
 function rateRows(roles,vals){
   const rs=roles.filter(r=>r!=='Organizer / Venue');
   if(!rs.length)return '';
@@ -671,8 +698,8 @@ function payHtml(g){
   const t=PAY_TYPES.includes(g.payType)&&g.payType!=='flat'?` <small>${g.payType}</small>`:'';
   return `${money(n)}${t}${g.negotiable?' <small>· negotiable</small>':''}`;
 }
-function rangeFor(role,payType,occasion){const r=RANGES[role];if(!r)return null;return payType==='per hour'?r.hour:r[tierOf(occasion)];}
-function rangeWho(role,occasion){return `${role==='Band'?'a whole band':role==='Host / MC'?'a host or MC':role==='DJ'?'a DJ':'a '+role.toLowerCase()} at ${TIER_LABEL[tierOf(occasion)]}`;}
+function rangeFor(role,payType,occasion){const r=RANGES[INSTRUMENTS.includes(role)?'Musician':role];if(!r)return null;return payType==='per hour'?r.hour:r[tierOf(occasion)];}
+function rangeWho(role,occasion){return `${({'Band':'a whole band','Host / MC':'a host or MC','DJ':'a DJ','Keys / Piano':'a keys player','Horns':'a horn player','Strings':'a strings player'})[role]||'a '+role.toLowerCase()} at ${TIER_LABEL[tierOf(occasion)]}`;}
 function rangeText(r,payType){return `${money(r[0])}–${money(r[1])}${payType==='per hour'?' per hour':''}`;}
 function payCheck(g){
   const p=Number(g.pay)||0;
@@ -774,8 +801,8 @@ function gigsView(){
     ${stateChips(F.state,'fstate')}
   </div>
   <div class="filters">
-    <label class="sel">Role <select id="f-role">${['All',...GIG_ROLES].map(r=>`<option ${F.role===r?'selected':''}>${esc(r)}</option>`).join('')}</select></label>
-    <label class="sel">Type <select id="f-type">${['All',...EVENT_TYPES].map(r=>`<option ${F.type===r?'selected':''}>${esc(r)}</option>`).join('')}</select></label>
+    ${msel('f-roles','Role',GIG_ROLES,F.roles)}
+    ${msel('f-types','Type',EVENT_TYPES,F.types)}
     <label class="sel">Near <select id="f-near">${cityOptions(F.near,'Anywhere')}</select></label>
     ${F.near?radiusSel('f-radius',F.radius):''}
     <label class="toggle"><input type="checkbox" id="f-open" ${F.openOnly?'checked':''}> Open only</label>
@@ -788,11 +815,31 @@ function gigsView(){
     <div><b>Messaging &amp; collabs</b>Find a bassist, start a band, link up for features.</div>
   </section>`;
 }
+function mselVal(sel){return !sel.length?'All':sel.length<=2?sel.map(esc).join(', '):sel.length+' selected';}
+function msel(key,label,opts,sel){
+  return `<details class="msel" data-key="${key}"><summary><span>${label}:</span> <b class="mval">${mselVal(sel)}</b><span class="caret" aria-hidden="true">▾</span></summary>
+  <div class="mpanel"><div class="row between"><span class="fine">Choose all that apply</span><button type="button" class="textbtn" data-msclear="${key}">Clear</button></div>
+  <div class="mchips">${opts.map(o=>`<button type="button" class="mchip${sel.includes(o)?' on':''}" data-ms="${key}" data-v="${esc(o)}" aria-pressed="${sel.includes(o)}">${sel.includes(o)?'✓ ':''}${esc(o)}</button>`).join('')}</div></div></details>`;
+}
+const MSEL={'f-roles':()=>[F,'roles',()=>{$('#gig-list').innerHTML=gigList();}],'f-types':()=>[F,'types',()=>{$('#gig-list').innerHTML=gigList();}],
+  'c-types':()=>[C,'types',()=>render()],'t-roles':()=>[T,'roles',()=>{$('#talent-list').innerHTML=talentList();}]};
+function mselClick(e){
+  const chip=e.target.closest('[data-ms]'),clr=e.target.closest('[data-msclear]');
+  if(!chip&&!clr){document.querySelectorAll('details.msel[open]').forEach(d=>{if(!d.contains(e.target))d.open=false;});return false;}
+  const key=chip?chip.dataset.ms:clr.dataset.msclear;const def=MSEL[key];if(!def)return false;
+  const [obj,prop,redraw]=def();
+  if(clr)obj[prop]=[];else{const v=chip.dataset.v;obj[prop]=obj[prop].includes(v)?obj[prop].filter(x=>x!==v):[...obj[prop],v];}
+  redraw();
+  const d=document.querySelector(`details.msel[data-key="${key}"]`);
+  if(d){d.open=true;const sel=obj[prop];d.querySelector('.mval').innerHTML=mselVal(sel);d.querySelectorAll('.mchip').forEach(c=>{const on=sel.includes(c.dataset.v);c.classList.toggle('on',on);c.setAttribute('aria-pressed',on);c.textContent=(on?'✓ ':'')+c.dataset.v;});}
+  return true;
+}
+document.addEventListener('click',e=>{if(mselClick(e)){e.preventDefault();e.stopPropagation();}},true);
 function gigFiltered(){
   const q=F.q.toLowerCase();
   return gigsArr().filter(g=>{
-    if(F.role!=='All'&&g.role!==F.role)return false;
-    if(F.type!=='All'&&evType(g)!==F.type)return false;
+    if(!roleMatch(g.role,F.roles))return false;
+    if(F.types.length&&!F.types.includes(evType(g)))return false;
     if(F.openOnly&&(g.status!=='open'||isPast(g)))return false;
     if(!geoOk(g.city,F.state,F.near,F.radius))return false;
     if(q){const hay=[g.title,g.city,g.venue,g.role,evType(g),nameOf(g.posterId)].join(' ').toLowerCase();if(!hay.includes(q))return false;}
@@ -1134,7 +1181,7 @@ function calendarView(){
   if(C.y===null){const d=new Date();C.y=d.getFullYear();C.m=d.getMonth();}
   const first=new Date(C.y,C.m,1),dow=first.getDay(),days=new Date(C.y,C.m+1,0).getDate();
   const ym=`${C.y}-${pad(C.m+1)}`;const tdy=todayStr();
-  const gs=gigsArr().filter(g=>g.date&&g.date.startsWith(ym)&&g.status!=='closed'&&(C.type==='All'||evType(g)===C.type)&&geoOk(g.city,C.state,'',0))
+  const gs=gigsArr().filter(g=>g.date&&g.date.startsWith(ym)&&g.status!=='closed'&&(!C.types.length||C.types.includes(evType(g)))&&geoOk(g.city,C.state,'',0))
     .sort((a,b)=>(a.date+(a.time||'')).localeCompare(b.date+(b.time||'')));
   const byDay={};gs.forEach(g=>{const d=+g.date.slice(8);(byDay[d]=byDay[d]||[]).push(g);});
   let cells=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(d=>`<div class="dow">${d}</div>`).join('');
@@ -1146,7 +1193,7 @@ function calendarView(){
   const label=first.toLocaleDateString('en-US',{month:'long',year:'numeric'});
   return `<section class="hero"><div><p class="eyebrow">Event calendar</p><h1>What's happening</h1><p class="lede">Every gig, open mic, showcase, audition and jam session on one calendar. Tap an event to sign up and perform.</p></div></section>
   <div class="filters">${stateChips(C.state,'cstate')}
-    <label class="sel">Type <select id="c-type">${['All',...EVENT_TYPES].map(r=>`<option ${C.type===r?'selected':''}>${esc(r)}</option>`).join('')}</select></label>
+    ${msel('c-types','Type',EVENT_TYPES,C.types)}
   </div>
   <div class="card">
     <div class="cal-head"><h2>${esc(label)}</h2><div class="row"><button class="btn ghost sm" data-act="calprev" aria-label="Previous month">←</button><button class="btn ghost sm" data-act="caltoday">Today</button><button class="btn ghost sm" data-act="calnext" aria-label="Next month">→</button></div></div>
@@ -1165,7 +1212,7 @@ function talentView(){
     ${stateChips(T.state,'tstate')}
   </div>
   <div class="filters">
-    <label class="sel">Role <select id="t-role">${['All',...ROLES].map(r=>`<option ${T.role===r?'selected':''}>${esc(r)}</option>`).join('')}</select></label>
+    ${msel('t-roles','Role',ROLES,T.roles)}
     <label class="sel">Near <select id="t-near">${cityOptions(T.near,'Anywhere')}</select></label>
     ${T.near?radiusSel('t-radius',T.radius):''}
   </div>
@@ -1176,7 +1223,7 @@ function talentList(){
   let ids=Object.keys(S.data.profiles).filter(id=>{
     const p=S.data.profiles[id];
     if(isRemoved(id)&&!S.isOwner)return false;
-    if(T.role!=='All'&&!rolesOf(p).includes(T.role))return false;
+    if(T.roles.length&&!rolesOf(p).some(r=>roleMatch(r,T.roles)))return false;
     if(!geoOk(p.city,T.state,T.near,T.radius))return false;
     if(q){const hay=[p.stageName,p.city,rolesOf(p).join(' '),(p.skills||[]).join(' ')].join(' ').toLowerCase();if(!hay.includes(q))return false;}
     return true;
@@ -1353,7 +1400,7 @@ function profileForm(inModal){
     <label class="full">Skills and genres, separated by commas<input id="p-skills" maxlength="200" placeholder="Gospel, R&B, background vocals" value="${esc((p.skills||[]).join(', '))}"></label>
     <label>Contact for booked gigs (private)<input id="p-contact" maxlength="120" placeholder="Phone, email or @instagram" value="${esc(contactOf(S.me))}"><span class="fine">Only shown to people once a booking with you is accepted.</span></label>
     <label class="full">About you<textarea id="p-bio" maxlength="800" placeholder="Experience, what you bring to a gig, gear you own…">${esc(p.bio||'')}</textarea></label>
-    ${p.agreedRulesAt?'':`<label class="check full"><input type="checkbox" id="p-agree" required> I'm 18 or older and agree to the <a href="#terms" ${inModal?'data-act="close"':''}>Terms &amp; Conditions</a> and <a href="#rules" ${inModal?'data-act="close"':''}>Community rules</a>, including booking through Plug’d.</label>`}
+    ${p.agreedRulesAt?'':`<label class="check full"><input type="checkbox" id="p-agree" required> I'm 18 or older and agree to the <a href="#terms" ${inModal?'data-act="close"':''}>Terms &amp; Conditions</a>, <a href="#privacy" ${inModal?'data-act="close"':''}>Privacy Policy</a> and <a href="#rules" ${inModal?'data-act="close"':''}>Community rules</a>, including booking through Plug’d.</label>`}
     <div class="btns full">${inModal?'<button type="button" class="btn ghost" data-act="close">Cancel</button>':''}<button class="btn" type="submit">Save profile</button></div>
   </form>`;
 }
@@ -1427,7 +1474,7 @@ function openAuth(mode){
   <form class="f" data-form="auth" data-mode="${up?'signup':'signin'}">
     <label class="full">Email<input id="au-email" type="email" required autocomplete="email" autofocus></label>
     <label class="full">Password${up?' (at least 8 characters)':''}<input id="au-pw" type="password" required minlength="8" autocomplete="${up?'new-password':'current-password'}"></label>
-    ${up?'<p class="fine full">By creating an account you agree to the <a href="#terms" data-act="close">Terms &amp; Conditions</a> and <a href="#rules" data-act="close">Community rules</a>.</p>':''}
+    ${up?'<p class="fine full">By creating an account you agree to the <a href="#terms" data-act="close">Terms &amp; Conditions</a>, <a href="#privacy" data-act="close">Privacy Policy</a> and <a href="#rules" data-act="close">Community rules</a>.</p>':''}
     <p class="hint full" id="au-msg" aria-live="polite"></p>
     <div class="btns full" style="justify-content:space-between;flex-wrap:wrap;align-items:center">
       <span class="row"><button type="button" class="btn ghost sm" data-act="${up?'signin':'signup'}">${up?'I already have an account':'Create an account'}</button>${up?'':'<button type="button" class="btn ghost sm" data-act="forgot">Forgot password</button>'}</span>
@@ -1559,16 +1606,62 @@ function render(){
   else if(r==='alerts')html=alertsView();
   else if(r==='feed')html=feedView();
   else if(r==='terms')html=termsView();
+  else if(r==='privacy')html=privacyView();
   else if(r.startsWith('gig-'))html=gigDetail(r.slice(4));
   else if(r.startsWith('profile-'))html=profileView(r.slice(8));
   else html=gigsView();
-  $('#view').innerHTML=testBanner()+(S.note?`<div class="note">${esc(S.note)}</div>`:'')+html+`<footer class="foot fine"><img src="logo-header.png" alt="" height="22"> · <a href="#terms">Terms &amp; Conditions</a> · <a href="#rules">Community rules &amp; Plug’d Pay</a> · Free during launch</footer>`;
+  $('#view').innerHTML=testBanner()+(S.note?`<div class="note">${esc(S.note)}</div>`:'')+html+`<footer class="foot fine"><img src="logo-header.png" alt="" height="22"> · <a href="#terms">Terms &amp; Conditions</a> · <a href="#rules">Community rules &amp; Plug’d Pay</a> · <a href="#privacy">Privacy Policy</a> · Free during launch</footer>`;
+  {let n=0;document.querySelectorAll('.rules h2').forEach(h=>{if(h.querySelector('.secnum'))return;n++;const m=/^\s*(\d+)\.\s+/.exec(h.textContent);h.innerHTML=h.innerHTML.replace(/^\s*\d+\.\s+/,'');h.insertAdjacentHTML('afterbegin',`<span class="secnum">${route()==='rules'?n:(m?m[1]:n)}</span>`);});}
   if(r==='post')updatePayHint();
 }
 function testBanner(){
   if(!(TEST.on&&S.isOwner))return '';
   const ids=Object.keys(S.data.profiles).sort((a,b)=>nameOf(a).localeCompare(nameOf(b)));
   return `<div class="testbanner"><b>🧪 TEST MODE</b><span>Nothing here is real.</span>${S.mode==='demo'?`<span>Acting as</span><label class="sel"><select id="test-actas" aria-label="Act as member"><option value="">Myself</option>${ids.map(i=>`<option value="${esc(i)}" ${S.me===i&&i!==S.realMe?'selected':''}>${esc(nameOf(i))}</option>`).join('')}</select></label>`:'<span class="fine">Use a second account (another email) to play the other side.</span>'}<button class="btn ghost sm" data-act="testreset">Reset test data</button><button class="btn ghost sm" data-act="testmode">Turn off</button></div>`;
+}
+function privacyView(){
+  return `<a class="back" href="#gigs">← Back</a><h1>Privacy Policy</h1><p class="muted" style="margin:8px 0 22px">Effective November 15, 2026</p>
+  <section class="card rules">
+    <p>This Privacy Policy explains what information Plug’d ("Plug’d," "we," "us") collects when you use the Plug’d app or website (the "Service"), how we use it, and the choices you have. Plug’d is for people 18 and older.</p>
+    <h2>1. What we collect</h2>
+    <ul>
+      <li><b>Account details:</b> your email address and password (passwords are stored securely and we can't see them).</li>
+      <li><b>Your profile:</b> stage or business name, city, roles, prices, lowest offer, skills, bio, videos and anything else you add.</li>
+      <li><b>Private contact info:</b> the phone number, email or handle you enter for booked gigs.</li>
+      <li><b>Activity in the app:</b> gigs you post, sign-ups, booking offers, bookings, cancellations, payment records, reviews, reports, alerts and, if it's turned on, community posts, likes and comments.</li>
+      <li><b>Device details for alerts:</b> if you turn on phone alerts, a code from your browser that lets us send notifications to that device.</li>
+      <li><b>Basic technical data:</b> like any website, our hosting providers may log things such as your IP address, browser type and the time of a visit to keep the Service running and secure.</li>
+    </ul>
+    <h2>2. How we use it</h2>
+    <ul>
+      <li>To run Plug’d: show profiles and gigs, handle sign-ups, offers, bookings, cancellations, reviews and alerts.</li>
+      <li>To keep members safe: block contact info in public places, review reports, add strikes and remove members who break the rules.</li>
+      <li>To contact you about your account, such as sign-in and password emails and booking alerts.</li>
+      <li>To improve Plug’d and fix problems.</li>
+    </ul>
+    <p>We do not sell your personal information, and we don't use it for outside advertising.</p>
+    <h2>3. Who can see what</h2>
+    <ul>
+      <li><b>Public:</b> your profile (except private contact info), gigs, reviews, ratings, track record, activity level and, when the feed is on, your community posts.</li>
+      <li><b>Only people you're booked with:</b> your private contact info, once a booking between you is accepted.</li>
+      <li><b>Only you:</b> your alerts and your phone-alert devices.</li>
+      <li><b>Only Plug’d admins:</b> member reports and the details needed to settle a problem with a gig.</li>
+    </ul>
+    <h2>4. Sponsors</h2><p>Plug’d may show sponsor ads to stay free. Sponsors don't receive your personal information from us.</p>
+    <h2>5. Services we use</h2><p>Plug’d runs on trusted providers that handle data for us: Supabase (database, sign-in and video storage), GitHub Pages (hosting the app) and Google Fonts and jsDelivr (fonts and app code). If Plug’d Pay with real card payments is added later, a payment processor such as Stripe will handle card details. Plug’d will never see or store your full card number.</p>
+    <h2>6. Cookies and storage on your device</h2><p>Plug’d uses your browser's storage to keep you signed in, remember settings and let the app work offline. We don't use advertising cookies.</p>
+    <h2>7. How long we keep it</h2><p>We keep your information while your account is open. Records of gigs, payments, reviews and reports may be kept longer when needed to settle problems, prevent fraud or follow the law.</p>
+    <h2>8. Your choices</h2>
+    <ul>
+      <li>Edit your profile and contact info anytime in the app.</li>
+      <li>Turn phone alerts off in your phone or browser settings.</li>
+      <li>Ask us for a copy of your information, or to delete your account, by emailing <b>plugdinfo26@gmail.com</b>. Some records may be kept as explained above.</li>
+    </ul>
+    <h2>9. Security</h2><p>We use access rules so members can only see and change what they're allowed to, and contact info stays private until a booking is accepted. No system is perfectly secure, so use a strong password and never share it.</p>
+    <h2>10. Children</h2><p>Plug’d is not for anyone under 18. If we learn that someone under 18 has an account, we will remove it.</p>
+    <h2>11. Changes</h2><p>We may update this policy. If the changes are important, we'll let members know in the app. Using Plug’d after an update means you accept the new policy.</p>
+    <h2>12. Contact</h2><p>Questions about privacy? Email <b>plugdinfo26@gmail.com</b>.</p>
+  </section>`;
 }
 function termsView(){
   return `<a class="back" href="#gigs">← Back</a><h1>Terms &amp; Conditions</h1><p class="muted" style="margin:8px 0 22px">Effective November 14, 2026</p>
@@ -1639,14 +1732,10 @@ document.addEventListener('input',e=>{
 document.addEventListener('change',async e=>{
   const id=e.target.id,v=e.target.value;
   if(id==='f-open'){F.openOnly=e.target.checked;$('#gig-list').innerHTML=gigList();}
-  else if(id==='f-role'){F.role=v;$('#gig-list').innerHTML=gigList();}
-  else if(id==='f-type'){F.type=v;$('#gig-list').innerHTML=gigList();}
   else if(id==='f-near'){F.near=v;render();}
   else if(id==='f-radius'){F.radius=Number(v)||50;$('#gig-list').innerHTML=gigList();}
-  else if(id==='t-role'){T.role=v;$('#talent-list').innerHTML=talentList();}
   else if(id==='t-near'){T.near=v;render();}
   else if(id==='t-radius'){T.radius=Number(v)||50;$('#talent-list').innerHTML=talentList();}
-  else if(id==='c-type'){C.type=v;render();}
   else if(id==='g-role'||id==='g-paytype'||id==='g-type'||id==='g-occasion')updatePayHint();
   else if(id==='v-file')uploadVideo(e.target);
   else if(e.target.name==='p-roles'){const fm=e.target.closest('form');const box=fm&&fm.querySelector('#rate-rows');if(box){const vals={};box.querySelectorAll('[data-rate-role]').forEach(i=>{vals[i.dataset.rateRole]=i.value;});const roles=[...fm.querySelectorAll('input[name=p-roles]:checked')].map(x=>x.value);box.innerHTML=rateRows(roles,vals);}}
@@ -1994,7 +2083,7 @@ async function boot(){
   setInterval(()=>{if(document.visibilityState==='visible')loadAll(true);},120000);
 }
 /* ---------- automatic updates ---------- */
-const APP_VERSION='2026-11-15.2';
+const APP_VERSION='2026-11-15.3';
 const UPD={ready:''};
 async function checkUpdate(){
   if(!/^https?:$/.test(location.protocol)||UPD.ready)return;
