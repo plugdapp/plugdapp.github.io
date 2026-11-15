@@ -17,7 +17,7 @@
 <script src="config.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
   /* Layout: sticky top bar, one content column (max 1100px), cards in auto-fill grids; detail pages split main + aside; calendar is a 7-column month grid */
@@ -25,8 +25,8 @@
   --text:#efedff; --muted:#a3a1cb;
   --blue:#2f7bff; --violet:#8b4dff; --peacock:#00b8a9; --gold:#e8b840;
   --good:#2fd39a; --warn:#ffb648; --bad:#ff6382;
-  --display:'Unbounded','Arial Black',system-ui,sans-serif;
-  --body:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --display:'Plus Jakarta Sans','Segoe UI',system-ui,sans-serif;
+  --body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
   --r:14px;
   color-scheme:dark;
 }
@@ -37,7 +37,7 @@ body{min-height:100%;background:
   radial-gradient(700px 380px at -10% 10%, rgba(0,184,169,.12), transparent 60%),
   var(--ink);background-attachment:fixed}
 a{color:inherit}
-h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.15;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.15;margin:0;text-wrap:balance;letter-spacing:-.02em}
 h1{font-size:clamp(1.6rem,4vw,2.5rem)}
 h2{font-size:1.15rem}
 h3{font-size:1rem}
@@ -300,7 +300,90 @@ nav.tabs .ti{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1
 .chipcheck input:checked + span{background:linear-gradient(95deg,var(--blue),var(--violet));border-color:transparent;color:#fff;font-weight:700}
 .chipcheck input:checked + span::before{content:"✓ "}
 .chipcheck input:focus-visible + span{outline:2px solid var(--peacock);outline-offset:2px}
+.raterows{display:flex;flex-direction:column;gap:8px}
+.raterows:empty{display:none}
+.f label.raterow{flex-direction:row;align-items:center;gap:10px}
+.raterow span{flex:0 0 130px;color:var(--text);font-weight:500}
+.raterow input{flex:1;min-width:0}
+.detailblock{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.detailblock h3{font-size:.95rem;margin-bottom:6px}
+.termsbox{background:rgba(0,184,169,.06);border:1px solid rgba(0,184,169,.35);border-radius:12px;padding:12px 14px}
+.termsbox ul{margin:6px 0;padding-left:20px}
+.termsbox li{margin:2px 0}
+.subform{border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.subform legend{font-size:.88rem;color:var(--muted);font-weight:600;padding:0 6px}
+.rehfields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.f label.termrow{flex-wrap:wrap;color:var(--text);font-weight:400}
+input.mini{width:70px!important;padding:6px 8px!important}
+input.mini.wide{width:130px!important}
+fieldset.yn{border:0;padding:0;margin:0;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+fieldset.yn legend{font-size:.92rem;color:var(--text);margin-bottom:6px;width:100%}
+fieldset.yn label{flex-direction:row;align-items:center;gap:6px;color:var(--text)}
+.tag.yes{color:var(--good)} .tag.no{color:var(--bad)}
+.tr{display:flex;flex-direction:column;gap:10px}
+.trrow{display:grid;grid-template-columns:180px 1fr 50px;gap:12px;align-items:center}
+.trrow .meter{margin:0}
+@media (max-width:560px){.trrow{grid-template-columns:1fr 60px}.trrow .meter{grid-column:1/-1;order:3}.rehfields{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---- Professional polish ---- */
+html,body{font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-feature-settings:'cv11','ss01'}
+h1,h2,h3{font-weight:700;letter-spacing:-.025em}
+h1{font-size:clamp(1.55rem,3.6vw,2.3rem);line-height:1.12}
+h2{font-size:1.08rem}
+h3{font-size:.95rem;font-weight:600}
+.btn{border-radius:10px;font-weight:600;font-size:.92rem;padding:10px 16px;letter-spacing:-.005em}
+.btn.ghost{font-weight:500}
+.btn.sm{border-radius:8px;padding:6px 11px;font-size:.82rem}
+.eyebrow{font-size:.7rem;letter-spacing:.12em;font-weight:600}
+.pill{font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:6px}
+.tag{font-size:.75rem;border-radius:6px}
+.facts{gap:8px}
+.facts div{border-radius:10px;padding:10px 12px;border:1px solid rgba(255,255,255,.04)}
+.facts dt{font-size:.66rem;text-transform:uppercase;letter-spacing:.09em;font-weight:600}
+.facts dd{font-weight:600;font-size:.95rem;margin-top:3px}
+.stats dt{font-size:.66rem;text-transform:uppercase;letter-spacing:.09em;font-weight:600}
+.stats dd{font-weight:700;font-size:1.35rem}
+.note{font-size:.85rem}
+.fine{font-size:.8rem}
+.desc,.quote{color:#d9d7f2}
+input,select,textarea{font-size:.95rem}
+.f label{font-size:.82rem;font-weight:500}
+.section-title h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:600}
+.detailblock h3{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.termsbox h3{color:var(--peacock)}
+nav.tabs a{font-weight:500}
+@media (max-width:640px){nav.tabs a{font-size:.68rem;letter-spacing:.01em}}
+.filters input[type=search],.sel select{border-radius:10px}
+.chip,.chipcheck span{border-radius:8px;font-size:.82rem}
+.badge{font-size:.68rem;font-weight:600;border-radius:6px}
+.lineup{display:flex;flex-direction:column;gap:12px}
+.updbar{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;z-index:60;display:flex;align-items:center;gap:12px;padding:10px 12px 10px 16px;border-radius:12px;background:#12123a;border:1px solid var(--blue);box-shadow:0 10px 30px rgba(0,0,0,.5);font-size:.9rem;width:max-content;max-width:calc(100% - 24px)}
+@media (max-width:640px){.updbar{bottom:calc(84px + env(safe-area-inset-bottom))}}
+nav.tabs a[hidden]{display:none!important}
+.bell{flex:none;margin-left:auto;margin-right:10px}
+.bell{position:relative;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:10px;border:1px solid var(--line);color:var(--text)}
+.bell svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+.bell.on{border-color:var(--blue)}
+.bdot{position:absolute;top:-6px;right:-6px;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:#ff3d71;color:#fff;font-size:.66rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.alerts{display:flex;flex-direction:column;gap:0;padding:6px 0}
+.alertrow{display:flex;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--text)}
+.alertrow:last-child{border-bottom:0}
+.alertrow .adot{width:8px;height:8px;border-radius:50%;margin-top:7px;flex:none;background:transparent}
+.alertrow.unread .adot{background:var(--blue)}
+.alertrow.unread b{color:#fff}
+.iosnote{margin-top:8px;padding:10px 12px;border-radius:10px;background:rgba(43,108,255,.08);border:1px solid rgba(43,108,255,.3)}
+.post .desc{margin:12px 0}
+.btn.liked{color:#ff5c8a;border-color:rgba(255,92,138,.5)}
+.comments{display:flex;flex-direction:column;gap:10px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.comment{display:flex;gap:8px;align-items:flex-start;font-size:.9rem}
+.commentf{display:flex;gap:8px;margin-top:12px}
+.commentf input{flex:1;min-width:0}
+.textbtn{background:none;border:0;color:var(--muted);text-decoration:underline;padding:0;font:inherit;cursor:pointer}
+.lineup .poster{display:flex;gap:10px;align-items:center;text-decoration:none}
+.gig h3,.card>h3{font-size:1.06rem;font-weight:700}
+.meta{font-size:.86rem}
+.gig-foot{font-size:.84rem}
 </style>
 </head>
 <body>
@@ -312,6 +395,7 @@ nav.tabs .ti{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1
       <a href="#calendar" data-nav="calendar"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg><span>Calendar</span></a>
       <a href="#talent" data-nav="talent"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1-4 4-6 7-6s6 2 7 6"/></svg><span>Talent</span></a>
       <a href="#post" data-nav="post"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 8v8M8 12h8"/></svg><span>Post</span></a>
+      <a href="#feed" data-nav="feed" hidden><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg><span>Feed</span></a>
       <a href="#mine" data-nav="mine"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V6l10-2v12"/><circle cx="7" cy="18" r="2.5"/><circle cx="17" cy="16" r="2.5"/></svg><span>My Plugs</span></a>
     </nav>
     <div class="me-btn" id="me-btn"></div>
@@ -329,8 +413,8 @@ nav.tabs .ti{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1
 (function(){
 "use strict";
 const COLLS=['profiles','gigs','applications','reviews'];
-const ROLES=['Vocalist','Musician','Band','Sound engineer','DJ','Host / MC','Organizer / Venue'];
-const GIG_ROLES=['Vocalist','Musician','Band','Sound engineer','DJ','Host / MC'];
+const ROLES=['Vocalist','Musician','Music Director','Band','Sound engineer','DJ','Host / MC','Organizer / Venue'];
+const GIG_ROLES=['Vocalist','Musician','Music Director','Band','Sound engineer','DJ','Host / MC'];
 const EVENT_TYPES=['Paid gig','Open mic','Showcase','Audition','Jam session'];
 const PAY_TYPES=['flat','per hour','per set'];
 const STATES={NC:'North Carolina',SC:'South Carolina',VA:'Virginia'};
@@ -344,7 +428,20 @@ const CITIES={
  'Roanoke, VA':[37.2710,-79.9414],'Virginia Beach, VA':[36.8529,-75.9780]
 };
 /* Plug’d's estimated typical pay for the launch region, used for fair-pay checks */
-const RANGES={'Band':{flat:[500,2500],hour:[200,600]},'Vocalist':{flat:[150,400],hour:[50,100]},'Musician':{flat:[125,350],hour:[40,90]},'Sound engineer':{flat:[250,500],hour:[35,65]},'DJ':{flat:[300,800],hour:[75,150]},'Host / MC':{flat:[100,300],hour:[40,80]}};
+// Typical pay in NC, SC and VA (researched Nov 2026). Per person, except Band (the whole band).
+// Flat = one gig of about 3 to 4 hours. Tiers: everyday (bar, restaurant, club, church), private party, premium (wedding, corporate, concert).
+const RANGES={
+  'Musician':      {local:[100,200], private:[150,300], premium:[200,400],  hour:[50,100]},
+  'Vocalist':      {local:[100,250], private:[150,350], premium:[300,700],  hour:[50,150]},
+  'Music Director':{local:[200,400], private:[300,600], premium:[400,900],  hour:[60,150]},
+  'Band':          {local:[300,800], private:[600,1500],premium:[1500,4000],hour:[150,500]},
+  'Sound engineer':{local:[150,300], private:[250,450], premium:[400,700],  hour:[35,75]},
+  'DJ':            {local:[200,500], private:[300,800], premium:[800,2000], hour:[75,200]},
+  'Host / MC':     {local:[100,250], private:[200,500], premium:[400,1500], hour:[50,150]}
+};
+const OCCASIONS=['Bar, restaurant or club','Church service','Private party','Wedding','Corporate event','Concert or festival','Other'];
+function tierOf(o){return ['Wedding','Corporate event','Concert or festival'].includes(o)?'premium':o==='Private party'?'private':'local';}
+const TIER_LABEL={local:'everyday gigs',private:'private parties',premium:'weddings, corporate events and concerts'};
 const LEVELS=[{name:'Newcomer',min:0},{name:'Active',min:5},{name:'Featured',min:15},{name:'Headliner',min:30}];
 const PAY_METHODS=['Cash','Cash App','Zelle','Venmo','PayPal','Check','Other'];
 
@@ -415,6 +512,14 @@ function daysSince(date){return (Date.now()-new Date(date+'T23:59:00').getTime()
 function newId(prefix){return prefix+Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
 function deepMerge(a,b){const o={...(a||{})};for(const k in b){const v=b[k];if(v&&typeof v==='object'&&!Array.isArray(v)&&o[k]&&typeof o[k]==='object'&&!Array.isArray(o[k]))o[k]=deepMerge(o[k],v);else o[k]=v;}return o;}
 function rolesOf(p){p=p||{};return Array.isArray(p.roles)&&p.roles.length?p.roles.filter(r=>ROLES.includes(r)):(p.role?[p.role]:[]);}
+function rateFor(p,r){p=p||{};if(p.rates&&typeof p.rates==='object'&&p.rates[r])return String(p.rates[r]);return rolesOf(p)[0]===r?(p.rate||''):'';}
+function priceEntries(p){return rolesOf(p).filter(r=>r!=='Organizer / Venue'&&rateFor(p,r)).map(r=>[r,rateFor(p,r)]);}
+const RATE_PH={'Vocalist':'$200 per set','Musician':'$175 per gig','Music Director':'$350 per event','Band':'$1,500 per event','Sound engineer':'$45 per hour','DJ':'$400 per event','Host / MC':'$150 per event'};
+function rateRows(roles,vals){
+  const rs=roles.filter(r=>r!=='Organizer / Venue');
+  if(!rs.length)return '';
+  return `<p class="fine" style="margin:0 0 6px">Your price for each role (you set it, optional)</p>`+rs.map(r=>`<label class="raterow"><span>${esc(r)}</span><input data-rate-role="${esc(r)}" maxlength="40" placeholder="${esc(RATE_PH[r]||'$200')}" value="${esc(vals[r]||'')}" aria-label="Price as ${esc(r)}"></label>`).join('');
+}
 function profile(id){return S.data.profiles[id];}
 function nameOf(id){const p=profile(id);return (p&&p.stageName)||'Unknown member';}
 function gigsArr(){return Object.values(S.data.gigs);}
@@ -457,7 +562,7 @@ function openDispute(g){return !!(g.dispute&&!g.dispute.resolved);}
 function autoConfirmed(g){const dl=confirmDeadline(g);return !!dl&&!(g.confirms&&g.confirms[g.posterId])&&!g.dispute&&Date.now()>=dl.getTime();}
 function isCompleted(g){
   if(g.status!=='booked'||!g.confirms||!g.confirms[g.bookedId])return false;
-  if(g.dispute){return g.dispute.resolved==='release';}
+  if(g.dispute){return g.dispute.resolved==='release'||g.dispute.resolved==='split';}
   return !!g.confirms[g.posterId]||autoConfirmed(g);
 }
 function holdState(g){
@@ -466,13 +571,57 @@ function holdState(g){
   if(g.dispute){if(!g.dispute.resolved)return 'disputed';return g.dispute.resolved==='refund'?'refunded':'released';}
   return isCompleted(g)?'released':'held';
 }
+function fmtT(t){if(!t)return '';const m=/^(\d{1,2}):(\d{2})/.exec(t);if(!m)return esc(t);let h=+m[1];const ap=h>=12?'PM':'AM';h=h%12||12;return `${h}:${m[2]} ${ap}`;}
+function gigStart(g){if(!g.date)return null;const d=new Date(g.date+'T'+(g.time||'12:00'));return isNaN(d)?null:d;}
+function hoursUntil(g){const d=gigStart(g);return d?(d.getTime()-Date.now())/3.6e6:Infinity;}
+function cancelInfo(g){
+  const hrs=hoursUntil(g);const booked=g.bookedAt?new Date(g.bookedAt).getTime():0;const st=gigStart(g);
+  const shortNotice=booked&&st&&(st.getTime()-booked)<72*3.6e6;
+  const grace=shortNotice&&(Date.now()-booked)<2*3.6e6;
+  const late=hrs<72&&!grace;
+  const dayOf=g.date===todayStr();
+  return {late,grace,dayOf,hrs};
+}
+function gTerms(g){return g.terms&&typeof g.terms==='object'?g.terms:{};}
+function termsList(g){
+  const t=gTerms(g),out=[];
+  if(Number(t.lateFeePct))out.push(`Late arrival: ${Number(t.lateFeePct)}% off the pay for every 15 minutes late`);
+  if(t.arriveBy)out.push(`Must arrive by ${fmtT(t.arriveBy)}`);
+  if(t.dressCode&&g.attire)out.push(`Dress code required: ${esc(g.attire)}`);
+  if(t.sober)out.push('No smoking or drinking before or during the gig');
+  if(Number(t.cancelFeePct))out.push(`If the booker cancels within 72 hours, the performer receives ${Number(t.cancelFeePct)}% of the pay`);
+  return out;
+}
+function lateCancels(id){
+  let late=0,emerg=0;
+  gigsArr().forEach(g=>(g.cancellations||[]).forEach(c=>{if(c.by!==id)return;if(c.emergency)emerg++;else if(c.late)late++;}));
+  return late+Math.max(0,emerg-1);
+}
+function deductionOf(g){return g.deduction&&Number(g.deduction.amount)?g.deduction:null;}
+function releaseAmount(g){
+  const h=g.hold;if(!h)return 0;const amt=Number(h.amount)||0;
+  if(g.dispute&&g.dispute.resolved==='split')return Math.round(amt*(Number(g.dispute.pct)||0)/100);
+  if(g.dispute&&g.dispute.resolved==='release')return amt;
+  const d=deductionOf(g);return Math.max(0,amt-(d?Number(d.amount):0));
+}
+const REVIEW_Q={
+  performer:[['onTime','Were they on time?'],['prepared','Did they show up ready and prepared?'],['professional','Were they professional?'],['dress','Did they follow the dress code?'],['asAgreed','Did they do the gig as agreed?']],
+  booker:[['paid','Did they pay as agreed?'],['accurate','Were the gig details accurate?'],['respectful','Were you treated with respect?']]
+};
+function trackRecord(id){
+  const rs=reviewsAbout(id).filter(r=>r.answers&&typeof r.answers==='object');
+  const out=[];
+  [...REVIEW_Q.performer,...REVIEW_Q.booker].forEach(([k,q])=>{const xs=rs.filter(r=>typeof r.answers[k]==='boolean');if(xs.length)out.push([q.replace(/^(Were they|Did they|Were the|Were you) /,'').replace('?',''),xs.filter(r=>r.answers[k]).length,xs.length,k]);});
+  return out;
+}
 function fmtWhen(d){return d.toLocaleString('en-US',{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});}
 function reliability(id){
   const due=gigsArr().filter(g=>g.status==='booked'&&(g.posterId===id||g.bookedId===id)&&g.date&&daysSince(g.date)>=7);
-  if(!due.length)return null;
-  return Math.round(100*due.filter(g=>g.confirms&&g.confirms[id]).length/due.length);
+  const lc=lateCancels(id);
+  if(!due.length&&!lc)return null;
+  return Math.round(100*due.filter(g=>g.confirms&&g.confirms[id]).length/(due.length+lc));
 }
-function relHtml(id){const r=reliability(id);if(r===null)return '';return `<span class="badge rel ${r<70?'lowrel':''}" title="Share of finished gigs this person confirmed">${r}% reliable</span>`;}
+function relHtml(id){const r=reliability(id);if(r===null)return '';return `<span class="badge rel ${r<70?'lowrel':''}" title="Based on confirming finished gigs and not cancelling late">${r}% reliable</span>`;}
 function activity(id){
   const p=profile(id)||{};
   const posted=gigsArr().filter(g=>g.posterId===id).length;
@@ -522,12 +671,13 @@ function payHtml(g){
   const t=PAY_TYPES.includes(g.payType)&&g.payType!=='flat'?` <small>${g.payType}</small>`:'';
   return `${money(n)}${t}${g.negotiable?' <small>· negotiable</small>':''}`;
 }
-function rangeFor(role,payType){const r=RANGES[role];if(!r)return null;return payType==='per hour'?r.hour:r.flat;}
+function rangeFor(role,payType,occasion){const r=RANGES[role];if(!r)return null;return payType==='per hour'?r.hour:r[tierOf(occasion)];}
+function rangeWho(role,occasion){return `${role==='Band'?'a whole band':role==='Host / MC'?'a host or MC':role==='DJ'?'a DJ':'a '+role.toLowerCase()} at ${TIER_LABEL[tierOf(occasion)]}`;}
 function rangeText(r,payType){return `${money(r[0])}–${money(r[1])}${payType==='per hour'?' per hour':''}`;}
 function payCheck(g){
   const p=Number(g.pay)||0;
   if(!p&&evType(g)!=='Paid gig')return null;
-  const r=rangeFor(g.role,g.payType);if(!r)return null;
+  const r=rangeFor(g.role,g.payType,g.occasion);if(!r)return null;
   if(p<r[0])return['low',r];if(p>r[1])return['high',r];return['ok',r];
 }
 function fairHtml(g){
@@ -535,8 +685,8 @@ function fairHtml(g){
   if(!c){return evType(g)==='Paid gig'?'':`<div class="fair">This is a ${esc(evType(g).toLowerCase())}${Number(g.pay)?' with a stipend':' with no pay'}. It's listed openly so no one is surprised.</div>`;}
   const role=g.role.toLowerCase().replace(' / mc','s / MCs');
   const rt=rangeText(c[1],g.payType);
-  if(c[0]==='low')return `<div class="fair fair-low"><b>Fair pay check:</b> below the typical ${rt} for ${esc(role)} in our region.${g.negotiable?' The poster marked it negotiable.':''} You can propose your own price when you apply.</div>`;
-  if(c[0]==='high')return `<div class="fair fair-high"><b>Fair pay check:</b> above the typical ${rt}. Nice.</div>`;
+  if(c[0]==='low')return `<div class="fair fair-low"><b>Fair pay check:</b> below the typical ${rt} for ${esc(rangeWho(g.role,g.occasion))} in our region.${g.negotiable?' The poster marked it negotiable.':''} You can propose your own price when you apply.</div>`;
+  if(c[0]==='high')return `<div class="fair fair-high"><b>Fair pay check:</b> above the typical ${rt} for ${esc(rangeWho(g.role,g.occasion))}. Nice.</div>`;
   return `<div class="fair fair-ok"><b>Fair pay check:</b> within the typical ${rt} for this role.</div>`;
 }
 function safeLink(u){u=String(u||'').trim();return /^https?:\/\//i.test(u)?u:'';}
@@ -698,15 +848,22 @@ function gigDetail(id){
       <div class="row"><span class="role r-${slug(g.role)}">${esc(g.role)}</span><span class="etype">${esc(evType(g))}</span><span class="pill ${st[1]}">${st[0]}</span></div>
       <h1 style="margin-top:12px">${esc(g.title)}</h1>
       <dl class="facts">
-        <div><dt>When</dt><dd>${fmtDate(g)}</dd></div>
+        <div><dt>Date</dt><dd>${g.date?esc(new Date(g.date+'T12:00').toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'})):'To be announced'}</dd></div>
+        <div><dt>Set time</dt><dd>${g.time?fmtT(g.time):'TBA'}${g.endTime?' – '+fmtT(g.endTime):''}</dd></div>
+        ${g.loadIn?`<div><dt>Load-in</dt><dd>${fmtT(g.loadIn)}</dd></div>`:''}
+        ${g.loadOut?`<div><dt>Load-out</dt><dd>${fmtT(g.loadOut)}</dd></div>`:''}
         <div><dt>Where</dt><dd>${esc(g.venue?g.venue+', ':'')}${esc(g.city)}</dd></div>
+        ${g.occasion?`<div><dt>Occasion</dt><dd>${esc(g.occasion)}</dd></div>`:''}
         <div><dt>Pay</dt><dd class="pay">${payHtml(g)}</dd></div>
+        ${g.attire?`<div><dt>Attire</dt><dd>${esc(g.attire)}</dd></div>`:''}
       </dl>
       ${fairHtml(g)}
       ${g.description?`<p class="desc">${esc(g.description)}</p>`:''}
+      ${gigExtrasHtml(g)}
       <div class="actions">${actions}</div>
-      ${g.status!=='booked'?`<p class="fine" style="margin-top:14px">🔒 Only bookings made in Plug’d are protected. Book outside the app and Plug’d can't help with payment, no-shows or problems. <a href="#rules">Rules</a></p>`:''}
+      ${g.status!=='booked'?`<p class="fine" style="margin-top:14px">🔒 Only bookings made in Plug’d are protected. Book outside the app and Plug’d can't help with payment, no-shows or problems. Never send money to someone who asks you to pay or book outside Plug’d. <a href="#rules">Rules</a></p>`:''}
       ${g.status==='booked'?afterGigBox(g):''}
+      ${cancelHistoryHtml(g)}
     </section>
     <aside class="stack">
       <div class="card">
@@ -714,9 +871,166 @@ function gigDetail(id){
         <a class="poster" href="#profile-${esc(poster)}">${avatar(poster,'lg')}<span><b>${esc(nameOf(poster))}</b><br><span class="muted">${esc((profile(poster)||{}).city||'')}</span></span></a>
         <div class="row" style="margin-top:10px">${vipHtml(poster)}${tierHtml(poster)}${relHtml(poster)}${ratingMini(poster)}</div>
       </div>
+      ${lineupHtml(g)}
       ${mine?applicantsPanel(g,apps):`<div class="card"><b>${apps.length}</b> <span class="muted">${apps.length===1?'person has':'people have'} signed up</span></div>`}
     </aside>
   </div>`;
+}
+/* ---------- alerts, community feed, site settings ---------- */
+const XC=['notifications','posts','reactions','settings'];
+S.x={notifications:{},posts:{},reactions:{},settings:{}};
+const DEMO_X={posts:{'p-demo1':{authorId:'demo-maya',text:'Who is coming out to the jazz jam at the Velvet Room on Thursday? Bring your horn.',createdAt:'2026-11-13T19:00:00Z'},'p-demo2':{authorId:'demo-dre',text:'Shout-out to everybody who played the Raleigh showcase last weekend. That band was tight!',createdAt:'2026-11-12T15:00:00Z'}},
+  reactions:{'p-demo1__like__demo-dre':{postId:'p-demo1',by:'demo-dre',kind:'like',createdAt:'2026-11-13T19:30:00Z'},'c-demo1':{postId:'p-demo1',by:'demo-lena',kind:'comment',text:"I'll be there!",createdAt:'2026-11-13T20:00:00Z'}},
+  notifications:{'n-demo1':{to:'demo-you',from:'demo-velvet',title:'Welcome to Plug’d alerts',body:'Booking offers, cancellations and new sign-ups show up here.',gigId:'',createdAt:'2026-11-14T12:00:00Z',read:false}},settings:{}};
+function site(){return S.x.settings.site||{};}
+function feedOn(){return !!site().feedOn;}
+function xSet(coll,id,data){S.x[coll]={...S.x[coll],[id]:{...data,id}};}
+function xDrop(coll,id){const c={...S.x[coll]};delete c[id];S.x[coll]=c;}
+function hasSB(){return typeof SB!=='undefined'&&!!SB;}
+function hasDB(){return S.mode==='live'&&typeof DB!=='undefined'&&!!DB;}
+async function xAdd(coll,id,data,opts){
+  opts=opts||{};
+  try{
+    if(hasSB()){const q=opts.update?SB.from(coll).update({data}).eq('id',id):opts.upsert?SB.from(coll).upsert({id,data}):SB.from(coll).insert({id,data});const {error}=await q;if(error)throw error;}
+    else if(hasDB()){await DB.collection(coll).doc(id).set(data);}
+  }catch(e){if(!opts.quiet)writeError(e);else console.warn(e);return false;}
+  xSet(coll,id,data);return true;
+}
+async function xDel(coll,id){
+  try{if(hasSB()){const {error}=await SB.from(coll).delete().eq('id',id);if(error)throw error;}else if(hasDB()){await DB.collection(coll).doc(id).delete();}}
+  catch(e){writeError(e);return false;}
+  xDrop(coll,id);return true;
+}
+async function xLoadAll(){
+  if(S.mode==='demo'){XC.forEach(c=>{const o={};Object.entries(DEMO_X[c]||{}).forEach(([k,v])=>{o[k]={...v,id:k};});if(!Object.keys(S.x[c]).length)S.x[c]=o;});return;}
+  await Promise.all(XC.map(async c=>{
+    try{
+      if(hasSB()){const {data,error}=await SB.from(c).select('id,data').limit(2000);if(error)return;const o={};(data||[]).forEach(r=>{o[r.id]={...(r.data||{}),id:r.id};});S.x[c]=o;}
+      else if(hasDB()){const snap=await DB.collection(c).get();const o={};snap.docs.forEach(d=>{o[d.id]={...d.data(),id:d.id};});S.x[c]=o;}
+    }catch(e){}
+  }));
+}
+function xIncoming(coll,row,isDelete){
+  if(isDelete){xDrop(coll,row.id);softRender();return;}
+  const was=S.x[coll][row.id];xSet(coll,row.id,row.data||{});
+  if(coll==='notifications'&&!was&&row.data&&row.data.to===S.me){toast('🔔 '+row.data.title);popAlert({...row.data,id:row.id});}
+  softRender();
+}
+function fmtAgo(t){const d=(Date.now()-new Date(t).getTime())/1000;if(!(d>=0))return '';if(d<60)return 'just now';if(d<3600)return Math.floor(d/60)+' min ago';if(d<86400)return Math.floor(d/3600)+' hr ago';if(d<604800)return Math.floor(d/86400)+' d ago';return new Date(t).toLocaleDateString('en-US',{month:'short',day:'numeric'});}
+function shortDate(g){return g.date?new Date(g.date+'T12:00').toLocaleDateString('en-US',{month:'short',day:'numeric'}):'date TBA';}
+/* alerts */
+async function notify(to,title,body,gigId,kind){
+  if(!to||to===S.me)return;
+  const data={to,from:S.me,kind:kind||'info',title:String(title).slice(0,120),body:String(body||'').slice(0,300),gigId:gigId||'',createdAt:now(),read:false};
+  await xAdd('notifications',newId('n'),data,{quiet:true});
+}
+function alertsArr(){return Object.values(S.x.notifications).filter(n=>n.to===S.me).sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt)));}
+function unreadCount(){return S.me?alertsArr().filter(n=>!n.read).length:0;}
+function popAlert(n){
+  try{
+    if(document.visibilityState==='visible')return;
+    if(!('Notification' in window)||Notification.permission!=='granted'||!navigator.serviceWorker)return;
+    navigator.serviceWorker.ready.then(r=>r.showNotification(n.title,{body:n.body||'',icon:'icons/icon-192.png',tag:n.id,data:{url:n.gigId?'./#gig-'+n.gigId:'./#alerts'}})).catch(()=>{});
+  }catch(e){}
+}
+function isIOS(){return /iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);}
+function pushState(){
+  if(!('Notification' in window))return 'none';
+  if(Notification.permission==='granted')return 'on';
+  if(Notification.permission==='denied')return 'blocked';
+  return 'off';
+}
+function alertHelpHtml(){
+  const st=pushState();
+  const ios=isIOS()&&!(typeof isStandalone==='function'&&isStandalone());
+  let h='';
+  if(st==='on')h+=`<p class="fine">✅ Phone alerts are on for this device.</p>`;
+  else if(st==='blocked')h+=`<p class="fine">Alerts are blocked for Plug’d. To turn them on, allow notifications for Plug’d in your phone's settings.</p>`;
+  else if(st==='off')h+=`<div class="row"><button class="btn sm" data-act="enablepush">Turn on phone alerts</button><span class="fine">Get a pop-up when you get an offer, a sign-up or a cancellation.</span></div>`;
+  if(ios)h+=`<p class="fine iosnote"><b>On iPhone?</b> Alerts only work from the home-screen app. Tap <b>Share</b> (the square with the arrow), then <b>Add to Home Screen</b>, then open Plug’d from that icon and turn on alerts here.</p>`;
+  return h?`<section class="card">${h}</section>`:'';
+}
+function alertsView(){
+  if(!S.me)return `<h1>Alerts</h1><div class="empty">Sign in to see your alerts.</div>`;
+  const list=alertsArr();
+  if(list.some(n=>!n.read)){clearTimeout(alertsView.t);alertsView.t=setTimeout(markAllRead,1500);}
+  return `<h1>Alerts</h1>${alertHelpHtml()}
+  <section class="card alerts">${list.length?list.map(n=>`<a class="alertrow${n.read?'':' unread'}" href="${n.gigId?'#gig-'+esc(n.gigId):'#mine'}"><span class="adot" aria-hidden="true"></span><span><b>${esc(n.title)}</b>${n.body?`<br><span class="muted">${esc(n.body)}</span>`:''}<br><span class="fine">${fmtAgo(n.createdAt)}</span></span></a>`).join(''):`<div class="empty">No alerts yet. Booking offers, new sign-ups and cancellations will show up here.</div>`}</section>`;
+}
+async function markAllRead(){
+  if(route()!=='alerts')return;
+  const un=alertsArr().filter(n=>!n.read);
+  for(const n of un){const d={...strip(n),read:true};await xAdd('notifications',n.id,d,{update:true,quiet:true});}
+  renderNav();
+}
+function b64u(str){const pad='='.repeat((4-str.length%4)%4);const b=atob((str+pad).replace(/-/g,'+').replace(/_/g,'/'));return Uint8Array.from([...b].map(c=>c.charCodeAt(0)));}
+async function sha(t){try{const h=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));return [...new Uint8Array(h)].map(x=>x.toString(16).padStart(2,'0')).join('');}catch(e){return 'e'+t.slice(-60).replace(/[^a-z0-9]/gi,'');}}
+async function enablePush(){
+  if(!('Notification' in window)){toast(isIOS()?'On iPhone, add Plug’d to your home screen first, then open it from that icon.':'This browser can’t show alerts.');return;}
+  let perm='default';try{perm=await Notification.requestPermission();}catch(e){}
+  if(perm!=='granted'){toast('Alerts are off. You can allow them in your phone settings.');render();return;}
+  const C=window.PLUGD_CONFIG||{};
+  if(hasSB()&&C.vapidPublicKey&&'serviceWorker' in navigator&&'PushManager' in window){
+    try{
+      const reg=await navigator.serviceWorker.ready;let sub=await reg.pushManager.getSubscription();
+      if(!sub)sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:b64u(C.vapidPublicKey)});
+      const j=sub.toJSON();const id=await sha(j.endpoint);
+      const {error}=await SB.from('push_subscriptions').upsert({id,user_id:S.realMe,sub:j});if(error)throw error;
+    }catch(e){console.warn(e);toast('Alerts are on while Plug’d is open. Pop-ups when it’s closed couldn’t be set up on this device.');render();return;}
+  }
+  toast('Phone alerts are on.');render();
+}
+/* community feed */
+function postsArr(){return Object.values(S.x.posts).sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt)));}
+function reactsFor(pid){return Object.values(S.x.reactions).filter(r=>r.postId===pid);}
+function feedView(){
+  if(!feedOn()&&!S.isOwner)return `<h1>Community</h1><div class="empty">The community feed is coming soon.</div>`;
+  const canPost=S.me&&profile(S.me);
+  return `<h1>Community</h1>
+  ${!feedOn()?`<div class="note">The feed is turned off, so only you (admin) can see this page. Turn it on in My Plugs.</div>`:''}
+  ${canPost?`<section class="card"><form class="f" data-form="post"><label class="full">Share with the community<textarea id="fp-text" required maxlength="500" placeholder="Shout-outs, questions, gear for sale, who's playing where…"></textarea></label><p class="fine full">Keep it friendly and about music. Phone numbers and social handles are blocked here too: book through Plug’d.</p><div class="btns full"><button class="btn" type="submit">Post</button></div></form></section>`:`<div class="empty">${S.me?'<a href="#me">Set up your profile</a> to post.':'Sign in to post.'}</div>`}
+  ${postsArr().map(postHtml).join('')||'<div class="empty">No posts yet. Say hello!</div>'}`;
+}
+function postHtml(p){
+  const rs=reactsFor(p.id);const likes=rs.filter(r=>r.kind==='like');const liked=likes.some(r=>r.by===S.me);
+  const cs=rs.filter(r=>r.kind==='comment').sort((a,b)=>String(a.createdAt).localeCompare(String(b.createdAt)));
+  const mine=S.me&&p.authorId===S.me;const canPost=S.me&&profile(S.me);
+  return `<section class="card post">
+  <div class="row between"><a class="poster" href="#profile-${esc(p.authorId)}">${avatar(p.authorId)}<span><b>${esc(nameOf(p.authorId))}</b><br><span class="fine">${fmtAgo(p.createdAt)}</span></span></a>
+  <span class="row">${mine||S.isOwner?`<button class="btn ghost sm" data-act="delpost" data-id="${esc(p.id)}">Delete</button>`:''}${S.me&&!mine?`<button class="btn ghost sm" data-act="report" data-id="${esc(p.authorId)}">Report</button>`:''}</span></div>
+  <p class="desc">${esc(p.text)}</p>
+  <div class="row"><button class="btn ghost sm${liked?' liked':''}" data-act="like" data-id="${esc(p.id)}" ${canPost?'':'disabled'}>${liked?'♥':'♡'} ${likes.length?likes.length+' ':''}Like</button><span class="fine">${cs.length} comment${cs.length===1?'':'s'}</span></div>
+  ${cs.length?`<div class="comments">${cs.map(c=>`<div class="comment">${avatar(c.by)}<span><a href="#profile-${esc(c.by)}"><b>${esc(nameOf(c.by))}</b></a> ${esc(c.text)}<br><span class="fine">${fmtAgo(c.createdAt)}${S.me&&(c.by===S.me||S.isOwner)?` · <button class="textbtn" data-act="delreact" data-id="${esc(c.id)}">Delete</button>`:''}</span></span></div>`).join('')}</div>`:''}
+  ${canPost?`<form class="commentf" data-form="comment" data-post="${esc(p.id)}"><input maxlength="300" placeholder="Write a comment" aria-label="Write a comment" required><button class="btn ghost sm" type="submit">Reply</button></form>`:''}
+  </section>`;
+}
+function lineupOf(g){
+  const out=[],seen=new Set();
+  gigsArr().forEach(o=>{if(o.id===g.id||o.posterId!==g.posterId||o.status!=='booked'||!o.bookedId||o.date!==g.date)return;
+    if((o.venue||o.city)!==(g.venue||g.city))return;if(seen.has(o.bookedId)||o.bookedId===g.bookedId)return;seen.add(o.bookedId);out.push({id:o.bookedId,role:o.role});});
+  (Array.isArray(g.lineup)?g.lineup:[]).forEach(x=>{if(!x||typeof x!=='object')return;if(x.id&&(seen.has(x.id)||x.id===g.bookedId))return;if(x.id)seen.add(x.id);out.push(x);});
+  return out.slice(0,16);
+}
+function lineupHtml(g){
+  if(g.status!=='booked'&&S.me!==g.posterId)return '';
+  const L=lineupOf(g);if(!L.length)return '';
+  return `<div class="card"><p class="fine" style="margin-bottom:10px">The lineup</p><div class="lineup">${L.map(x=>x.id&&profile(x.id)?`<a class="poster" href="#profile-${esc(x.id)}">${avatar(x.id)}<span><b>${esc(nameOf(x.id))}</b>${(x.role||profile(x.id).role)?` <span class="muted">· ${esc(x.role||profile(x.id).role)}</span>`:''}<br>${ratingMini(x.id)}</span></a>`:`<div class="poster"><span class="av av0" aria-hidden="true">${esc(String(x.name||'?').trim().charAt(0).toUpperCase())}</span><span><b>${esc(x.name||'')}</b>${x.role?` <span class="muted">· ${esc(x.role)}</span>`:''}<br><span class="fine">Not on Plug’d yet</span></span></div>`).join('')}</div><p class="fine" style="margin-top:10px">${g.status==='booked'?"Who's playing this gig.":'Only you see this until the gig is booked.'}</p></div>`;
+}
+function gigExtrasHtml(g){
+  const rh=g.rehearsal&&typeof g.rehearsal==='object'?g.rehearsal:null;
+  const tl=termsList(g);
+  let h='';
+  if(rh&&(rh.date||rh.time||rh.place))h+=`<div class="detailblock"><h3>Rehearsal</h3><p>${rh.date?esc(new Date(rh.date+'T12:00').toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'})):''}${rh.time?' at '+fmtT(rh.time):''}${rh.place?' · '+esc(rh.place):''}</p></div>`;
+  else if(g.rehearsalNone)h+=`<div class="detailblock"><h3>Rehearsal</h3><p class="muted">No rehearsal</p></div>`;
+  if(g.setlist)h+=`<div class="detailblock"><h3>Songs / setlist</h3><p class="desc">${esc(g.setlist)}</p></div>`;
+  if(tl.length)h+=`<div class="detailblock termsbox"><h3>Gig terms</h3><ul>${tl.map(t=>`<li>${t}</li>`).join('')}</ul><p class="fine">${g.termsAgreedAt&&g.bookedId?`${esc(nameOf(g.bookedId))} agreed to these terms when accepting the booking.`:'Accepting a booking means agreeing to these terms. Anything not listed here is handled through honest reviews.'}</p></div>`;
+  return h;
+}
+function cancelHistoryHtml(g){
+  const cs=g.cancellations||[];if(!cs.length)return '';
+  const party=S.me&&(S.me===g.posterId||cs.some(c=>c.performer===S.me));
+  if(!party&&!S.isOwner)return '';
+  return `<div class="detailblock"><h3>Cancellation history</h3>${cs.map(c=>`<p class="fine">${esc(nameOf(c.by))} cancelled ${c.performer&&c.by===g.posterId?'the booking with '+esc(nameOf(c.performer)):''} on ${esc(new Date(c.at).toLocaleDateString('en-US',{month:'short',day:'numeric'}))}${c.emergency?' (emergency)':c.late?' (late, inside 72 hours)':''}${c.reason?': '+esc(c.reason):''}.${c.fee?` ${esc(nameOf(c.performer))} receives a ${money(c.fee)} cancellation fee.`:(c.amount?' Held money refunded to the booker.':'')}</p>`).join('')}</div>`;
 }
 function afterGigBox(g){
   const party=S.me&&(S.me===g.posterId||S.me===g.bookedId);
@@ -729,11 +1043,12 @@ function afterGigBox(g){
   }else if(openDispute(g)){
     h+=`<div class="row"><span class="pill pending">Under review</span><span class="muted">${esc(nameOf(g.dispute.by))} reported a problem. The money stays held until Plug’d sorts it out.</span></div>`+
        (g.dispute.reason?`<p class="quote">“${esc(g.dispute.reason)}”</p>`:'')+
-       (S.isOwner?`<div class="row"><span class="fine">Admin:</span><button class="btn teal sm" data-act="resolve" data-v="release" data-id="${esc(g.id)}">Release to ${esc(nameOf(g.bookedId))}</button><button class="btn ghost sm" data-act="resolve" data-v="refund" data-id="${esc(g.id)}">Refund ${esc(nameOf(g.posterId))}</button></div>`:'');
+       (S.isOwner?`<div class="row"><span class="fine">Admin:</span><button class="btn teal sm" data-act="resolve" data-v="release" data-id="${esc(g.id)}">${g.hold?'Release to '+esc(nameOf(g.bookedId)):'Close as completed'}</button><button class="btn ghost sm" data-act="resolve" data-v="refund" data-id="${esc(g.id)}">${g.hold?'Refund '+esc(nameOf(g.posterId)):'Close: gig fell through'}</button>${g.hold?`<span class="row" style="gap:6px"><input id="split-pct-${esc(g.id)}" type="number" min="1" max="99" value="75" class="mini" aria-label="Percent to the performer"><span class="fine">% to performer</span><button class="btn ghost sm" data-act="resolve" data-v="split" data-id="${esc(g.id)}">Split</button></span>`:''}</div>`:'');
   }else if(g.dispute&&g.dispute.resolved==='refund'){
     h+=`<div class="row"><span class="pill declined">Refunded</span><span class="muted">Plug’d reviewed the problem report and refunded ${esc(nameOf(g.posterId))}.</span></div>`;
   }else if(!isPast(g)){
     h+=`<span class="muted">After the gig, ${esc(nameOf(g.bookedId))} marks it done. ${esc(nameOf(g.posterId))} then has 48 business hours to confirm or report a problem.</span>`;
+    if(party){const ci=cancelInfo(g);h+=`<div class="row"><button class="btn ghost sm" data-act="cancelbooking" data-id="${esc(g.id)}">${isBooked&&ci.dayOf?'Emergency cancel':'Cancel booking'}</button><span class="fine">${ci.grace?'Free to cancel for 2 hours after a last-minute booking.':ci.late?'Inside 72 hours: cancelling now counts against reliability.':'Free to cancel until 72 hours before the gig.'}</span></div>`;}
   }else if(!cf[g.bookedId]){
     h+=isBooked?`<div class="row"><span>Did you play this gig?</span><button class="btn teal sm" data-act="confirm" data-id="${esc(g.id)}">Mark gig completed</button></div><span class="fine">${esc(nameOf(g.posterId))} then has 48 business hours to confirm or report a problem. If they don't respond, it completes automatically${g.hold?' and your money is released':''}.</span>`
       :`<span class="muted">Waiting for ${esc(nameOf(g.bookedId))} to mark the gig completed.</span>`;
@@ -755,7 +1070,9 @@ function afterGigBox(g){
     }else if(hs==='disputed'){
       h+=`<div class="row"><span>💳 <b>${money(hd.amount)}</b> stays held while Plug’d reviews the problem.</span></div>`;
     }else if(hs==='released'){
-      h+=`<div class="row"><span class="pill accepted">Paid</span><span>✅ ${money(hd.amount)} released to ${esc(nameOf(g.bookedId))}${hd.fee?` (${cents(hd.amount-hd.fee)} after card fees)`:''}.</span></div>`;
+      const rel=releaseAmount(g),ded=deductionOf(g);
+      h+=`<div class="row"><span class="pill accepted">Paid</span><span>✅ ${money(rel)} released to ${esc(nameOf(g.bookedId))}${hd.fee?` (${cents(rel-payFee(rel))} after card fees)`:''}${g.dispute&&g.dispute.resolved==='split'?` · Plug’d split it ${Number(g.dispute.pct)}% to the performer`:''}${!g.dispute&&ded?` · late fee: ${ded.minutes} min late, ${ded.pct}% (${money(ded.amount)}) returned to ${esc(nameOf(g.posterId))}`:''}.</span></div>`;
+      if(isBooked&&ded&&!g.dispute&&g.confirms&&g.confirms[g.posterId]&&Date.now()<addBusinessHours(g.confirms[g.posterId],48).getTime())h+=`<div class="row"><span class="fine">Disagree with the late fee?</span><button class="btn ghost sm" data-act="pdispute" data-id="${esc(g.id)}">Report a problem</button></div>`;
     }else if(hs==='refunded'){
       h+=`<div class="row"><span class="muted">↩ ${money(hd.amount)} refunded to ${esc(nameOf(g.posterId))}'s card.</span></div>`;
     }else if(hs==='returned'){
@@ -768,6 +1085,7 @@ function afterGigBox(g){
     }else if(isPoster&&isPast(g)){
       h+=`<div class="row"><span class="muted">Paid outside the app?</span><button class="btn ghost sm" data-act="paid" data-id="${esc(g.id)}">Record payment</button></div>`;
     }
+    if(isBooked&&isPast(g)&&!g.hold&&!(g.payment&&g.payment.receivedAt)&&!g.dispute)h+=`<div class="row"><span class="fine">Haven't been paid?</span><button class="btn ghost sm" data-act="pdispute" data-id="${esc(g.id)}">Report a problem</button></div>`;
     if(isCompleted(g)){
       h+=S.data.reviews[g.id+'__'+S.me]?`<span class="muted">You reviewed ${esc(nameOf(other))}.</span>`:`<div><button class="btn sm" data-act="review" data-id="${esc(g.id)}">Review ${esc(nameOf(other))}</button></div>`;
     }
@@ -788,6 +1106,9 @@ function offerBox(g){
   <label class="choice"><input type="radio" name="pp" value="hold" checked><span><b>Protect this payment with Plug’d Pay</b><br><span class="fine">${esc(nameOf(g.posterId))}'s card is held before the gig and the money is released to you after it's confirmed. You receive <b>${cents(amt-fee)}</b> (card fee about ${cents(fee)}). <a href="#rules">Plug’d Pay rules and guidelines</a></span></span></label>
   <label class="choice"><input type="radio" name="pp" value="outside"><span><b>Get paid in cash</b> <span class="pill accepted">Full payment, no fees</span><br><span class="fine">${esc(nameOf(g.posterId))} pays you ${money(amt)} directly: cash, Cash App, Zelle and so on.</span></span></label>
   <label class="check warnbox" id="cash-ack" hidden><input type="checkbox" id="ack"><span>I understand Plug’d Pay won't protect this payment. If the money doesn't reach me, Plug’d can't help recover it.</span></label>`:`<span class="muted">This one has no pay attached.</span>`}
+  ${termsList(g).length?`<div class="termsbox"><b>Gig terms you're agreeing to</b><ul>${termsList(g).map(t=>`<li>${t}</li>`).join('')}</ul></div>`:''}
+  ${g.attire||g.loadIn||g.setlist?`<span class="fine">${g.loadIn?'Load-in '+fmtT(g.loadIn)+'. ':''}${g.attire?'Attire: '+esc(g.attire)+'. ':''}${g.setlist?'Setlist is listed above.':''}</span>`:''}
+  <span class="fine">By accepting, you agree to the gig details and terms above.</span>
   <div class="row"><button class="btn teal" data-act="acceptoffer" data-id="${esc(g.id)}">Accept booking</button><button class="btn ghost" data-act="declineoffer" data-id="${esc(g.id)}">Decline</button></div></div>`;
 }
 function applicantsPanel(g,apps){
@@ -868,7 +1189,7 @@ function talentList(){
     <div class="row">${vipHtml(id)}${lvlHtml(id)}${tierHtml(id)}${relHtml(id)}</div>
     <div class="row">${ratingMini(id)}${(p.videos||[]).length?`<span class="fine">▶ ${(p.videos||[]).length} video${(p.videos||[]).length>1?'s':''}</span>`:''}</div>
     ${(p.skills||[]).length?`<div class="tags">${(p.skills||[]).slice(0,4).map(s=>`<span class="tag">${esc(s)}</span>`).join('')}</div>`:''}
-    ${p.rate?`<p class="fine">${esc(p.rate)}</p>`:''}
+    ${priceEntries(p).length?`<p class="fine">${priceEntries(p).map(([r,v])=>`${esc(r)}: <b>${esc(v)}</b>`).join(' · ')}</p>`:''}
   </a>`;});
   cards.splice(Math.min(6,cards.length),0,sponsorCard());
   return cards.join('');
@@ -902,7 +1223,7 @@ function profileView(id){
         <p class="meta" style="margin-top:6px">${esc(rolesOf(p).join(' · '))}${p.city?' · '+esc(p.city):''}${since?' · Member since '+esc(since):''}</p>
         <div class="row" style="margin-top:10px">${(S.isOwner||id===S.me)&&strikes(id)?`<span class="badge rel lowrel">${strikes(id)} strike${strikes(id)>1?'s':''}${isRemoved(id)?' · removed':''}</span>`:''}${vipHtml(id)}${lvlHtml(id)}${tierHtml(id)}${r.count?starsHtml(r.avg):''}</div>
       </div>
-      <div class="row">${isMe?`<a class="btn ghost" href="#me">Edit profile</a>`:''}${S.isOwner?`<button class="btn ${p.vip?'ghost':'gold'} sm" data-act="vip" data-id="${esc(id)}">${p.vip?'Remove VIP':'Make VIP'}</button><button class="btn ghost sm" data-act="strike" data-v="1" data-id="${esc(id)}">Add strike</button>${strikes(id)?`<button class="btn ghost sm" data-act="strike" data-v="0" data-id="${esc(id)}">Clear strikes</button>`:''}`:''}</div>
+      <div class="row">${isMe?`<a class="btn ghost" href="#me">Edit profile</a>`:''}${S.me&&!isMe?`<button class="btn ghost sm" data-act="report" data-id="${esc(id)}">Report</button>`:''}${S.isOwner?`<button class="btn ${p.vip?'ghost':'gold'} sm" data-act="vip" data-id="${esc(id)}">${p.vip?'Remove VIP':'Make VIP'}</button><button class="btn ghost sm" data-act="strike" data-v="1" data-id="${esc(id)}">Add strike</button>${strikes(id)?`<button class="btn ghost sm" data-act="strike" data-v="0" data-id="${esc(id)}">Clear strikes</button>`:''}`:''}</div>
     </div>
     <dl class="statrow">
       <div><dt>Rating</dt><dd>${r.count?r.avg.toFixed(1):'–'}</dd></div>
@@ -912,14 +1233,16 @@ function profileView(id){
     </dl>
     ${p.bio?`<p class="desc">${esc(p.bio)}</p>`:''}
     ${(p.skills||[]).length?`<div class="tags" style="margin-top:14px">${p.skills.map(s=>`<span class="tag">${esc(s)}</span>`).join('')}</div>`:''}
-    <div class="row" style="margin-top:14px;gap:16px">${p.rate?`<span><span class="muted">Price:</span> <b>${esc(p.rate)}</b></span>`:''}<span class="fine">🔒 Contact info unlocks once a booking is accepted.</span></div>
+    <div class="row" style="margin-top:14px;gap:16px">${priceEntries(p).length?`<span class="tags">${priceEntries(p).map(([r,v])=>`<span class="tag">${esc(r)}: <b style="color:var(--text)">${esc(v)}</b></span>`).join('')}</span>`:''}${Number(p.minOffer)?`<span class="tag">Takes offers from <b style="color:var(--text)">${money(p.minOffer)}</b></span>`:''}<span class="fine">🔒 Contact info unlocks once a booking is accepted.</span></div>
   </section>
   ${isMe?myLevelCard(lv,p):''}
   ${(p.videos||[]).length?`<div class="section-title"><h2>Videos</h2></div>${videosHtml(p)}`:(isMe?`<div class="section-title"><h2>Videos</h2></div><div class="empty">Add performance videos so organizers can see and hear you. <a href="#me">Add videos</a></div>`:'')}
   ${posted.length?`<div class="section-title"><h2>Open gigs from ${esc(p.stageName)}</h2></div><div class="grid" style="margin-top:0">${posted.map(gigCard).join('')}</div>`:''}
+  ${trackRecord(id).length?`<div class="section-title"><h2>Track record</h2><span class="fine">From review answers</span></div><section class="card tr">${trackRecord(id).map(([q,y,n])=>`<div class="trrow"><span>${esc(q.charAt(0).toUpperCase()+q.slice(1))}</span><div class="meter"><i style="width:${Math.round(100*y/n)}%"></i></div><b>${y}/${n}</b></div>`).join('')}</section>`:''}
   <div class="section-title"><h2>Reviews</h2><span class="fine">${r.count} total</span></div>
   <section class="card">${rs.length?rs.map(rv=>{const g=rv.gigId&&S.data.gigs[rv.gigId];return `<div class="review">
       <div class="row between"><a class="poster" href="#profile-${esc(rv.authorId)}">${avatar(rv.authorId)}<b>${esc(nameOf(rv.authorId))}</b></a>${starsHtml(Math.min(5,Math.max(1,Number(rv.stars)||0)))}</div>
+      ${rv.answers&&typeof rv.answers==='object'?`<div class="tags">${Object.entries(rv.answers).map(([k,val])=>{const q=[...REVIEW_Q.performer,...REVIEW_Q.booker].find(x=>x[0]===k);return q?`<span class="tag ${val?'yes':'no'}">${val?'✓':'✗'} ${esc(q[1].replace(/^(Were they|Did they|Were the|Were you) /,'').replace('?',''))}</span>`:'';}).join('')}</div>`:''}
       <p class="quote">${esc(rv.text)}</p>
       <p class="fine">${g?`For <a href="#gig-${esc(g.id)}">${esc(g.title)}</a> · `:''}${rv.createdAt?esc(new Date(rv.createdAt).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})):''}</p>
     </div>`;}).join(''):`<p class="muted">No reviews yet. Reviews open once both sides confirm a gig happened.</p>`}
@@ -944,28 +1267,47 @@ function postView(){
   <section class="card"><form class="f" data-form="gig">
     <label class="full">Title<input id="g-title" required maxlength="80" placeholder="Vocalist for Friday jazz brunch"></label>
     <label>Type of event<select id="g-type">${EVENT_TYPES.map(r=>`<option>${esc(r)}</option>`).join('')}</select></label>
+    <label>Occasion<select id="g-occasion">${OCCASIONS.map(r=>`<option>${esc(r)}</option>`).join('')}</select></label>
     <label>Looking for<select id="g-role">${GIG_ROLES.map(r=>`<option>${esc(r)}</option>`).join('')}</select></label>
     <label>City<select id="g-city" required>${cityOptions(CITIES[myCity]?myCity:'','Choose a city')}</select></label>
     <label>Venue (optional)<input id="g-venue" maxlength="80"></label>
     <label>Date<input id="g-date" type="date" required min="${todayStr()}"></label>
     <label>Start time<input id="g-time" type="time"></label>
+    <label>End time<input id="g-end" type="time"></label>
+    <label>Load-in time<input id="g-loadin" type="time"></label>
+    <label>Load-out time<input id="g-loadout" type="time"></label>
+    <label>Attire / dress code<input id="g-attire" maxlength="80" placeholder="All black"></label>
     <label>Pay ($)<input id="g-pay" type="number" min="0" step="1" inputmode="numeric" placeholder="0 if unpaid"></label>
     <label>Pay is<select id="g-paytype">${PAY_TYPES.map(t=>`<option value="${t}">${t==='flat'?'flat rate':t}</option>`).join('')}</select></label>
     <p class="hint full" id="pay-hint"></p>
     <label class="check full"><input type="checkbox" id="g-neg"> Pay is negotiable. Performers can propose their own price.</label>
-    <label class="full">Details<textarea id="g-desc" maxlength="1500" placeholder="Set length, genre, rehearsal, gear provided, dress code…"></textarea></label>
+    <label class="full">Details<textarea id="g-desc" maxlength="1500" placeholder="Set length, genre, gear provided, parking…"></textarea></label>
+    <label class="full">Who else is on this gig (optional)<input id="g-lineup" list="lineup-names" maxlength="400" placeholder="Names, separated by commas"><datalist id="lineup-names">${Object.values(S.data.profiles).filter(p=>p.stageName&&p.id!==S.me).map(p=>`<option value="${esc(p.stageName)}">`).join('')}</datalist><span class="fine">Shown on the gig once it's booked. Plug’d members link to their profiles.</span></label>
+    <label class="full">Songs / setlist (optional)<textarea id="g-setlist" maxlength="1500" placeholder="List songs, keys or a link name for charts"></textarea></label>
+    <fieldset class="full subform"><legend>Rehearsal</legend>
+      <label class="check"><input type="checkbox" id="g-reh"> There will be a rehearsal</label>
+      <div class="rehfields"><label>Date<input id="g-reh-date" type="date" min="${todayStr()}"></label><label>Time<input id="g-reh-time" type="time"></label><label class="full">Place<input id="g-reh-place" maxlength="100" placeholder="Venue or studio"></label></div>
+    </fieldset>
+    <fieldset class="full subform"><legend>Gig terms (the performer agrees to these when accepting)</legend>
+      <label class="check termrow"><input type="checkbox" id="t-late"> Late fee: <input id="t-late-pct" type="number" min="1" max="50" value="10" class="mini" aria-label="Percent"> % off for every 15 minutes late</label>
+      <label class="check termrow"><input type="checkbox" id="t-arrive"> Must arrive by <input id="t-arrive-time" type="time" class="mini wide" aria-label="Arrive by time"></label>
+      <label class="check termrow"><input type="checkbox" id="t-dress"> Dress code is required (uses the attire above)</label>
+      <label class="check termrow"><input type="checkbox" id="t-sober"> No smoking or drinking before or during the gig</label>
+      <label class="check termrow"><input type="checkbox" id="t-cancel"> If I cancel within 72 hours, the performer gets <input id="t-cancel-pct" type="number" min="1" max="100" value="50" class="mini" aria-label="Percent"> % of the pay</label>
+      <span class="fine">Anything you don't list here can't be held against the performer's pay, but it can still be part of an honest review.</span>
+    </fieldset>
     <div class="btns full"><button class="btn" type="submit">Post it</button></div>
   </form></section>`;
 }
 function updatePayHint(){
   const el=$('#pay-hint');if(!el)return;
-  const g={role:$('#g-role').value,payType:$('#g-paytype').value,pay:Number($('#g-pay').value)||0,eventType:$('#g-type').value};
-  const r=rangeFor(g.role,g.payType);
-  if(g.eventType==='Paid gig'&&!g.pay){el.className='hint full';el.textContent=r?`Typical pay for this role: ${rangeText(r,g.payType)} (Plug’d estimate for NC, SC and VA).`:'';return;}
+  const g={role:$('#g-role').value,payType:$('#g-paytype').value,pay:Number($('#g-pay').value)||0,eventType:$('#g-type').value,occasion:($('#g-occasion')||{}).value};
+  const r=rangeFor(g.role,g.payType,g.occasion);
+  if(g.eventType==='Paid gig'&&!g.pay){el.className='hint full';el.textContent=r?`Typical pay for ${rangeWho(g.role,g.occasion)}: ${rangeText(r,g.payType)} (Plug’d estimate for NC, SC and VA).`:'';return;}
   if(!g.pay){el.className='hint full';el.textContent='Unpaid events are fine for open mics and jams. They\'ll be labeled clearly.';return;}
   const c=payCheck(g);if(!c){el.textContent='';return;}
-  if(c[0]==='low'){el.className='hint full low';el.textContent=`That's below the typical ${rangeText(c[1],g.payType)}. You can still post, but consider raising it or marking it negotiable.`;}
-  else{el.className='hint full ok';el.textContent=`Fair: typical pay is ${rangeText(c[1],g.payType)}.`;}
+  if(c[0]==='low'){el.className='hint full low';el.textContent=`That's below the typical ${rangeText(c[1],g.payType)} for ${rangeWho(g.role,g.occasion)}. You can still post, but consider raising it or marking it negotiable.`;}
+  else{el.className='hint full ok';el.textContent=`Fair: typical pay for ${rangeWho(g.role,g.occasion)} is ${rangeText(c[1],g.payType)}.`;}
 }
 
 function mineView(){
@@ -979,7 +1321,8 @@ function mineView(){
   const posted=gigsArr().filter(g=>g.posterId===S.me).sort((a,b)=>String(b.date).localeCompare(String(a.date)));
   const apps=Object.values(S.data.applications).filter(a=>a.applicantId===S.me).sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt)));
   const todo=(list,btn)=>`<section class="card">${list.map(g=>`<div class="applicant"><div class="row between"><span><a href="#gig-${esc(g.id)}"><b>${esc(g.title)}</b></a><br><span class="fine">${fmtDate(g)}</span></span>${btn(g)}</div></div>`).join('')}</section>`;
-  return `<div class="row between"><h1>My Plugs</h1>${S.isOwner?`<button class="btn ghost sm" data-act="testmode">🧪 Test mode: ${TEST.on?'On':'Off'}</button>`:''}</div>
+  return `<div class="row between"><h1>My Plugs</h1>${S.isOwner?`<span class="row"><button class="btn ghost sm" data-act="feedtoggle">💬 Community feed: ${feedOn()?'On':'Off'}</button><button class="btn ghost sm" data-act="testmode">🧪 Test mode: ${TEST.on?'On':'Off'}</button></span>`:''}</div>
+  ${S.isOwner?reportsHtml():''}
   ${offers.length?`<div class="section-title"><h2>Booking offers for you</h2></div>${todo(offers,g=>`<span class="row"><b>${money(g.offer.amount)}</b><a class="btn teal sm" href="#gig-${esc(g.id)}">Review offer</a></span>`)}`:''}
   ${toConfirm.length?`<div class="section-title"><h2>Gigs to confirm</h2><span class="fine">Skipping confirmations lowers your visibility</span></div>${todo(toConfirm,g=>g.bookedId===S.me?`<button class="btn teal sm" data-act="confirm" data-id="${esc(g.id)}">Mark completed</button>`:`<span class="row"><span class="fine">Due ${esc(fmtWhen(confirmDeadline(g)))}</span><button class="btn teal sm" data-act="confirm" data-id="${esc(g.id)}">Confirm</button><button class="btn ghost sm" data-act="dispute" data-id="${esc(g.id)}">Report a problem</button></span>`)}`:''}
   ${toPay.length?`<div class="section-title"><h2>Payments</h2></div>${todo(toPay,g=>g.posterId===S.me?`<button class="btn ghost sm" data-act="paid" data-id="${esc(g.id)}">Record payment</button>`:`<button class="btn teal sm" data-act="received" data-id="${esc(g.id)}">I received ${money(g.payment.amount)}</button>`)}`:''}
@@ -990,17 +1333,27 @@ function mineView(){
   ${apps.length?`<section class="card">${apps.map(a=>{const g=S.data.gigs[a.gigId];if(!g)return '';return `<div class="applicant"><div class="row between"><span><a href="#gig-${esc(g.id)}"><b>${esc(g.title)}</b></a><br><span class="fine">${fmtDate(g)} · ${esc(nameOf(g.posterId))}</span></span><span class="pill ${esc(a.status)}">${a.status==='accepted'?'Booked':a.status==='offered'?'Offer for you':esc(a.status)}</span></div></div>`;}).join('')}</section>`:`<div class="empty">You haven't signed up for anything yet.</div>`}`;
 }
 
+function reportsHtml(){
+  const rs=Object.values(S.reports||{}).sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt)));
+  const open=Object.values(S.data.gigs).filter(g=>openDispute(g));
+  if(!rs.length&&!open.length)return '';
+  return `<div class="section-title"><h2>Needs your attention</h2><span class="fine">Admin only</span></div><section class="card">
+  ${open.map(g=>`<div class="applicant"><div class="row between"><span><a href="#gig-${esc(g.id)}"><b>Problem report: ${esc(g.title)}</b></a><br><span class="fine">${esc(nameOf(g.dispute.by))}: ${esc(g.dispute.reason||'')}</span></span><a class="btn sm" href="#gig-${esc(g.id)}">Review</a></div></div>`).join('')}
+  ${rs.map(r=>`<div class="applicant"><div class="row between"><span><b>Report about <a href="#profile-${esc(r.aboutId)}">${esc(nameOf(r.aboutId))}</a></b> · ${esc(r.reason)}<br><span class="fine">From ${esc(nameOf(r.reporterId))}${r.createdAt?' · '+esc(new Date(r.createdAt).toLocaleDateString('en-US',{month:'short',day:'numeric'})):''}: ${esc(r.text||'')}</span></span><span class="row"><button class="btn ghost sm" data-act="strike" data-v="1" data-id="${esc(r.aboutId)}">Add strike</button><button class="btn ghost sm" data-act="dismissreport" data-id="${esc(r.id)}">Dismiss</button></span></div></div>`).join('')}
+  </section>`;
+}
 function profileForm(inModal){
   const p=profile(S.me)||{};
   return `<form class="f" data-form="profile">
     <label class="full">Stage or business name<input id="p-name" required maxlength="60" value="${esc(p.stageName||'')}" ${inModal?'autofocus':''}></label>
     <fieldset class="full rolepick"><legend>What you do (pick all that apply)</legend><div class="chips">${ROLES.map(r=>`<label class="chipcheck"><input type="checkbox" name="p-roles" value="${esc(r)}" ${rolesOf(p).includes(r)?'checked':''}><span>${esc(r)}</span></label>`).join('')}</div></fieldset>
+    <label>Lowest offer I'll take ($, optional)<input id="p-minoffer" type="number" min="0" step="1" value="${Number(p.minOffer)||''}"><span class="fine">Bookers can't send you an offer below this. Leave blank to get every offer.</span></label>
+    <div class="full raterows" id="rate-rows">${rateRows(rolesOf(p),Object.fromEntries(rolesOf(p).map(r=>[r,rateFor(p,r)])))}</div>
     <label>City<select id="p-city" required>${cityOptions(p.city||'','Choose a city')}</select></label>
     <label class="full">Skills and genres, separated by commas<input id="p-skills" maxlength="200" placeholder="Gospel, R&B, background vocals" value="${esc((p.skills||[]).join(', '))}"></label>
-    <label>Your price (you set it)<input id="p-rate" maxlength="40" placeholder="$200 per set" value="${esc(p.rate||'')}"></label>
     <label>Contact for booked gigs (private)<input id="p-contact" maxlength="120" placeholder="Phone, email or @instagram" value="${esc(contactOf(S.me))}"><span class="fine">Only shown to people once a booking with you is accepted.</span></label>
     <label class="full">About you<textarea id="p-bio" maxlength="800" placeholder="Experience, what you bring to a gig, gear you own…">${esc(p.bio||'')}</textarea></label>
-    ${p.agreedRulesAt?'':`<label class="check full"><input type="checkbox" id="p-agree" required> I agree to the <a href="#rules" ${inModal?'data-act="close"':''}>Plug’d community rules</a>, including booking through Plug’d.</label>`}
+    ${p.agreedRulesAt?'':`<label class="check full"><input type="checkbox" id="p-agree" required> I'm 18 or older and agree to the <a href="#terms" ${inModal?'data-act="close"':''}>Terms &amp; Conditions</a> and <a href="#rules" ${inModal?'data-act="close"':''}>Community rules</a>, including booking through Plug’d.</label>`}
     <div class="btns full">${inModal?'<button type="button" class="btn ghost" data-act="close">Cancel</button>':''}<button class="btn" type="submit">Save profile</button></div>
   </form>`;
 }
@@ -1034,13 +1387,14 @@ function closeModal(){$('#modal').hidden=true;$('#modal-body').innerHTML='';afte
 function openProfileModal(first){openModal(`<h2 id="modal-title">${first?'Set up your profile first':'Your profile'}</h2><p class="sub">Organizers see this when you sign up, and performers see it when you post.</p>${profileForm(true)}`);}
 function openApply(gid){
   const g=S.data.gigs[gid];if(!g)return;
-  const r=rangeFor(g.role,g.payType);
+  const r=rangeFor(g.role,g.payType,g.occasion);
   openModal(`<h2 id="modal-title">${applyLabel(g)}</h2><p class="sub">${esc(g.title)} · ${fmtDate(g)} · ${payHtml(g)}</p>
   <form class="f" data-form="apply" data-gig="${esc(gid)}">
-    <label class="full">Message to ${esc(nameOf(g.posterId))}<textarea id="a-msg" required maxlength="800" autofocus placeholder="Why you're a fit, relevant experience, availability…"></textarea></label>
-    <label class="full">Your price for this (optional)<input id="a-rate" maxlength="40" placeholder="Leave blank to accept the posted pay" value="${esc((profile(S.me)||{}).rate||'')}"></label>
+    <label class="full">Message to ${esc(nameOf(g.posterId))} (optional)<textarea id="a-msg" maxlength="800" autofocus placeholder="Anything they should know"></textarea></label>
+    ${termsList(g).length?`<div class="termsbox full"><b>This gig's terms</b><ul>${termsList(g).map(t=>`<li>${t}</li>`).join('')}</ul></div>`:''}
+    <label class="full">Your price for this (optional)<input id="a-rate" maxlength="40" placeholder="Leave blank to accept the posted pay" value="${esc(rateFor(profile(S.me)||{},g.role)||(profile(S.me)||{}).rate||'')}"></label>
     <p class="fine full">🔒 Keep it in Plug’d: contact info is shared once you're booked, and only bookings made here are protected.</p>
-    ${r&&(Number(g.pay)||evType(g)==='Paid gig')?`<p class="fine full">Typical pay for this role: ${rangeText(r,g.payType)}. Don't undercharge yourself.</p>`:''}
+    ${r&&(Number(g.pay)||evType(g)==='Paid gig')?`<p class="fine full">Typical pay for ${esc(rangeWho(g.role,g.occasion))}: ${rangeText(r,g.payType)}. Don't undercharge yourself.</p>`:''}
     <div class="btns full"><button type="button" class="btn ghost" data-act="close">Cancel</button><button class="btn" type="submit">Send</button></div>
   </form>`);
 }
@@ -1051,16 +1405,17 @@ function openReview(gid){
     <fieldset class="full" style="border:0;padding:0;margin:0"><legend class="fine" style="margin-bottom:6px">Rating</legend>
       <div class="starpick">${[5,4,3,2,1].map(n=>`<input type="radio" name="stars" id="s${n}" value="${n}" ${n===5?'required':''}><label for="s${n}" title="${n} star${n>1?'s':''}">★</label>`).join('')}</div>
     </fieldset>
-    <label class="full">What was it like working together?<textarea id="r-text" required maxlength="800" placeholder="Professionalism, communication, how the gig went…"></textarea></label>
+    ${(about===g.bookedId?REVIEW_Q.performer:REVIEW_Q.booker).filter(([k])=>k!=='dress'||g.attire).map(([k,q])=>`<fieldset class="full yn"><legend>${q}</legend><label><input type="radio" name="q-${k}" value="yes" required> Yes</label><label><input type="radio" name="q-${k}" value="no"> No</label></fieldset>`).join('')}
+    <label class="full">Comment (keep it about the work)<textarea id="r-text" required maxlength="800" placeholder="How the gig went: timing, preparation, communication…"></textarea></label>
     <div class="btns full"><button type="button" class="btn ghost" data-act="close">Cancel</button><button class="btn" type="submit">Post review</button></div>
   </form>`);
 }
 function openBook(appId){
   const a=S.data.applications[appId];if(!a)return;const g=S.data.gigs[a.gigId];if(!g)return;
   const amt=Number(g.pay)||0;const def=amt&&g.payType!=='per hour'?amt:'';
-  openModal(`<h2 id="modal-title">Offer booking to ${esc(nameOf(a.applicantId))}</h2><p class="sub">${esc(g.title)} · ${fmtDate(g)}${a.rate?` · Their price: ${esc(a.rate)}`:''}</p>
+  openModal(`<h2 id="modal-title">Offer booking to ${esc(nameOf(a.applicantId))}</h2><p class="sub">${esc(g.title)} · ${fmtDate(g)}${a.rate?` · Their price: ${esc(a.rate)}`:''}${Number((profile(a.applicantId)||{}).minOffer)?` · Lowest offer they take: ${money(profile(a.applicantId).minOffer)}`:''}</p>
   <form class="f" data-form="book" data-app="${esc(appId)}">
-    <label class="full">Agreed pay ($)<input id="b-amt" type="number" min="0" step="1" value="${def}" autofocus></label>
+    <label class="full">Agreed pay ($)<input id="b-amt" type="number" min="${Number((profile(a.applicantId)||{}).minOffer)||0}" step="1" value="${def}" autofocus></label>
     <p class="fine full">${esc(nameOf(a.applicantId))} accepts the offer in the app and picks how they get paid: <b>protected with Plug’d Pay</b> (your card is held, and card fees come out of their payment) or <b>paid directly by you</b> in cash, Cash App, Zelle and so on, with no fees and no Plug’d protection. <a href="#rules" data-act="close">Plug’d Pay rules</a></p>
     <p class="fine full">🔒 Only bookings made in Plug’d are protected. If you book or pay someone outside the app, Plug’d can't help with payment, no-shows or problems.</p>
     <div class="btns full"><button type="button" class="btn ghost" data-act="close">Cancel</button><button class="btn teal" type="submit">Send offer</button></div>
@@ -1072,6 +1427,7 @@ function openAuth(mode){
   <form class="f" data-form="auth" data-mode="${up?'signup':'signin'}">
     <label class="full">Email<input id="au-email" type="email" required autocomplete="email" autofocus></label>
     <label class="full">Password${up?' (at least 8 characters)':''}<input id="au-pw" type="password" required minlength="8" autocomplete="${up?'new-password':'current-password'}"></label>
+    ${up?'<p class="fine full">By creating an account you agree to the <a href="#terms" data-act="close">Terms &amp; Conditions</a> and <a href="#rules" data-act="close">Community rules</a>.</p>':''}
     <p class="hint full" id="au-msg" aria-live="polite"></p>
     <div class="btns full" style="justify-content:space-between;flex-wrap:wrap;align-items:center">
       <span class="row"><button type="button" class="btn ghost sm" data-act="${up?'signin':'signup'}">${up?'I already have an account':'Create an account'}</button>${up?'':'<button type="button" class="btn ghost sm" data-act="forgot">Forgot password</button>'}</span>
@@ -1092,6 +1448,64 @@ function openInstallHelp(){
   :`<ol class="steps"><li>Open this page in <b>Chrome</b>.</li><li>Tap the <b>⋮</b> menu in the top corner.</li><li>Tap <b>Install app</b> or <b>Add to Home screen</b>.</li><li>Tap <b>Install</b>.</li></ol>`}
   <p class="fine">The Plug’d icon shows up on your home screen and opens full-screen like any app.</p>
   <div class="btns" style="margin-top:14px"><button class="btn" data-act="close">Got it</button></div>`);
+}
+function openCancel(gid){
+  const g=S.data.gigs[gid];if(!g)return;const isBooked=S.me===g.bookedId;const ci=cancelInfo(g);const t=gTerms(g);
+  const fee=!isBooked&&ci.late&&Number(t.cancelFeePct)&&g.hold?Math.round(Number(g.hold.amount)*Number(t.cancelFeePct)/100):0;
+  let note;
+  if(isBooked)note=ci.grace?'You booked this at the last minute, so you can cancel free for 2 hours after booking.':ci.late?(ci.dayOf?'This is the day of the gig. Choose "Emergency" if it truly is one: the first emergency doesn\'t count against you. Other late cancellations lower your reliability.':'This is inside 72 hours, so it counts against your reliability.'):'This is more than 72 hours before the gig, so there\'s no penalty.';
+  else note=ci.late&&!ci.grace?(fee?`This is inside 72 hours. Under your gig terms, ${esc(nameOf(g.bookedId))} receives ${Number(t.cancelFeePct)}% (${money(fee)}) and the rest is refunded to you. It also counts against your reliability.`:'This is inside 72 hours, so it counts against your reliability.'):'There\'s no penalty for cancelling now.';
+  openModal(`<h2 id="modal-title">${isBooked&&ci.dayOf?'Emergency cancel':'Cancel this booking?'}</h2><p class="sub">${esc(g.title)} · ${fmtDate(g)}</p>
+  <form class="f" data-form="cancel" data-gig="${esc(gid)}">
+    <label class="full">Reason<select id="c-reason">${(isBooked?['Emergency (illness, family, car trouble)','Schedule conflict','Other']:['Event cancelled or postponed','Venue issue','Booked someone else','Other']).map(o=>`<option>${o}</option>`).join('')}</select></label>
+    <label class="full">Note to ${esc(nameOf(isBooked?g.posterId:g.bookedId))} (optional)<textarea id="c-note" maxlength="500"></textarea></label>
+    <p class="fine full">${note} ${g.hold?(isBooked?'Any held money goes back to the booker.':''):''} The gig reopens so ${isBooked?'they can book someone else':'you can book someone else'}, and earlier sign-ups are back in the running.</p>
+    <div class="btns full"><button type="button" class="btn ghost" data-act="close">Keep booking</button><button class="btn" type="submit">Cancel booking</button></div>
+  </form>`);
+}
+function openConfirmLate(gid){
+  const g=S.data.gigs[gid];if(!g)return;const t=gTerms(g);
+  openModal(`<h2 id="modal-title">Confirm the gig happened</h2><p class="sub">${esc(g.title)}. Your gig terms include a late fee of ${Number(t.lateFeePct)}% per 15 minutes late.</p>
+  <form class="f" data-form="confirmlate" data-gig="${esc(gid)}">
+    <fieldset class="full yn"><legend>Did ${esc(nameOf(g.bookedId))} arrive on time${t.arriveBy?' (by '+fmtT(t.arriveBy)+')':''}?</legend><label><input type="radio" name="ontime" value="yes" checked> Yes</label><label><input type="radio" name="ontime" value="no"> No, they were late</label></fieldset>
+    <label class="full">How many minutes late?<input id="cl-min" type="number" min="1" max="600" placeholder="0"></label>
+    <p class="fine full">The late fee comes off their pay and goes back to you. They can report a problem if they disagree.</p>
+    <div class="btns full"><button type="button" class="btn ghost" data-act="close">Cancel</button><button class="btn teal" type="submit">Confirm</button></div>
+  </form>`);
+}
+function openReport(uid){
+  openModal(`<h2 id="modal-title">Report ${esc(nameOf(uid))}</h2><p class="sub">Reports go only to the Plug’d team.</p>
+  <form class="f" data-form="report" data-about="${esc(uid)}">
+    <label class="full">What's going on?<select id="rp-reason"><option>Fake profile or scam</option><option>Asked me to pay or book outside Plug’d</option><option>Harassment or disrespect</option><option>No-show</option><option>Didn't pay</option><option>Other</option></select></label>
+    <label class="full">Details<textarea id="rp-text" required maxlength="1000"></textarea></label>
+    <div class="btns full"><button type="button" class="btn ghost" data-act="close">Cancel</button><button class="btn" type="submit">Send report</button></div>
+  </form>`);
+}
+function openPDispute(gid){
+  const g=S.data.gigs[gid];if(!g)return;
+  openModal(`<h2 id="modal-title">Report a problem</h2><p class="sub">${esc(g.title)}. Plug’d reviews what happened with both of you.${g.hold?' Any money still held stays held until it\'s sorted out.':''}</p>
+  <form class="f" data-form="pdispute" data-gig="${esc(gid)}">
+    <label class="full">What went wrong?<textarea id="pd-reason" required maxlength="1000" autofocus placeholder="Haven't been paid, unfair late fee, gig was cut short…"></textarea></label>
+    <div class="btns full"><button type="button" class="btn ghost" data-act="close">Cancel</button><button class="btn" type="submit">Send report</button></div>
+  </form>`);
+}
+async function addReport(data){
+  const id=newId('r');
+  if(typeof SB!=='undefined'&&SB){const {error}=await SB.from('reports').insert({id,data});if(error){writeError(error);return false;}}
+  else if(S.mode==='live'&&typeof DB!=='undefined'&&DB){try{await DB.collection('reports').doc(id).set(data);}catch(e){writeError(e);return false;}}
+  S.reports={...(S.reports||{}),[id]:{...data,id}};return true;
+}
+async function loadReports(){
+  try{
+    if(typeof SB!=='undefined'&&SB){const {data,error}=await SB.from('reports').select('id,data');if(!error){const o={};(data||[]).forEach(r=>{o[r.id]={...(r.data||{}),id:r.id};});S.reports=o;}}
+    else if(S.mode==='live'&&typeof DB!=='undefined'&&DB){const snap=await DB.collection('reports').get();const o={};snap.docs.forEach(d=>{o[d.id]={...d.data(),id:d.id};});S.reports=o;}
+  }catch(e){}
+  softRender();
+}
+async function dismissReport(id){
+  if(typeof SB!=='undefined'&&SB){await SB.from('reports').delete().eq('id',id);}
+  else if(S.mode==='live'&&typeof DB!=='undefined'&&DB){try{await DB.collection('reports').doc(id).delete();}catch(e){}}
+  const c={...(S.reports||{})};delete c[id];S.reports=c;
 }
 function openDispute2(gid){
   const g=S.data.gigs[gid];if(!g)return;const dl=confirmDeadline(g);
@@ -1122,7 +1536,10 @@ function renderNav(){
     a.classList.toggle('on',on);
     if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
   });
+  {const nf=document.querySelector('[data-nav=feed]');if(nf)nf.hidden=!(feedOn()||(S.isOwner&&route()==='feed'));}
   const mb=$('#me-btn');
+  document.querySelectorAll('header .bell').forEach(x=>x.remove());
+  if(S.me){const n=unreadCount();mb.insertAdjacentHTML('beforebegin',`<a class="bell${route()==='alerts'?' on':''}" href="#alerts" aria-label="Alerts${n?', '+n+' unread':''}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>${n?`<span class="bdot">${n>9?'9+':n}</span>`:''}</a>`);}
   if(S.me&&profile(S.me)){mb.innerHTML=`<a class="me-btn" href="#profile-${esc(S.me)}">${avatar(S.me)}<span class="lbl">${esc(nameOf(S.me))}</span></a>`;}
   else if(S.me){mb.innerHTML=`<a class="btn sm" href="#me">Set up profile</a>`;}
   else if(S.mode==='live'){mb.innerHTML=`<span class="row" style="gap:6px"><button class="btn ghost sm" data-act="signin">Sign in</button><button class="btn sm" data-act="signup">Join</button></span>`;}
@@ -1136,19 +1553,50 @@ function render(){
   else if(r==='calendar')html=calendarView();
   else if(r==='talent')html=talentView();
   else if(r==='post')html=postView();
-  else if(r==='mine')html=mineView();
+  else if(r==='mine'){html=mineView();if(S.isOwner&&!S.reportsAsked){S.reportsAsked=true;loadReports();}}
   else if(r==='me')html=meView();
   else if(r==='rules')html=rulesView();
+  else if(r==='alerts')html=alertsView();
+  else if(r==='feed')html=feedView();
+  else if(r==='terms')html=termsView();
   else if(r.startsWith('gig-'))html=gigDetail(r.slice(4));
   else if(r.startsWith('profile-'))html=profileView(r.slice(8));
   else html=gigsView();
-  $('#view').innerHTML=testBanner()+(S.note?`<div class="note">${esc(S.note)}</div>`:'')+html+`<footer class="foot fine"><img src="logo-header.png" alt="" height="22"> · <a href="#rules">Community rules &amp; Plug’d Pay</a> · Free during launch</footer>`;
+  $('#view').innerHTML=testBanner()+(S.note?`<div class="note">${esc(S.note)}</div>`:'')+html+`<footer class="foot fine"><img src="logo-header.png" alt="" height="22"> · <a href="#terms">Terms &amp; Conditions</a> · <a href="#rules">Community rules &amp; Plug’d Pay</a> · Free during launch</footer>`;
   if(r==='post')updatePayHint();
 }
 function testBanner(){
   if(!(TEST.on&&S.isOwner))return '';
   const ids=Object.keys(S.data.profiles).sort((a,b)=>nameOf(a).localeCompare(nameOf(b)));
   return `<div class="testbanner"><b>🧪 TEST MODE</b><span>Nothing here is real.</span>${S.mode==='demo'?`<span>Acting as</span><label class="sel"><select id="test-actas" aria-label="Act as member"><option value="">Myself</option>${ids.map(i=>`<option value="${esc(i)}" ${S.me===i&&i!==S.realMe?'selected':''}>${esc(nameOf(i))}</option>`).join('')}</select></label>`:'<span class="fine">Use a second account (another email) to play the other side.</span>'}<button class="btn ghost sm" data-act="testreset">Reset test data</button><button class="btn ghost sm" data-act="testmode">Turn off</button></div>`;
+}
+function termsView(){
+  return `<a class="back" href="#gigs">← Back</a><h1>Terms &amp; Conditions</h1><p class="muted" style="margin:8px 0 22px">Effective November 14, 2026</p>
+  <section class="card rules">
+    <p>These Terms &amp; Conditions ("Terms") are an agreement between you and Plug’d ("Plug’d," "we," "us"). By creating an account or using the Plug’d app or website (the "Service"), you agree to these Terms and to the <a href="#rules">Community Rules &amp; Plug’d Pay</a>, which are part of these Terms. If you don't agree, don't use the Service.</p>
+    <h2>1. Who can use Plug’d</h2><p>You must be at least 18 years old, or the age of majority where you live, to create an account. You must give accurate information and keep your login private. You're responsible for everything done through your account.</p>
+    <h2>2. What Plug’d is (and isn't)</h2><p>Plug’d is a marketplace that helps music professionals and people who book them find each other. Plug’d is not an employer, talent agent, manager or party to any booking. Each booking is an agreement directly between the booker and the performer. Plug’d doesn't guarantee that any gig will happen, that anyone will be booked, or the quality, safety or legality of any gig, venue or performance. Do your own checks before agreeing to a booking.</p>
+    <h2>3. Your profile and content</h2><p>You own what you post (profile details, videos, gig posts and reviews). You give Plug’d a free, non-exclusive, worldwide license to host, show and share that content to run and promote the Service. You must have the rights to anything you upload, including music and video. Don't post anything false, hateful, harassing, sexual, violent or illegal, or anything that infringes someone else's rights. We may remove content or accounts that break these Terms.</p>
+    <h2>4. Book through Plug’d</h2><p>If you find someone through Plug’d, you agree to book them through Plug’d. Contact information is shared only after a booking is accepted. Using Plug’d to find people and then moving the booking off the Service, or posting contact details to get around this, breaks these Terms and can lead to strikes or removal.</p>
+    <h2>5. Protection only covers bookings made in Plug’d</h2><p><b>Plug’d can only help with bookings made and accepted in the Service.</b> If you book, pay or get paid outside Plug’d, Plug’d is not responsible for payment, no-shows, cancellations, refunds or any other issue with that arrangement.</p>
+    <h2>6. Payments and Plug’d Pay</h2>
+    <ul><li><b>Choosing how you're paid.</b> When a performer accepts a booking, they choose either Plug’d Pay or direct payment (cash, Cash App, Zelle and so on).</li>
+    <li><b>Plug’d Pay.</b> When available, payments are processed by a third-party payment processor (such as Stripe) under its own terms. The booker's payment is held and released to the performer after the gig is confirmed. Card processing fees (about 2.9% + 30¢ per payment) are taken out of the performer's payment and shown before they accept. Plug’d may add a service fee in the future; any fee will be shown before you agree to a booking.</li>
+    <li><b>Confirmation window.</b> After the performer marks a gig completed, the booker has 48 business hours (weekdays only) to confirm or report a problem. If the booker does neither, the gig is treated as completed and held funds are released to the performer.</li>
+    <li><b>Problem reports.</b> If a problem is reported in time, funds stay held while Plug’d reviews information from both sides. Plug’d will decide in good faith whether to release or refund the funds. This doesn't limit any legal rights either side may have against the other.</li>
+    <li><b>Direct payments.</b> Payments made outside Plug’d Pay are not held, protected or recoverable by Plug’d.</li>
+    <li><b>Preview.</b> Plug’d Pay is currently in preview. No real cards are charged until it is officially launched.</li></ul>
+    <h2>7. Reviews, reliability and visibility</h2><p>Reviews must be honest and based on a real gig. Plug’d ranks profiles using things like VIP status, activity level, reviews and reliability (including whether you confirm gigs). We may change how ranking works at any time.</p>
+    <h2>8. Strikes, suspension and removal</h2><p>We may give strikes, lower visibility, suspend or remove any account that breaks these Terms or the Community Rules, or that we reasonably believe puts others at risk. Three strikes may lead to removal. You can stop using Plug’d at any time.</p>
+    <h2>9. Fees and changes to the Service</h2><p>Plug’d is free to join during launch. We may later offer paid features (such as VIP profiles or boosted posts) and show ads or sponsored content. We'll tell you about any new fees before they apply to you. We may change, pause or stop any part of the Service.</p>
+    <h2>10. Plug’d's name and logo</h2><p>The Plug’d name, logo and app design belong to Plug’d. Don't copy or use them without permission.</p>
+    <h2>11. Disclaimers</h2><p>The Service is provided "as is" and "as available," without warranties of any kind, to the fullest extent the law allows. We don't promise the Service will always be available, error-free or secure.</p>
+    <h2>12. Limitation of liability</h2><p>To the fullest extent the law allows, Plug’d is not liable for indirect, incidental, special or consequential damages, lost profits, or anything arising from bookings, gigs, venues, payments made outside Plug’d Pay, or the conduct of other members. Plug’d's total liability for any claim is limited to the greater of the fees you paid Plug’d in the 12 months before the claim or $100.</p>
+    <h2>13. Your responsibility to us</h2><p>You agree to cover Plug’d's losses and reasonable costs from claims caused by your content, your bookings, your conduct, or your breaking these Terms.</p>
+    <h2>14. Governing law</h2><p>These Terms are governed by the laws of the State of North Carolina, without regard to conflict-of-law rules. Disputes will be handled in the state or federal courts located in North Carolina, unless the law where you live requires otherwise.</p>
+    <h2>15. Changes to these Terms</h2><p>We may update these Terms. If we make important changes, we'll let you know in the app. Continuing to use Plug’d after changes take effect means you accept them.</p>
+    <h2>16. Contact</h2><p>Questions about these Terms: <b>plugdinfo26@gmail.com</b></p>
+  </section>`;
 }
 function rulesView(){
   return `<a class="back" href="#gigs">← Back</a><h1>Community rules &amp; Plug’d Pay</h1><p class="muted" style="margin:8px 0 22px;max-width:65ch">Plug’d is free for musicians, bands, engineers, DJs, hosts and organizers. These rules keep it fair and safe for everyone.</p>
@@ -1160,8 +1608,12 @@ function rulesView(){
     <ul><li><b>Protect this payment with Plug’d Pay.</b> The booker's card is held before the gig. The standard card fee (about 2.9% + 30¢) comes out of the performer's payment.</li>
     <li><b>Get paid in cash: full payment, no fees.</b> The booker pays the performer directly (cash, Cash App, Zelle and so on). Plug’d Pay does not protect these payments. If the money doesn't arrive, Plug’d can't recover it.</li></ul>
     <p>After the gig, the performer marks it completed. The booker then has <b>48 business hours</b> (weekdays only) to confirm it or report a problem. If they don't respond, the gig completes and the held money is released to the performer automatically. If a problem is reported, the money stays held while Plug’d reviews it with both sides, then it's released or refunded.</p>
+    <h2>Gig terms and cancellations</h2><p>Bookers can add gig terms when posting: a late fee (a % off per 15 minutes late), an arrive-by time, a dress code, no smoking or drinking, and a cancellation fee. Performers see the terms before accepting, and accepting means agreeing to them. Anything not in the terms can't be taken out of the pay, but it can be part of an honest review.</p>
+    <p>Either side can cancel a booking. More than 72 hours before the gig, there's no penalty. Inside 72 hours, a cancellation counts against reliability, and if the booker cancels late, the performer receives the cancellation fee from the gig terms. Gigs booked less than 72 hours out can be cancelled free for 2 hours after booking. A real day-of emergency doesn't count against a performer the first time, and the gig reopens so the booker can find a replacement.</p>
+    <h2>Community feed</h2><p>When the feed is on, keep posts friendly and about music: shout-outs, questions, gear, who's playing where. No contact info, no booking or paying outside Plug’d, no harassment. Tap <b>Report</b> on a post to flag it, and Plug’d may remove posts or add strikes.</p>
+    <h2>Stay safe</h2><p>Never pay anyone or share card details outside Plug’d to get a gig. Real bookers on Plug’d never ask performers to pay. If someone asks you to book or pay outside the app, seems fake, or harasses you, tap <b>Report</b> on their profile.</p>
     <h2>5. Strikes</h2><p>Going around the app, no-shows, fake reviews or harassment can earn a strike. Each strike lowers you in search. Three strikes and your profile is removed.</p>
-    <h2>6. Honest reviews</h2><p>Reviews open only after both sides confirm a gig happened. Review the work, not the person, and keep it honest.</p>
+    <h2>6. Honest reviews</h2><p>Reviews open only after a gig is confirmed. Each review asks simple yes-or-no questions (on time, prepared, professional, dressed to code, did the gig as agreed; or for bookers: paid as agreed, accurate details, respectful), then a star rating and comment. Review the work, not the friendship, and keep it honest.</p>
     <p class="fine" style="margin-top:18px">Plug’d Pay is in preview: no real cards are charged yet.</p>
   </section>`;
 }
@@ -1195,8 +1647,9 @@ document.addEventListener('change',async e=>{
   else if(id==='t-near'){T.near=v;render();}
   else if(id==='t-radius'){T.radius=Number(v)||50;$('#talent-list').innerHTML=talentList();}
   else if(id==='c-type'){C.type=v;render();}
-  else if(id==='g-role'||id==='g-paytype'||id==='g-type')updatePayHint();
+  else if(id==='g-role'||id==='g-paytype'||id==='g-type'||id==='g-occasion')updatePayHint();
   else if(id==='v-file')uploadVideo(e.target);
+  else if(e.target.name==='p-roles'){const fm=e.target.closest('form');const box=fm&&fm.querySelector('#rate-rows');if(box){const vals={};box.querySelectorAll('[data-rate-role]').forEach(i=>{vals[i.dataset.rateRole]=i.value;});const roles=[...fm.querySelectorAll('input[name=p-roles]:checked')].map(x=>x.value);box.innerHTML=rateRows(roles,vals);}}
   else if(e.target.name==='pp'){const w=$('#cash-ack');if(w)w.hidden=e.target.value!=='outside';}
   else if(id==='test-actas'){S.me=v||S.realMe;render();}
 });
@@ -1234,7 +1687,19 @@ document.addEventListener('click',async e=>{
   if(act==='apply'){if(needProfile(()=>openApply(id)))openApply(id);return;}
   if(act==='review'){if(canAct())openReview(id);return;}
   if(act==='paid'){if(canAct())openPaid(id);return;}
+  if(act==='applyupdate'){b.disabled=true;applyUpdate();return;}
+  if(act==='enablepush'){b.disabled=true;await enablePush();return;}
+  if(act==='feedtoggle'){if(!S.isOwner||!canAct())return;b.disabled=true;const on=!feedOn();if(await xAdd('settings','site',{...strip(site()),feedOn:on},{upsert:true})){toast(on?'Community feed is on. Everyone can see it now.':'Community feed is off.');render();}else b.disabled=false;return;}
+  if(act==='like'){if(!canAct())return;const lid=id+'__like__'+S.me;b.disabled=true;
+    if(S.x.reactions[lid])await xDel('reactions',lid);else await xAdd('reactions',lid,{postId:id,by:S.me,kind:'like',createdAt:now()});render();return;}
+  if(act==='delpost'){if(!canAct())return;const pp=S.x.posts[id];if(!pp||(pp.authorId!==S.me&&!S.isOwner))return;b.disabled=true;if(await xDel('posts',id)){toast('Post deleted.');render();}else b.disabled=false;return;}
+  if(act==='delreact'){if(!canAct())return;b.disabled=true;if(await xDel('reactions',id)){render();}else b.disabled=false;return;}
+  if(act==='cancelbooking'){if(canAct())openCancel(id);return;}
+  if(act==='report'){if(canAct())openReport(id);return;}
+  if(act==='pdispute'){if(canAct())openPDispute(id);return;}
+  if(act==='dismissreport'){if(!S.isOwner)return;b.disabled=true;await dismissReport(id);toast('Report dismissed.');render();return;}
   if(act==='confirm'){
+    {const g=S.data.gigs[id];if(g&&S.me===g.posterId&&g.hold&&Number(gTerms(g).lateFeePct)&&g.confirms&&g.confirms[g.bookedId]){if(canAct())openConfirmLate(id);return;}}
     if(!canAct())return;b.disabled=true;
     if(!(await patch('gigs',id,{confirms:{[S.me]:now()}}))){b.disabled=false;return;}
     const g0=S.data.gigs[id];
@@ -1247,15 +1712,16 @@ document.addEventListener('click',async e=>{
     if(act==='withdrawoffer'){if(g.posterId!==S.me)return;b.disabled=true;
       if(await patch('gigs',id,{offer:null})&&await patch('applications',o.appId,{status:'pending'})){toast('Offer withdrawn.');render();}else b.disabled=false;return;}
     if(o.applicantId!==S.me)return;b.disabled=true;
-    if(act==='declineoffer'){if(await patch('gigs',id,{offer:null})&&await patch('applications',o.appId,{status:'declined'})){toast('Offer declined.');render();}else b.disabled=false;return;}
+    if(act==='declineoffer'){if(await patch('gigs',id,{offer:null})&&await patch('applications',o.appId,{status:'declined'})){notify(g.posterId,`${nameOf(S.me)} declined your offer`,`${g.title} (${shortDate(g)})`,id,'offer');toast('Offer declined.');render();}else b.disabled=false;return;}
     let plan='outside';
     if(Number(o.amount)){const sel=document.querySelector('input[name=pp]:checked');plan=sel&&sel.value==='hold'?'hold':'outside';
       if(!sel&&route()!=='gig-'+id){location.hash='gig-'+id;toast('Choose how you want to be paid, then accept.');b.disabled=false;return;}
       if(plan==='outside'&&!($('#ack')||{}).checked){const w=$('#cash-ack');if(w)w.hidden=false;toast('Tick the box to confirm you understand cash payments aren\'t protected.');b.disabled=false;return;}}
-    const upd={status:'booked',bookedId:S.me,agreedPay:o.amount,payPlan:plan,bookedAt:now(),offer:null};
+    const upd={status:'booked',bookedId:S.me,agreedPay:o.amount,payPlan:plan,bookedAt:now(),termsAgreedAt:now(),offer:null};
     if(plan==='hold')upd.hold={amount:o.amount,fee:payFee(o.amount),status:'held',heldAt:now()};
     if(!(await patch('gigs',id,upd))){b.disabled=false;return;}
     await patch('applications',o.appId,{status:'accepted'});
+    notify(g.posterId,`${nameOf(S.me)} accepted your booking`,`${g.title} (${shortDate(g)}) · ${money(o.amount)}${plan==='hold'?' · Plug’d Pay':' · paid directly'}`,id,'booked');
     if(S.mode==='live')loadAll(true);
     toast(plan==='hold'?`You're booked! ${money(o.amount)} is now held by Plug’d Pay.`:"You're booked! You'll be paid directly.");render();return;
   }
@@ -1274,7 +1740,9 @@ document.addEventListener('click',async e=>{
     msg.className='hint full '+(error?'low':'ok');msg.textContent=error?error.message:'Check your email for a link to reset your password.';return;
   }
   if(act==='dispute'){if(canAct())openDispute2(id);return;}
-  if(act==='resolve'){if(!S.isOwner||!canAct())return;b.disabled=true;if(await patch('gigs',id,{dispute:{resolved:b.dataset.v,resolvedAt:now()}})){toast(b.dataset.v==='release'?'Released to the performer.':'Refunded to the booker.');render();}else b.disabled=false;return;}
+  if(act==='resolve'){if(!S.isOwner||!canAct())return;const how=b.dataset.v;const upd={resolved:how,resolvedAt:now()};
+    if(how==='split'){const pct=Math.round(Number(($('#split-pct-'+id)||{}).value)||0);if(pct<1||pct>99){toast('Enter a percent from 1 to 99.');return;}upd.pct=pct;}
+    b.disabled=true;if(await patch('gigs',id,{dispute:upd})){toast(how==='release'?'Resolved for the performer.':how==='split'?`Split: ${upd.pct}% to the performer.`:'Resolved for the booker.');render();}else b.disabled=false;return;}
   if(act==='cashinstead'){if(canAct())openPaid(id,true);return;}
   if(act==='received'){if(!canAct())return;b.disabled=true;if(await patch('gigs',id,{payment:{receivedAt:now()}})){toast('Marked as received.');render();}else b.disabled=false;return;}
   if(act==='vip'){if(!S.isOwner||!canAct())return;const p=profile(id);if(!p)return;b.disabled=true;if(await patch('profiles',id,{vip:!p.vip})){toast(p.vip?'VIP removed.':'Now a VIP profile.');render();}else b.disabled=false;return;}
@@ -1328,14 +1796,17 @@ document.addEventListener('submit',async e=>{
 
   if(kind==='profile'){
     const prev=profile(S.me)||{};
-    const data={...strip(prev),stageName:v('p-name'),roles:[...f.querySelectorAll('input[name=p-roles]:checked')].map(x=>x.value).filter(x=>ROLES.includes(x)),city:v('p-city'),rate:v('p-rate'),
+    const data={...strip(prev),stageName:v('p-name'),roles:[...f.querySelectorAll('input[name=p-roles]:checked')].map(x=>x.value).filter(x=>ROLES.includes(x)),city:v('p-city'),
       skills:v('p-skills').split(',').map(s=>s.trim()).filter(Boolean).slice(0,10),bio:v('p-bio'),contact:v('p-contact'),
       createdAt:prev.createdAt||now(),updatedAt:now(),agreedRulesAt:prev.agreedRulesAt||now()};
     delete data.link;
     const myContact=data.contact;
     if(S.mode==='live'){delete data.contact;const cr=await SB.from('contacts').upsert({user_id:S.me,contact:myContact});if(cr.error){writeError(cr.error);done();return;}S.contacts[S.me]=myContact;}
-    if(hasContact(data.bio)||hasContact((data.skills||[]).join(' '))||hasContact(data.rate)){toast(CONTACT_MSG);done();return;}
+    if(hasContact(data.bio)||hasContact((data.skills||[]).join(' '))||hasContact([...f.querySelectorAll('[data-rate-role]')].map(i=>i.value).join(' '))){toast(CONTACT_MSG);done();return;}
     if(!data.roles.length){toast('Pick at least one thing you do.');done();return;}
+    data.rates={};f.querySelectorAll('[data-rate-role]').forEach(i=>{const val=i.value.trim();if(val&&data.roles.includes(i.dataset.rateRole))data.rates[i.dataset.rateRole]=val.slice(0,40);});
+    data.rate=Object.values(data.rates)[0]||'';
+    data.minOffer=Math.max(0,Math.round(Number(v('p-minoffer'))||0));
     data.role=data.roles[0];
     if(!data.stageName||!data.city){toast('Add your name and city.');done();return;}
     if(!(await save('profiles',S.me,data))){done();return;}
@@ -1357,7 +1828,17 @@ document.addEventListener('submit',async e=>{
     const id=newId('g');
     const data={title:v('g-title'),eventType:type,role:GIG_ROLES.includes(v('g-role'))?v('g-role'):GIG_ROLES[0],date,time:v('g-time'),city:v('g-city'),venue:v('g-venue'),
       pay,payType:PAY_TYPES.includes(v('g-paytype'))?v('g-paytype'):'flat',negotiable:!!(f.querySelector('#g-neg')||{}).checked,description:v('g-desc'),
+      occasion:OCCASIONS.includes(v('g-occasion'))?v('g-occasion'):'',endTime:v('g-end'),loadIn:v('g-loadin'),loadOut:v('g-loadout'),attire:v('g-attire'),setlist:v('g-setlist'),
       posterId:S.me,status:'open',createdAt:now()};
+    const chk=id=>!!(f.querySelector('#'+id)||{}).checked;
+    if(hasContact(v('g-lineup'))){toast(CONTACT_MSG);done();return;}
+    data.lineup=v('g-lineup').split(',').map(x=>x.trim()).filter(Boolean).slice(0,12).map(n=>{const m=Object.values(S.data.profiles).find(p=>p.stageName&&p.stageName.toLowerCase()===n.toLowerCase());return m?{id:m.id,name:m.stageName}:{name:n.slice(0,60)};});
+    if(chk('g-reh'))data.rehearsal={date:v('g-reh-date'),time:v('g-reh-time'),place:v('g-reh-place')};else data.rehearsalNone=true;
+    data.terms={lateFeePct:chk('t-late')?Math.min(50,Math.max(1,Math.round(Number(v('t-late-pct'))||10))):0,arriveBy:chk('t-arrive')?v('t-arrive-time'):'',
+      dressCode:chk('t-dress')&&!!data.attire,sober:chk('t-sober'),cancelFeePct:chk('t-cancel')?Math.min(100,Math.max(1,Math.round(Number(v('t-cancel-pct'))||50))):0};
+    if(chk('t-dress')&&!data.attire){toast('Add the attire / dress code, or uncheck that term.');done();return;}
+    if(chk('t-arrive')&&!data.terms.arriveBy){toast('Add the arrive-by time, or uncheck that term.');done();return;}
+    if(hasContact(data.setlist)||hasContact(data.attire)||hasContact(data.rehearsal&&data.rehearsal.place)){toast(CONTACT_MSG);done();return;}
     if(!(await save('gigs',id,data))){done();return;}
     toast('Posted. It\'s on the calendar.');location.hash='gig-'+id;return;
   }
@@ -1366,6 +1847,7 @@ document.addEventListener('submit',async e=>{
     const gid=f.dataset.gig;const g=S.data.gigs[gid];if(!g){done();return;}
     const data={gigId:gid,applicantId:S.me,message:v('a-msg'),rate:v('a-rate'),status:'pending',createdAt:now()};
     if(!(await save('applications',gid+'__'+S.me,data))){done();return;}
+    notify(g.posterId,`New sign-up: ${nameOf(S.me)}`,`${g.title} (${shortDate(g)})${data.rate?' · Their price: '+data.rate:''}`,gid,'signup');
     closeModal();toast('Sent to '+nameOf(g.posterId)+'.');render();return;
   }
   if(kind==='review'){
@@ -1373,7 +1855,8 @@ document.addEventListener('submit',async e=>{
     const gid=f.dataset.gig,about=f.dataset.about;
     const st=f.querySelector('input[name=stars]:checked');
     if(!st){toast('Pick a star rating.');done();return;}
-    const data={aboutId:about,authorId:S.me,gigId:gid,stars:Number(st.value),text:v('r-text'),createdAt:now()};
+    const answers={};f.querySelectorAll('fieldset.yn input:checked').forEach(i=>{answers[i.name.slice(2)]=i.value==='yes';});
+    const data={aboutId:about,authorId:S.me,gigId:gid,stars:Number(st.value),text:v('r-text'),answers,createdAt:now()};
     if(!(await save('reviews',gid+'__'+S.me,data))){done();return;}
     closeModal();toast('Review posted. Thanks for building trust on Plug’d.');render();return;
   }
@@ -1386,6 +1869,57 @@ document.addEventListener('submit',async e=>{
     if(!(await patch('gigs',gid,upd))){done();return;}
     closeModal();toast(f.dataset.cash==='1'?'Hold returned to your card and payment recorded.':'Payment recorded.');render();return;
   }
+  if(kind==='post'){
+    const text=v('fp-text');if(!text){done();return;}
+    if(hasContact(text)){toast(CONTACT_MSG);done();return;}
+    if(!(await xAdd('posts',newId('p'),{authorId:S.me,text:text.slice(0,500),createdAt:now()}))){done();return;}
+    toast('Posted.');render();return;
+  }
+  if(kind==='comment'){
+    const inp=f.querySelector('input');const text=(inp&&inp.value||'').trim();if(!text){done();return;}
+    if(hasContact(text)){toast(CONTACT_MSG);done();return;}
+    const pid=f.dataset.post;const pp=S.x.posts[pid];
+    if(!(await xAdd('reactions',newId('c'),{postId:pid,by:S.me,kind:'comment',text:text.slice(0,300),createdAt:now()}))){done();return;}
+    if(pp)notify(pp.authorId,`${nameOf(S.me)} commented on your post`,text.slice(0,140),'','comment');
+    render();return;
+  }
+  if(kind==='cancel'){
+    const gid=f.dataset.gig;const g=S.data.gigs[gid];if(!g||g.status!=='booked'||(S.me!==g.posterId&&S.me!==g.bookedId)){done();return;}
+    const isBooked=S.me===g.bookedId;const ci=cancelInfo(g);const t=gTerms(g);const reason=v('c-reason');const emergency=isBooked&&/^Emergency/.test(reason);
+    if(hasContact(v('c-note'))){toast(CONTACT_MSG);done();return;}
+    const fee=!isBooked&&ci.late&&Number(t.cancelFeePct)&&g.hold?Math.round(Number(g.hold.amount)*Number(t.cancelFeePct)/100):0;
+    const rec={by:S.me,at:now(),reason,note:v('c-note'),late:ci.late,emergency,fee,amount:g.hold?Number(g.hold.amount)||0:0,performer:g.bookedId};
+    const appId=gid+'__'+g.bookedId;
+    if(!(await patch('gigs',gid,{status:'open',bookedId:null,agreedPay:null,payPlan:null,hold:null,offer:null,confirms:null,deduction:null,cancellations:[...(g.cancellations||[]),rec]}))){done();return;}
+    if(S.data.applications[appId])await patch('applications',appId,{status:'cancelled'});
+    {const when=shortDate(g);
+     if(isBooked)notify(g.posterId,`${nameOf(S.me)} cancelled`,`${g.title} (${when}) is open again${/^Event cancelled/.test(reason)?'':'. Everyone who applied has been told'}.${rec.emergency?' They marked it as an emergency.':''}`,gid,'cancel');
+     else notify(rec.performer,`${nameOf(S.me)} cancelled your booking`,`${g.title} (${when}).${fee?` You'll receive a ${money(fee)} cancellation fee.`:''}`,gid,'cancel');
+     if(!/^Event cancelled/.test(reason)){
+       const others=Object.values(S.data.applications).filter(a=>a.gigId===gid&&a.applicantId!==rec.performer&&a.applicantId!==g.posterId&&a.status!=='withdrawn');
+       others.forEach(a=>notify(a.applicantId,'A spot opened up',`${g.title} (${when}) is open again. Take another look if you're still available.`,gid,'reopen'));
+     }}
+    closeModal();toast(fee?`Booking cancelled. ${nameOf(rec.performer)} receives a ${money(fee)} cancellation fee.`:'Booking cancelled. The gig is open again.');render();return;
+  }
+  if(kind==='confirmlate'){
+    const gid=f.dataset.gig;const g=S.data.gigs[gid];if(!g||g.posterId!==S.me){done();return;}
+    const late=(f.querySelector('input[name=ontime]:checked')||{}).value==='no';const mins=Math.round(Number(v('cl-min'))||0);
+    if(late&&mins<1){toast('Enter how many minutes late.');done();return;}
+    const upd={confirms:{[S.me]:now()}};
+    if(late){const pct=Math.min(100,Math.ceil(mins/15)*Number(gTerms(g).lateFeePct));upd.deduction={minutes:mins,pct,amount:Math.round(Number(g.hold.amount)*pct/100),at:now()};}
+    if(!(await patch('gigs',gid,upd))){done();return;}
+    closeModal();toast(late?`Confirmed with a ${upd.deduction.pct}% late fee. ${money(releaseAmount(S.data.gigs[gid]))} released to ${nameOf(g.bookedId)}.`:`Confirmed. ${money(g.hold.amount)} released to ${nameOf(g.bookedId)}.`);render();return;
+  }
+  if(kind==='report'){
+    const about=f.dataset.about;
+    if(!(await addReport({aboutId:about,reporterId:S.me,reason:v('rp-reason'),text:v('rp-text'),createdAt:now()}))){done();return;}
+    closeModal();toast('Report sent to the Plug’d team. Thank you.');return;
+  }
+  if(kind==='pdispute'){
+    const gid=f.dataset.gig;const g=S.data.gigs[gid];if(!g||g.bookedId!==S.me){done();return;}
+    if(!(await patch('gigs',gid,{dispute:{by:S.me,reason:v('pd-reason'),at:now()}}))){done();return;}
+    closeModal();toast('Problem reported. Plug’d will review it with both of you.');render();return;
+  }
   if(kind==='dispute'){
     const gid=f.dataset.gig;const g=S.data.gigs[gid];
     if(!g||g.posterId!==S.me){done();return;}
@@ -1397,8 +1931,11 @@ document.addEventListener('submit',async e=>{
     const a=S.data.applications[f.dataset.app];const g=a&&S.data.gigs[a.gigId];
     if(!g||g.posterId!==S.me){done();return;}
     const amt=Math.max(0,Math.round(Number(v('b-amt'))||0));
+    const mo=Number((profile(a.applicantId)||{}).minOffer)||0;
+    if(mo&&amt<mo){toast(`${nameOf(a.applicantId)} only takes offers of ${money(mo)} or more.`);done();return;}
     if(!(await patch('applications',a.id,{status:'offered'}))){done();return;}
     if(!(await patch('gigs',g.id,{offer:{appId:a.id,applicantId:a.applicantId,amount:amt,at:now()}}))){done();return;}
+    notify(a.applicantId,`Booking offer: ${money(amt)}`,`${nameOf(S.me)} wants to book you for ${g.title} (${shortDate(g)}). Open it to accept.`,g.id,'offer');
     closeModal();toast(`Booking offer sent to ${nameOf(a.applicantId)}. They'll accept it in the app.`);render();return;
   }
   done();
@@ -1410,6 +1947,7 @@ function startDemo(){
   S.data=JSON.parse(JSON.stringify(DEMO));
   COLLS.forEach(c=>Object.keys(S.data[c]).forEach(k=>{S.data[c][k].id=k;}));
   S.note='Preview mode: this is sample data and your changes are not saved.';
+  xLoadAll();
   render();
 }
 async function setUser(session){
@@ -1422,6 +1960,7 @@ async function loadAll(quiet){
     const res=await Promise.all(COLLS.map(c=>SB.from(c).select('id,data').limit(10000)));
     res.forEach((r,i)=>{if(r.error)throw r.error;const o={};(r.data||[]).forEach(row=>{o[row.id]={...(row.data||{}),id:row.id};});S.data[COLLS[i]]=o;});
     if(S.me){const cr=await SB.from('contacts').select('user_id,contact');if(!cr.error){const m={};(cr.data||[]).forEach(r=>{m[r.user_id]=r.contact;});S.contacts=m;}}else S.contacts={};
+    await xLoadAll();
     S.loading=false;if(S.note.indexOf("couldn't")>-1)S.note='';
   }catch(e){console.warn(e);S.loading=false;S.note="Plug’d couldn't load right now. Check your connection and try again.";}
   quiet?softRender():render();
@@ -1447,9 +1986,41 @@ async function boot(){
     if(coll==='gigs'&&pl.new&&pl.new.data&&S.me&&(pl.new.data.posterId===S.me||pl.new.data.bookedId===S.me)&&pl.new.data.status==='booked'){clearTimeout(boot.ct);boot.ct=setTimeout(()=>loadAll(true),800);}
     softRender();
   });});
+  XC.forEach(coll=>{ch.on('postgres_changes',{event:'*',schema:'public',table:coll},pl=>{
+    if(pl.eventType==='DELETE'){if(pl.old&&pl.old.id)xIncoming(coll,{id:pl.old.id},true);}
+    else if(pl.new&&pl.new.id)xIncoming(coll,pl.new,false);
+  });});
   ch.subscribe();
   setInterval(()=>{if(document.visibilityState==='visible')loadAll(true);},120000);
 }
+/* ---------- automatic updates ---------- */
+const APP_VERSION='2026-11-15.2';
+const UPD={ready:''};
+async function checkUpdate(){
+  if(!/^https?:$/.test(location.protocol)||UPD.ready)return;
+  try{
+    const r=await fetch('index.html?check='+Date.now(),{cache:'no-store'});if(!r.ok)return;
+    const m=/const APP_VERSION='([^']+)'/.exec(await r.text());
+    if(!m||m[1]===APP_VERSION)return;
+    let tried='';try{tried=sessionStorage.getItem('plugd-upd')||'';}catch(e){}
+    if(tried===m[1])return;
+    UPD.ready=m[1];
+    if(document.visibilityState!=='visible'&&!appBusy())return;
+    if(!$('#updbar'))document.body.insertAdjacentHTML('beforeend',`<div id="updbar" class="updbar" role="status"><span>A new version of Plug’d is ready.</span><button class="btn sm" data-act="applyupdate">Update now</button></div>`);
+  }catch(e){}
+}
+function appBusy(){const a=document.activeElement;return !$('#modal').hidden||!!(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName));}
+async function applyUpdate(){
+  try{sessionStorage.setItem('plugd-upd',UPD.ready);}catch(e){}
+  try{const reg=navigator.serviceWorker&&await navigator.serviceWorker.getRegistration();if(reg)await reg.update();}catch(e){}
+  location.reload();
+}
+document.addEventListener('visibilitychange',()=>{
+  if(document.visibilityState!=='visible')return;
+  if(UPD.ready&&!appBusy())applyUpdate();else checkUpdate();
+});
+setInterval(()=>{if(document.visibilityState==='visible')checkUpdate();},10*60*1000);
+setTimeout(checkUpdate,8000);
 boot();
 })();
 </script>
