@@ -216,7 +216,9 @@ main{padding:28px 0 72px}
 .datebox b{display:block;font-family:var(--display);font-size:1.1rem}
 .datebox span{font-size:.7rem;color:var(--muted);text-transform:uppercase}
 
-form.f{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+form.f{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+form.f>*{min-width:0}
+form.f input,form.f select,form.f textarea{max-width:100%;min-width:0}
 .f .full{grid-column:1/-1}
 .f label{display:flex;flex-direction:column;gap:6px;font-size:.88rem;color:var(--muted);font-weight:500}
 .f label.check{flex-direction:row;align-items:center;gap:8px}
@@ -241,7 +243,19 @@ form.f{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .sheet{width:min(560px,100%);max-height:calc(100% - 32px);overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px}
 .sheet h2{margin-bottom:6px}
 .sheet .sub{color:var(--muted);margin-bottom:18px}
-.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--text);color:var(--ink);padding:10px 18px;border-radius:999px;font-weight:700;z-index:60;box-shadow:0 10px 30px rgba(0,0,0,.4);max-width:calc(100% - 32px)}
+.toast{position:fixed;left:12px;right:12px;top:calc(env(safe-area-inset-top) + 10px);bottom:auto;z-index:90;display:flex;align-items:center;gap:12px;padding:11px 16px 11px 12px;border-radius:18px;background:rgba(28,28,58,.92);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.08);box-shadow:0 14px 40px rgba(0,0,0,.5);color:var(--text);font-size:.92rem;line-height:1.35;cursor:pointer}
+@media (min-width:641px){.toast{left:auto;right:20px;top:18px;width:380px}}
+.toast .ticon{flex:none;width:36px;height:36px;border-radius:9px;overflow:hidden;background:#07071a}
+.toast .ticon img{width:36px;height:36px;object-fit:cover;display:block}
+.toast .tmsg{flex:1;min-width:0;display:flex;flex-direction:column}
+.toast .tmsg b{font-size:.76rem;font-weight:600;color:var(--muted);letter-spacing:.01em;margin-bottom:1px}
+.toast.t-warn .tmsg b{color:#ff8fa8}
+.toast.t-info .tmsg b{color:#8fb8ff}
+.toast.tin{animation:tIn .28s cubic-bezier(.2,.9,.3,1.2)}
+.toast.tout{animation:tOut .24s ease-in forwards}
+@keyframes tIn{from{opacity:0;transform:translateY(-24px)}to{opacity:1;transform:none}}
+@keyframes tOut{to{opacity:0;transform:translateY(-18px)}}
+@media (prefers-reduced-motion:reduce){.toast.tin,.toast.tout{animation:none}}
 .toast[hidden]{display:none}
 .skel{height:170px;border-radius:var(--r);background:linear-gradient(90deg,var(--panel) 0%,var(--panel2) 50%,var(--panel) 100%);background-size:200% 100%;animation:sh 1.4s infinite}
 @keyframes sh{to{background-position:-200% 0}}
@@ -260,7 +274,7 @@ form.f{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   .brand img{height:38px}
   .top .wrap{gap:10px}
   .me-btn .lbl{display:none}
-  form.f{grid-template-columns:1fr}
+  form.f{grid-template-columns:minmax(0,1fr)}
   .stats{flex-wrap:wrap}
   .wrap{padding:0 16px}
   .cal{gap:3px}
@@ -278,7 +292,6 @@ nav.tabs .ti{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1
   nav.tabs .ti{width:22px;height:22px}
   .top .wrap{justify-content:space-between}
   main{padding-bottom:110px}
-  .toast{bottom:96px}
 }
 .choice{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:12px;cursor:pointer;background:var(--panel)}
 .choice:has(input:checked){border-color:var(--peacock)}
@@ -358,6 +371,18 @@ nav.tabs a{font-weight:500}
 .chip,.chipcheck span{border-radius:8px;font-size:.82rem}
 .badge{font-size:.68rem;font-weight:600;border-radius:6px}
 .lineup{display:flex;flex-direction:column;gap:12px}
+#me-btn{position:relative}
+.mebtn{background:none;border:1px solid transparent;border-radius:12px;padding:4px 8px 4px 4px;color:var(--text);font:inherit;cursor:pointer}
+.mebtn:hover,.mebtn[aria-expanded=true]{border-color:var(--line);background:rgba(255,255,255,.04)}
+.mebtn .caret{font-size:.7rem;color:var(--muted)}
+.memenu{position:absolute;right:0;top:calc(100% + 8px);z-index:70;min-width:230px;padding:6px;border-radius:12px;background:#10102e;border:1px solid var(--line);box-shadow:0 16px 40px rgba(0,0,0,.55);display:flex;flex-direction:column}
+.memenu[hidden]{display:none}
+.memenu .mmhead{display:flex;flex-direction:column;gap:2px;padding:10px 12px 12px;border-bottom:1px solid var(--line);margin-bottom:4px}
+.memenu a,.memenu button{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;color:var(--text);text-decoration:none;font:inherit;font-size:.92rem;background:none;border:0;text-align:left;cursor:pointer}
+.memenu a:hover,.memenu button:hover{background:rgba(43,108,255,.14)}
+.memenu .mmout{margin-top:4px;border-top:1px solid var(--line);border-radius:0 0 8px 8px;color:#ff8fa8}
+.mmcount{margin-left:auto;background:#ff3d71;color:#fff;border-radius:9px;font-size:.7rem;font-weight:700;padding:1px 7px}
+.mmtag{margin-left:auto;font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)}
 details.msel{position:relative}
 details.msel>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;font-size:.88rem;color:var(--muted);user-select:none;white-space:nowrap}
 details.msel>summary::-webkit-details-marker{display:none}
@@ -729,7 +754,19 @@ function gigStatus(g){
   return['Open','open'];
 }
 function applyLabel(g){return evType(g)==='Paid gig'?'Apply for this gig':'Sign up to perform';}
-function toast(msg){const t=$('#toast');t.textContent=msg;t.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>{t.hidden=true;},3400);}
+function toast(msg){
+  const t=$('#toast');msg=String(msg||'').replace(/^🔔\s*/,'');
+  const warn=/couldn|can't|can’t|cannot|not allowed|blocked|error|failed|try again|only takes|below the|isn't|aren't|don't match/i.test(msg);
+  const ask=!warn&&/^(add|enter|pick|choose|tick|type|sign in|set up|tap|fill)/i.test(msg);
+  const kind=warn?'warn':ask?'info':'ok';
+  const label={ok:'now',warn:'Heads up',info:'One more thing'}[kind];
+  t.className='toast t-'+kind;
+  t.innerHTML=`<span class="ticon" aria-hidden="true"><img src="icons/icon-192.png" alt=""></span><span class="tmsg"><b>Plug’d · ${label}</b><span>${esc(msg)}</span></span>`;
+  t.hidden=false;t.classList.remove('tout');void t.offsetWidth;t.classList.add('tin');
+  const hide=()=>{t.classList.add('tout');setTimeout(()=>{t.hidden=true;t.classList.remove('tout');},240);};
+  t.onclick=()=>{clearTimeout(toast.t);hide();};
+  clearTimeout(toast.t);toast.t=setTimeout(hide,warn?5200:3400);
+}
 
 /* ---------- data writes ---------- */
 async function save(coll,id,data){
@@ -840,6 +877,8 @@ function mselClick(e){
   return true;
 }
 document.addEventListener('click',e=>{if(mselClick(e)){e.preventDefault();e.stopPropagation();}},true);
+document.addEventListener('click',e=>{document.querySelectorAll('.memenu:not([hidden])').forEach(m=>{const own=m.parentElement.querySelector('[data-act=memenu]');if(own&&own.contains(e.target))return;if(!m.contains(e.target)||e.target.closest('a,button')){m.hidden=true;if(own)own.setAttribute('aria-expanded','false');}});},true);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.memenu:not([hidden])').forEach(m=>{m.hidden=true;});});
 function gigFiltered(){
   const q=F.q.toLowerCase();
   return gigsArr().filter(g=>{
@@ -1486,10 +1525,11 @@ function openAuth(mode){
       <button class="btn" type="submit">${up?'Create account':'Sign in'}</button></div>
   </form>`);
 }
-function openNewPassword(){
-  openModal(`<h2 id="modal-title">Choose a new password</h2><p class="sub">Type your new password below.</p>
+function openNewPassword(change){
+  openModal(`<h2 id="modal-title">${change?'Change your password':'Choose a new password'}</h2><p class="sub">${change?'Pick a new password for '+esc(S.email||'your account')+'.':'Type your new password below.'}</p>
   <form class="f" data-form="newpw"><label class="full">New password (at least 8 characters)<input id="np-pw" type="password" required minlength="8" autocomplete="new-password" autofocus></label>
-  <div class="btns full"><button class="btn" type="submit">Save password</button></div></form>`);
+  <label class="full">Type it again<input id="np-pw2" type="password" required minlength="8" autocomplete="new-password"></label>
+  <div class="btns full">${change?'<button type="button" class="btn ghost" data-act="close">Cancel</button>':''}<button class="btn" type="submit">Save password</button></div></form>`);
 }
 function isStandalone(){try{return (window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||window.navigator.standalone===true;}catch(e){return false;}}
 function installBtn(){return isStandalone()?'':`<button class="btn teal sm" data-act="install" style="margin-top:14px">📲 Get the Plug’d app</button>`;}
@@ -1592,8 +1632,17 @@ function renderNav(){
   const mb=$('#me-btn');
   document.querySelectorAll('header .bell').forEach(x=>x.remove());
   if(S.me){const n=unreadCount();mb.insertAdjacentHTML('beforebegin',`<a class="bell${route()==='alerts'?' on':''}" href="#alerts" aria-label="Alerts${n?', '+n+' unread':''}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>${n?`<span class="bdot">${n>9?'9+':n}</span>`:''}</a>`);}
-  if(S.me&&profile(S.me)){mb.innerHTML=`<a class="me-btn" href="#profile-${esc(S.me)}">${avatar(S.me)}<span class="lbl">${esc(nameOf(S.me))}</span></a>`;}
-  else if(S.me){mb.innerHTML=`<a class="btn sm" href="#me">Set up profile</a>`;}
+  if(S.me){
+    const hasP=!!profile(S.me);const n=unreadCount();
+    const items=hasP?[
+      ['#profile-'+S.me,'My profile'],['#me','Edit profile'],['#alerts','Alerts'+(n?` <span class="mmcount">${n}</span>`:'')],['#mine','My Plugs'],
+      ...(S.isOwner?[['#mine','Admin tools <span class="mmtag">Admin</span>']]:[]),['#rules','Rules & Plug’d Pay']
+    ]:[['#me','Set up profile']];
+    const extra=`<button type="button" role="menuitem" data-act="changepw">Change password</button>`;
+    const btn=hasP?`<button type="button" class="me-btn mebtn" data-act="memenu" aria-haspopup="true" aria-expanded="false">${avatar(S.me)}<span class="lbl">${esc(nameOf(S.me))}</span><span class="caret" aria-hidden="true">▾</span></button>`
+      :`<button type="button" class="btn sm" data-act="memenu" aria-haspopup="true" aria-expanded="false">Account ▾</button>`;
+    mb.innerHTML=`${btn}<div class="memenu" role="menu" hidden>${hasP?`<div class="mmhead"><b>${esc(nameOf(S.me))}</b>${S.email?`<span class="fine">${esc(S.email)}</span>`:''}</div>`:''}${items.map(([h,t])=>`<a role="menuitem" href="${esc(h)}">${t}</a>`).join('')}${extra}<button type="button" role="menuitem" class="mmout" data-act="signout">Sign out</button></div>`;
+  }
   else if(S.mode==='live'){mb.innerHTML=`<span class="row" style="gap:6px"><button class="btn ghost sm" data-act="signin">Sign in</button><button class="btn sm" data-act="signup">Join</button></span>`;}
   else{mb.innerHTML='';}
 }
@@ -1825,6 +1874,8 @@ document.addEventListener('click',async e=>{
   if(act==='testmode'){TEST.on=!TEST.on;try{localStorage.setItem('plugd-test',TEST.on?'1':'0');}catch(e){}if(!TEST.on)S.me=S.realMe;toast(TEST.on?'Test mode on.':'Test mode off.');render();return;}
   if(act==='testreset'){if(!S.isOwner)return;b.disabled=true;let n=0;for(const c of COLLS){for(const d of Object.values(S.data[c])){if(d.test){await remove(c,d.id);n++;}}}toast(`Removed ${n} test item${n===1?'':'s'}.`);S.me=S.realMe;render();return;}
   if(act==='signin'||act==='signup'){if(SB)openAuth(act);return;}
+  if(act==='changepw'){openNewPassword(true);return;}
+  if(act==='memenu'){const m=b.parentElement.querySelector('.memenu');if(m){m.hidden=!m.hidden;b.setAttribute('aria-expanded',String(!m.hidden));}return;}
   if(act==='signout'){if(SB){await SB.auth.signOut();toast('Signed out.');location.hash='gigs';}return;}
   if(act==='install'){if(deferredInstall){deferredInstall.prompt();try{await deferredInstall.userChoice;}catch(e){}deferredInstall=null;render();}else openInstallHelp();return;}
   if(act==='forgot'){
@@ -1883,7 +1934,9 @@ document.addEventListener('submit',async e=>{
     closeModal();toast('Signed in.');render();return;
   }
   if(kind==='newpw'){
-    const pw=(f.querySelector('#np-pw')||{}).value||'';const {error}=await SB.auth.updateUser({password:pw});
+    const pw=(f.querySelector('#np-pw')||{}).value||'';const pw2=(f.querySelector('#np-pw2')||{}).value||'';
+    if(pw!==pw2){toast("The two passwords don't match. Try again.");done();return;}
+    const {error}=await SB.auth.updateUser({password:pw});
     if(error){toast(error.message);done();return;}
     closeModal();toast('Password updated.');return;
   }
@@ -2088,7 +2141,7 @@ async function boot(){
   setInterval(()=>{if(document.visibilityState==='visible')loadAll(true);},120000);
 }
 /* ---------- automatic updates ---------- */
-const APP_VERSION='2026-11-15.4';
+const APP_VERSION='2026-11-15.6';
 const UPD={ready:''};
 async function checkUpdate(){
   if(!/^https?:$/.test(location.protocol)||UPD.ready)return;
