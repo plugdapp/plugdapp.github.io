@@ -371,6 +371,48 @@ nav.tabs a{font-weight:500}
 .chip,.chipcheck span{border-radius:8px;font-size:.82rem}
 .badge{font-size:.68rem;font-weight:600;border-radius:6px}
 .lineup{display:flex;flex-direction:column;gap:12px}
+.helpfab{position:fixed;right:18px;bottom:22px;z-index:75;width:54px;height:54px;border-radius:50%;border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;background:linear-gradient(135deg,var(--blue),var(--violet));box-shadow:0 10px 28px rgba(47,123,255,.45)}
+.helpfab svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.helpfab.on{background:#1c1c3c;box-shadow:0 10px 28px rgba(0,0,0,.5)}
+.helpnudge{position:fixed;right:84px;bottom:28px;z-index:75;max-width:260px;padding:12px 14px;border-radius:14px;background:#f4f4fb;color:#12122e;box-shadow:0 12px 30px rgba(0,0,0,.4)}
+.helpnudge p{margin:0 18px 10px 0;font-weight:600;font-size:.92rem}
+.helpnudge .hnx{position:absolute;top:6px;right:8px;border:0;background:none;font-size:1.1rem;color:#555;cursor:pointer}
+.hnbtns{display:flex;gap:8px;flex-wrap:wrap}
+.hnbtns button{border:1px solid #12122e;background:#fff;color:#12122e;border-radius:999px;padding:6px 12px;font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+.helpbox{position:fixed;right:18px;bottom:88px;z-index:76;width:370px;max-height:min(600px,calc(100vh - 120px));display:flex;flex-direction:column;border-radius:18px;overflow:hidden;background:#0f0f2c;border:1px solid var(--line);box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.helpbox[hidden]{display:none}
+.hbhead{display:flex;align-items:center;gap:10px;padding:12px 12px 12px 14px;background:linear-gradient(135deg,rgba(47,123,255,.25),rgba(139,77,255,.22));border-bottom:1px solid var(--line)}
+.hbhead img{width:34px;height:34px;border-radius:9px}
+.hbhead div{flex:1;display:flex;flex-direction:column}
+.hbhead b{font-size:.98rem}.hbhead span{font-size:.78rem;color:var(--muted)}
+.hbhead button{border:0;background:none;color:var(--muted);font-size:1.4rem;cursor:pointer;padding:2px 8px}
+.hbbody{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
+.hbmsg{max-width:88%;padding:10px 12px;border-radius:14px;font-size:.9rem;line-height:1.5}
+.hbmsg p{margin:0 0 6px}.hbmsg p:last-child{margin-bottom:0}
+.hbmsg.bot{align-self:flex-start;background:#1a1a3e;border-top-left-radius:4px}
+.hbmsg.me{align-self:flex-end;background:linear-gradient(135deg,var(--blue),var(--violet));color:#fff;border-top-right-radius:4px}
+.hbchips{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.hbchips button,.hbacts button{text-align:left;border:1px solid var(--line);background:#12122e;color:var(--text);border-radius:10px;padding:8px 10px;font:inherit;font-size:.85rem;cursor:pointer}
+.hbchips button:hover,.hbacts button:hover{border-color:var(--blue)}
+.hbchips .hbteam{border-color:rgba(0,184,169,.5);color:#5fe3d5}
+.hbacts{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.hbacts button{background:rgba(47,123,255,.15);border-color:rgba(47,123,255,.45);font-weight:600}
+.hbfoot{margin-top:8px;font-size:.78rem;color:var(--muted)}
+.hblink{border:0;background:none;color:#7fc4ff;text-decoration:underline;font:inherit;padding:0;cursor:pointer}
+.hbteamf{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.hbteamf textarea{width:100%;resize:vertical;border-radius:10px;border:1px solid var(--line);background:#0a0a22;color:var(--text);padding:8px;font:inherit;font-size:.88rem}
+.hbsent{font-style:italic;color:var(--muted)}
+.hbq{padding:6px 0;border-bottom:1px solid var(--line)}.hbq:last-child{border-bottom:0}
+.hbreply{background:rgba(0,184,169,.1);border-radius:8px;padding:6px 8px}
+.hbform{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line);background:#0c0c26}
+.hbform input{flex:1;min-width:0;border-radius:999px;border:1px solid var(--line);background:#07071a;color:var(--text);padding:10px 14px;font:inherit;font-size:.9rem}
+.hbform button{flex:none;width:40px;height:40px;border-radius:50%;border:0;background:var(--blue);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.hbform button svg{width:18px;height:18px;fill:currentColor}
+@media (max-width:640px){
+  .helpfab{bottom:calc(86px + env(safe-area-inset-bottom));right:14px;width:50px;height:50px}
+  .helpnudge{bottom:calc(92px + env(safe-area-inset-bottom));right:74px}
+  .helpbox{left:8px;right:8px;width:auto;bottom:calc(146px + env(safe-area-inset-bottom));max-height:calc(100vh - 230px)}
+}
 #me-btn{position:relative}
 .mebtn{background:none;border:1px solid transparent;border-radius:12px;padding:4px 8px 4px 4px;color:var(--text);font:inherit;cursor:pointer}
 .mebtn:hover,.mebtn[aria-expanded=true]{border-color:var(--line);background:rgba(255,255,255,.04)}
@@ -460,6 +502,13 @@ nav.tabs a[hidden]{display:none!important}
   <div class="sheet" id="modal-body"></div>
 </div>
 <div class="toast" id="toast" hidden role="status" aria-live="polite"></div>
+<div class="helpnudge" id="helpnudge" hidden><button type="button" class="hnx" data-help="nudgeclose" aria-label="Close">×</button><p>Hi! Need help with Plug’d?</p><div class="hnbtns"><button type="button" data-help="go:#gigs">Find a gig</button><button type="button" data-help="open">Ask a question</button></div></div>
+<button type="button" class="helpfab" id="helpfab" data-help="toggle" aria-label="Help" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M9.5 9.2a2.5 2.5 0 1 1 3.6 2.2c-.7.4-1.1.9-1.1 1.6"/><path d="M12 15.2v.01"/></svg></button>
+<div class="helpbox" id="helpbox" hidden role="dialog" aria-label="Plug’d help">
+  <div class="hbhead"><img src="icons/icon-192.png" alt=""><div><b>Plug’d Help</b><span>Quick answers, or message the team</span></div><button type="button" data-help="toggle" aria-label="Close help">×</button></div>
+  <div class="hbbody" id="hbbody"></div>
+  <form class="hbform" id="hbform" autocomplete="off"><input id="hbq" maxlength="200" placeholder="Type a question…" aria-label="Type a question"><button type="submit" aria-label="Send"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l16-8-6 16-2-7z"/></svg></button></form>
+</div>
 
 <script>
 (function(){
@@ -968,8 +1017,8 @@ function gigDetail(id){
   </div>`;
 }
 /* ---------- alerts, community feed, site settings ---------- */
-const XC=['notifications','posts','reactions','settings'];
-S.x={notifications:{},posts:{},reactions:{},settings:{}};
+const XC=['notifications','posts','reactions','settings','support'];
+S.x={notifications:{},posts:{},reactions:{},settings:{},support:{}};
 const DEMO_X={posts:{'p-demo1':{authorId:'demo-maya',text:'Who is coming out to the jazz jam at the Velvet Room on Thursday? Bring your horn.',createdAt:'2026-11-13T19:00:00Z'},'p-demo2':{authorId:'demo-dre',text:'Shout-out to everybody who played the Raleigh showcase last weekend. That band was tight!',createdAt:'2026-11-12T15:00:00Z'}},
   reactions:{'p-demo1__like__demo-dre':{postId:'p-demo1',by:'demo-dre',kind:'like',createdAt:'2026-11-13T19:30:00Z'},'c-demo1':{postId:'p-demo1',by:'demo-lena',kind:'comment',text:"I'll be there!",createdAt:'2026-11-13T20:00:00Z'}},
   notifications:{'n-demo1':{to:'demo-you',from:'demo-velvet',title:'Welcome to Plug’d alerts',body:'Booking offers, cancellations and new sign-ups show up here.',gigId:'',createdAt:'2026-11-14T12:00:00Z',read:false}},settings:{}};
@@ -1004,6 +1053,7 @@ async function xLoadAll(){
 function xIncoming(coll,row,isDelete){
   if(isDelete){xDrop(coll,row.id);softRender();return;}
   const was=S.x[coll][row.id];xSet(coll,row.id,row.data||{});
+  if(coll==='support'&&!was&&S.isOwner&&row.data&&row.data.fromId!==S.me&&!row.data.reply)toast('New question from '+nameOf(row.data.fromId));
   if(coll==='notifications'&&!was&&row.data&&row.data.to===S.me){toast('🔔 '+row.data.title);popAlert({...row.data,id:row.id});}
   softRender();
 }
@@ -1046,7 +1096,7 @@ function alertsView(){
   const list=alertsArr();
   if(list.some(n=>!n.read)){clearTimeout(alertsView.t);alertsView.t=setTimeout(markAllRead,1500);}
   return `<h1>Alerts</h1>${alertHelpHtml()}
-  <section class="card alerts">${list.length?list.map(n=>`<a class="alertrow${n.read?'':' unread'}" href="${n.gigId?'#gig-'+esc(n.gigId):'#mine'}"><span class="adot" aria-hidden="true"></span><span><b>${esc(n.title)}</b>${n.body?`<br><span class="muted">${esc(n.body)}</span>`:''}<br><span class="fine">${fmtAgo(n.createdAt)}</span></span></a>`).join(''):`<div class="empty">No alerts yet. Booking offers, new sign-ups and cancellations will show up here.</div>`}</section>`;
+  <section class="card alerts">${list.length?list.map(n=>`<a class="alertrow${n.read?'':' unread'}" href="${n.gigId?'#gig-'+esc(n.gigId):n.kind==='comment'?'#feed':'#mine'}"><span class="adot" aria-hidden="true"></span><span><b>${esc(n.title)}</b>${n.body?`<br><span class="muted">${esc(n.body)}</span>`:''}<br><span class="fine">${fmtAgo(n.createdAt)}</span></span></a>`).join(''):`<div class="empty">No alerts yet. Booking offers, new sign-ups and cancellations will show up here.</div>`}</section>`;
 }
 async function markAllRead(){
   if(route()!=='alerts')return;
@@ -1094,6 +1144,104 @@ function postHtml(p){
   ${cs.length?`<div class="comments">${cs.map(c=>`<div class="comment">${avatar(c.by)}<span><a href="#profile-${esc(c.by)}"><b>${esc(nameOf(c.by))}</b></a> ${esc(c.text)}<br><span class="fine">${fmtAgo(c.createdAt)}${S.me&&(c.by===S.me||S.isOwner)?` · <button class="textbtn" data-act="delreact" data-id="${esc(c.id)}">Delete</button>`:''}</span></span></div>`).join('')}</div>`:''}
   ${canPost?`<form class="commentf" data-form="comment" data-post="${esc(p.id)}"><input maxlength="300" placeholder="Write a comment" aria-label="Write a comment" required><button class="btn ghost sm" type="submit">Reply</button></form>`:''}
   </section>`;
+}
+/* ---------- help bot (free, built-in answers) ---------- */
+const FAQ=[
+  {k:'find gig gigs search look work job jobs available open near',q:'How do I find a gig?',a:'Open Gigs to see every gig in NC, SC and VA. Use Role and Type to narrow it down, then tap a gig to sign up.',b:[['Go to Gigs','#gigs']]},
+  {k:'post job create list hire need booker organizer venue book someone',q:'How do I post a gig?',a:'Tap Post, choose who you need, the occasion, date, times and pay, then tap Post gig. You get an alert when people sign up.',b:[['Post a gig','#post']]},
+  {k:'apply sign signup offer booked booking accept works process hired get',q:'How does booking work?',a:'Sign up on a gig. If the organizer picks you, you get a booking offer to accept, and you choose how to be paid.',b:[['See the full rules','#rules']]},
+  {k:'pay plugd paid payment money card hold held release fee fees stripe',q:'How does Plug’d Pay work?',a:'The organizer’s card is held before the gig and released to you after it’s confirmed. The card fee is 2.9% + 30¢. It’s in preview right now, so use cash for real gigs for now.',b:[['Plug’d Pay rules','#rules']]},
+  {k:'cash zelle cashapp venmo direct outside',q:'Can I get paid in cash?',a:'Yes. Cash means full pay with no fees, paid directly to you, but Plug’d can’t protect that payment.',b:[['Plug’d Pay rules','#rules']]},
+  {k:'cancel cancellation cancelled back out emergency reopen',q:'Can I cancel a booking?',a:'Yes, with Cancel booking on the gig. It’s free more than 72 hours out; later cancels lower your reliability. The gig reopens and everyone is alerted.',b:[['Cancellation rules','#rules']]},
+  {k:'free cost price join membership subscription charge',q:'Does Plug’d cost anything?',a:'Plug’d is free to join during launch.',b:[['Terms & Conditions','#terms']]},
+  {k:'contact phone number email instagram handle message dm private',q:'When can I see someone’s contact info?',a:'Contact info stays private until a booking is accepted, then it unlocks for both of you. Phone numbers and handles can’t be posted anywhere else.',b:[['Community rules','#rules']]},
+  {k:'review reviews rating stars rate feedback',q:'How do reviews work?',a:'Reviews open after a gig booked in Plug’d is confirmed. Each side answers a few yes/no questions, then gives stars and a comment.',b:[['Community rules','#rules']]},
+  {k:'alert alerts notification notifications bell popup ping',q:'How do I turn on alerts?',a:'Tap the bell, then Turn on phone alerts, then Allow. On iPhone, add Plug’d to your home screen first.',b:[['Open alerts','#alerts']]},
+  {k:'install download app phone home screen iphone android',q:'How do I get the app on my phone?',a:'iPhone: open Plug’d in Safari, tap Share, then Add to Home Screen. Android: tap Install when Chrome asks.',b:[['Show me how','act:install']]},
+  {k:'profile edit price prices rate lowest offer minimum role roles video videos bio',q:'How do I edit my profile?',a:'Tap your initials at the top, then Edit profile. Set your roles, a price for each, and the lowest offer you’ll take.',b:[['Edit profile','#me']]},
+  {k:'password forgot reset change login log sign',q:'How do I change my password?',a:'Forgot it? Tap Sign in, then Forgot password. Already signed in? Tap your initials, then Change password.',b:[]},
+  {k:'report scam fake safe safety harass harassment unsafe',q:'How do I report someone?',a:'Never pay anyone to get a gig. Tap Report on their profile and the Plug’d team will review it.',b:[['Stay safe','#rules']]},
+  {k:'terms conditions privacy policy data age 18 legal',q:'Where are the Terms and Privacy Policy?',a:'You must be 18 or older to use Plug’d. Here are the full Terms and Privacy Policy.',b:[['Terms','#terms'],['Privacy','#privacy']]},
+  {k:'late fee arrive time dress code terms rules gig smoking drinking',q:'What are gig terms?',a:'Organizers can add terms like a late fee, an arrive-by time or a dress code. You see them before you accept.',b:[['Community rules','#rules']]},
+  {k:'level levels vip reliability score badge rank ranking top first',q:'How do levels and VIP work?',a:'Your level grows as you post, sign up, finish gigs and get reviews. Higher levels and VIPs show first in search.',b:[]},
+  {k:'fair range ranges lowball low typical much charge',q:'What is the fair pay check?',a:'Each gig shows the typical pay for that role and occasion in NC, SC and VA, so nobody gets lowballed.',b:[]}
+];
+const HELP_STOP=new Set(['gig','gigs','how','the','and','can','what','does','do','plug','plugd','is','are','for','you','your','with','get','to','a','i','my','me','it','of','in','on','an','who','where','when','why','will']);
+const HELP={open:false,started:false};
+function helpMatch(q){
+  const w=String(q).toLowerCase().replace(/[’']/g,'').replace(/[^a-z0-9 ]/g,' ').split(/\s+/).filter(x=>x.length>1&&!HELP_STOP.has(x));
+  let best=null,bs=0;
+  FAQ.forEach(f=>{const keys=(f.k+' '+f.q.toLowerCase().replace(/[^a-z0-9 ]/g,' ')).split(/\s+/);let sc=0;w.forEach(x=>{if(keys.includes(x))sc+=2;else if(x.length>3&&keys.some(k=>k.startsWith(x)||x.startsWith(k)&&k.length>3))sc+=1;});if(sc>bs){bs=sc;best=f;}});
+  return bs>=2?best:null;
+}
+function hbAdd(html,who){const b=$('#hbbody');b.insertAdjacentHTML('beforeend',`<div class="hbmsg ${who||'bot'}">${html}</div>`);b.scrollTop=b.scrollHeight;}
+function hbBtns(btns){return btns&&btns.length?`<div class="hbacts">${btns.map(([t,h])=>`<button type="button" data-help="go:${esc(h)}">${esc(t)}</button>`).join('')}</div>`:'';}
+function hbMenu(){
+  return `<div class="hbchips">${FAQ.slice(0,6).map((f,i)=>`<button type="button" data-help="faq:${i}">${esc(f.q)}</button>`).join('')}<button type="button" data-help="more">More questions</button><button type="button" class="hbteam" data-help="team">Message the Plug’d team</button>${mySupport().length?`<button type="button" data-help="mine">My messages</button>`:''}</div>`;
+}
+function hbStart(){
+  if(HELP.started)return;HELP.started=true;
+  hbAdd(`<p>Hi${S.me&&profile(S.me)?' '+esc(nameOf(S.me)):''}! What can we help you with?</p>${hbMenu()}`);
+}
+function hbAnswer(f){
+  hbAdd(`<p><b>${esc(f.q)}</b></p><p>${esc(f.a)}</p>${hbBtns(f.b)}<div class="hbfoot">Still need help? <button type="button" class="hblink" data-help="team">Message the Plug’d team</button></div>`);
+}
+function hbTeam(){
+  if(!S.me){hbAdd(`<p>Sign in first so the Plug’d team can reply to you in the app.</p>${S.mode==='live'?'<div class="hbacts"><button type="button" data-help="act:signin">Sign in</button></div>':''}`);return;}
+  hbAdd(`<p>Type your question for the Plug’d team. You’ll get an alert on the bell when they reply.</p><form class="hbteamf" data-help-form="team"><textarea maxlength="1000" rows="3" required placeholder="Your question"></textarea><button type="submit" class="btn sm">Send to Plug’d</button></form>`);
+  setTimeout(()=>{const t=$('#hbbody').querySelector('form.hbteamf:last-of-type textarea');if(t)t.focus();},50);
+}
+function mySupport(){return Object.values(S.x.support||{}).filter(m=>m.fromId===S.me).sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt)));}
+function hbMine(){
+  const ms=mySupport();
+  hbAdd(ms.length?ms.slice(0,5).map(m=>`<div class="hbq"><p class="fine">${fmtAgo(m.createdAt)}</p><p>${esc(m.text)}</p>${m.reply?`<p class="hbreply"><b>Plug’d:</b> ${esc(m.reply)}</p>`:'<p class="fine">Waiting for a reply</p>'}</div>`).join(''):'<p>No messages yet.</p>');
+}
+function helpToggle(force){
+  const box=$('#helpbox'),fab=$('#helpfab');if(!box)return;
+  HELP.open=typeof force==='boolean'?force:!HELP.open;
+  box.hidden=!HELP.open;fab.setAttribute('aria-expanded',String(HELP.open));fab.classList.toggle('on',HELP.open);
+  const n=$('#helpnudge');if(n)n.hidden=true;try{localStorage.setItem('plugd-help-seen','1');}catch(e){}
+  if(HELP.open){hbStart();setTimeout(()=>{const i=$('#hbq');if(i&&window.innerWidth>640)i.focus();},60);}
+}
+document.addEventListener('click',async e=>{
+  const el=e.target.closest('[data-help]');if(!el)return;
+  e.preventDefault();const v=el.dataset.help;
+  if(v==='toggle'){helpToggle();return;}
+  if(v==='open'){helpToggle(true);return;}
+  if(v==='nudgeclose'){$('#helpnudge').hidden=true;try{localStorage.setItem('plugd-help-seen','1');}catch(x){}return;}
+  if(v.startsWith('faq:')){const f=FAQ[+v.slice(4)];if(f){hbAdd(esc(f.q),'me');hbAnswer(f);}return;}
+  if(v==='more'){hbAdd(`<div class="hbchips">${FAQ.slice(6).map((f,i)=>`<button type="button" data-help="faq:${i+6}">${esc(f.q)}</button>`).join('')}</div>`);return;}
+  if(v==='team'){hbTeam();return;}
+  if(v==='mine'){hbMine();return;}
+  if(v.startsWith('go:')){const h=v.slice(3);
+    if(h.startsWith('act:')){const a=h.slice(4);if(a==='install'&&typeof openInstallHelp==='function'){helpToggle(false);openInstallHelp();}else if(a==='signin'){helpToggle(false);const b=document.querySelector('[data-act=signin]');if(b)b.click();}return;}
+    $('#helpnudge').hidden=true;if(window.innerWidth<=640)helpToggle(false);location.hash=h.replace(/^#/,'');return;}
+});
+document.addEventListener('submit',async e=>{
+  if(e.target.id==='hbform'){e.preventDefault();const i=$('#hbq');const q=(i.value||'').trim();if(!q)return;i.value='';hbAdd(esc(q),'me');
+    const f=helpMatch(q);if(f)hbAnswer(f);else hbAdd(`<p>I don’t have a quick answer for that one. The Plug’d team can help.</p><div class="hbacts"><button type="button" data-help="team">Message the Plug’d team</button></div>`);return;}
+  if(e.target.dataset&&e.target.dataset.helpForm==='team'){e.preventDefault();const f=e.target;const t=f.querySelector('textarea');const text=(t.value||'').trim();if(!text)return;
+    if(hasContact(text)){toast(CONTACT_MSG);return;}
+    const btn=f.querySelector('button');btn.disabled=true;
+    const ok=await xAdd('support',newId('q'),{fromId:S.me,text:text.slice(0,1000),createdAt:now(),status:'open'});
+    if(ok){f.outerHTML=`<p class="hbsent">“${esc(text)}”</p>`;hbAdd('<p>Sent! The Plug’d team will reply here in the app, and you’ll get an alert on the bell.</p>');}else btn.disabled=false;}
+},true);
+function maybeNudge(){
+  try{if(localStorage.getItem('plugd-help-seen'))return;}catch(e){return;}
+  setTimeout(()=>{const n=$('#helpnudge');if(n&&!HELP.open&&$('#modal').hidden)n.hidden=false;},6000);
+}
+function supportAdminHtml(){
+  const qs=Object.values(S.x.support||{}).sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt)));
+  const open=qs.filter(q=>!q.reply);
+  if(!qs.length)return '';
+  return `<div class="section-title"><h2>Member questions</h2><span class="fine">${open.length} waiting</span></div><section class="card">
+  ${qs.slice(0,20).map(q=>`<div class="applicant"><p><b><a href="#profile-${esc(q.fromId)}">${esc(nameOf(q.fromId))}</a></b> <span class="fine">· ${fmtAgo(q.createdAt)}</span></p><p>${esc(q.text)}</p>
+  ${q.reply?`<p class="fine">Your reply: ${esc(q.reply)}</p>`:`<form class="f" data-form="supportreply" data-q="${esc(q.id)}"><label class="full">Reply<textarea id="sr-${esc(q.id)}" required maxlength="1000"></textarea></label><div class="btns full"><button class="btn sm" type="submit">Send reply</button></div></form>`}</div>`).join('')}
+  </section>`;
+}
+function mySupportHtml(){
+  const ms=mySupport();if(!ms.length)return '';
+  return `<div class="section-title"><h2>Your questions to Plug’d</h2></div><section class="card">${ms.slice(0,10).map(m=>`<div class="applicant"><p>${esc(m.text)} <span class="fine">· ${fmtAgo(m.createdAt)}</span></p>${m.reply?`<p class="hbreply"><b>Plug’d:</b> ${esc(m.reply)}</p>`:'<p class="fine">Waiting for a reply</p>'}</div>`).join('')}</section>`;
 }
 function lineupOf(g){
   const out=[],seen=new Set();
@@ -1413,7 +1561,7 @@ function mineView(){
   const apps=Object.values(S.data.applications).filter(a=>a.applicantId===S.me).sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt)));
   const todo=(list,btn)=>`<section class="card">${list.map(g=>`<div class="applicant"><div class="row between"><span><a href="#gig-${esc(g.id)}"><b>${esc(g.title)}</b></a><br><span class="fine">${fmtDate(g)}</span></span>${btn(g)}</div></div>`).join('')}</section>`;
   return `<div class="row between"><h1>My Plugs</h1>${S.isOwner?`<span class="row"><button class="btn ghost sm" data-act="feedtoggle">💬 Community feed: ${feedOn()?'On':'Off'}</button><button class="btn ghost sm" data-act="testmode">🧪 Test mode: ${TEST.on?'On':'Off'}</button></span>`:''}</div>
-  ${S.isOwner?reportsHtml():''}
+  ${S.isOwner?reportsHtml()+supportAdminHtml():mySupportHtml()}
   ${offers.length?`<div class="section-title"><h2>Booking offers for you</h2></div>${todo(offers,g=>`<span class="row"><b>${money(g.offer.amount)}</b><a class="btn teal sm" href="#gig-${esc(g.id)}">Review offer</a></span>`)}`:''}
   ${toConfirm.length?`<div class="section-title"><h2>Gigs to confirm</h2><span class="fine">Skipping confirmations lowers your visibility</span></div>${todo(toConfirm,g=>g.bookedId===S.me?`<button class="btn teal sm" data-act="confirm" data-id="${esc(g.id)}">Mark completed</button>`:`<span class="row"><span class="fine">Due ${esc(fmtWhen(confirmDeadline(g)))}</span><button class="btn teal sm" data-act="confirm" data-id="${esc(g.id)}">Confirm</button><button class="btn ghost sm" data-act="dispute" data-id="${esc(g.id)}">Report a problem</button></span>`)}`:''}
   ${toPay.length?`<div class="section-title"><h2>Payments</h2></div>${todo(toPay,g=>g.posterId===S.me?`<button class="btn ghost sm" data-act="paid" data-id="${esc(g.id)}">Record payment</button>`:`<button class="btn teal sm" data-act="received" data-id="${esc(g.id)}">I received ${money(g.payment.amount)}</button>`)}`:''}
@@ -2016,6 +2164,13 @@ document.addEventListener('submit',async e=>{
     if(!(await patch('gigs',gid,upd))){done();return;}
     closeModal();toast(f.dataset.cash==='1'?'Hold returned to your card and payment recorded.':'Payment recorded.');render();return;
   }
+  if(kind==='supportreply'){
+    if(!S.isOwner){done();return;}
+    const id=f.dataset.q;const q=S.x.support[id];const reply=v('sr-'+id);if(!q||!reply){done();return;}
+    if(!(await xAdd('support',id,{...strip(q),reply:reply.slice(0,1000),repliedAt:now(),status:'answered'},{update:true}))){done();return;}
+    await notify(q.fromId,'Plug’d replied to your question',reply.slice(0,160),'','support');
+    toast('Reply sent.');render();return;
+  }
   if(kind==='post'){
     const text=v('fp-text');if(!text){done();return;}
     if(hasContact(text)){toast(CONTACT_MSG);done();return;}
@@ -2141,7 +2296,7 @@ async function boot(){
   setInterval(()=>{if(document.visibilityState==='visible')loadAll(true);},120000);
 }
 /* ---------- automatic updates ---------- */
-const APP_VERSION='2026-11-15.6';
+const APP_VERSION='2026-11-15.7';
 const UPD={ready:''};
 async function checkUpdate(){
   if(!/^https?:$/.test(location.protocol)||UPD.ready)return;
@@ -2169,6 +2324,7 @@ document.addEventListener('visibilitychange',()=>{
 setInterval(()=>{if(document.visibilityState==='visible')checkUpdate();},10*60*1000);
 setTimeout(checkUpdate,8000);
 boot();
+maybeNudge();
 })();
 </script>
 </body>
