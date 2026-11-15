@@ -366,6 +366,9 @@ details.msel[open]>summary{border-color:var(--blue)}
 details.msel .caret{font-size:.7rem}
 .mpanel{position:absolute;z-index:30;top:calc(100% + 6px);left:0;width:min(340px,86vw);padding:12px;border-radius:12px;background:#10102e;border:1px solid var(--line);box-shadow:0 16px 40px rgba(0,0,0,.55)}
 .mchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.mdone{display:flex;justify-content:flex-end;margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+.filters{position:relative}
+@media (max-width:640px){details.msel{position:static}.mpanel{left:0;right:0;width:auto}}
 .mchip{border:1px solid var(--line);background:transparent;color:var(--text);border-radius:8px;padding:6px 10px;font:inherit;font-size:.84rem;cursor:pointer}
 .mchip.on{background:rgba(43,108,255,.18);border-color:var(--blue);color:#fff;font-weight:600}
 .rules ul{padding-left:20px;margin:8px 0}
@@ -819,11 +822,13 @@ function mselVal(sel){return !sel.length?'All':sel.length<=2?sel.map(esc).join('
 function msel(key,label,opts,sel){
   return `<details class="msel" data-key="${key}"><summary><span>${label}:</span> <b class="mval">${mselVal(sel)}</b><span class="caret" aria-hidden="true">▾</span></summary>
   <div class="mpanel"><div class="row between"><span class="fine">Choose all that apply</span><button type="button" class="textbtn" data-msclear="${key}">Clear</button></div>
-  <div class="mchips">${opts.map(o=>`<button type="button" class="mchip${sel.includes(o)?' on':''}" data-ms="${key}" data-v="${esc(o)}" aria-pressed="${sel.includes(o)}">${sel.includes(o)?'✓ ':''}${esc(o)}</button>`).join('')}</div></div></details>`;
+  <div class="mchips">${opts.map(o=>`<button type="button" class="mchip${sel.includes(o)?' on':''}" data-ms="${key}" data-v="${esc(o)}" aria-pressed="${sel.includes(o)}">${sel.includes(o)?'✓ ':''}${esc(o)}</button>`).join('')}</div>
+  <div class="mdone"><button type="button" class="btn sm" data-msdone="${key}">Done</button></div></div></details>`;
 }
 const MSEL={'f-roles':()=>[F,'roles',()=>{$('#gig-list').innerHTML=gigList();}],'f-types':()=>[F,'types',()=>{$('#gig-list').innerHTML=gigList();}],
   'c-types':()=>[C,'types',()=>render()],'t-roles':()=>[T,'roles',()=>{$('#talent-list').innerHTML=talentList();}]};
 function mselClick(e){
+  const dn=e.target.closest('[data-msdone]');if(dn){const d=dn.closest('details.msel');if(d)d.open=false;return true;}
   const chip=e.target.closest('[data-ms]'),clr=e.target.closest('[data-msclear]');
   if(!chip&&!clr){document.querySelectorAll('details.msel[open]').forEach(d=>{if(!d.contains(e.target))d.open=false;});return false;}
   const key=chip?chip.dataset.ms:clr.dataset.msclear;const def=MSEL[key];if(!def)return false;
@@ -2083,7 +2088,7 @@ async function boot(){
   setInterval(()=>{if(document.visibilityState==='visible')loadAll(true);},120000);
 }
 /* ---------- automatic updates ---------- */
-const APP_VERSION='2026-11-15.3';
+const APP_VERSION='2026-11-15.4';
 const UPD={ready:''};
 async function checkUpdate(){
   if(!/^https?:$/.test(location.protocol)||UPD.ready)return;
