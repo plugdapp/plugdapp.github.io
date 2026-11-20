@@ -889,7 +889,7 @@ function gigsView(){
     </div>
     <dl class="stats">
       <div><dt>Open gigs</dt><dd>${open}</dd></div>
-      <div><dt>Pros</dt><dd>${Object.keys(S.data.profiles).length}</dd></div>
+      <div><dt>Pros</dt><dd>${Object.values(S.data.profiles).filter(p=>p&&!p.official).length}</dd></div>
       <div><dt>Reviews</dt><dd>${Object.keys(S.data.reviews).length}</dd></div>
     </dl>
   </section>
@@ -2429,7 +2429,7 @@ async function boot(){
   setInterval(()=>{if(document.visibilityState==='visible')loadAll(true);},120000);
 }
 /* ---------- automatic updates ---------- */
-const APP_VERSION='2026-11-20.1';
+const APP_VERSION='2026-11-20.2';
 const UPD={ready:''};
 async function checkUpdate(){
   if(!/^https?:$/.test(location.protocol)||UPD.ready)return;
