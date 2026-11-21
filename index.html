@@ -151,6 +151,24 @@ main{padding:28px 0 72px}
 .sponsor{border-style:dashed;display:flex;flex-direction:column;gap:8px;justify-content:center;background:linear-gradient(160deg,rgba(232,184,64,.06),transparent 60%),var(--panel)}
 .pro.example{position:relative;border-style:dashed;opacity:.92}.extag{position:absolute;top:12px;right:12px;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:999px;border:1px solid var(--gold);color:var(--gold)}
 .joincta{display:flex;flex-direction:column;gap:10px;justify-content:center}.joincta h3{margin:0}
+.chat{margin-top:18px}.chathead h2{margin:0}.chatnote{margin:8px 0}
+.chatinfo{display:flex;flex-wrap:wrap;gap:6px 14px;margin:10px 0;padding:10px 12px;border-radius:12px;background:rgba(124,92,255,.08);border:1px solid rgba(124,92,255,.25);font-size:.88rem}
+.chatpins{margin:10px 0;padding:8px 12px;border-radius:12px;border:1px solid rgba(255,196,77,.35);background:rgba(255,196,77,.06)}.cpin{display:flex;justify-content:space-between;gap:10px;padding:4px 0;font-size:.9rem}
+.chatlog{max-height:52vh;min-height:120px;overflow-y:auto;padding:8px 2px;display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--line,rgba(255,255,255,.08));border-bottom:1px solid var(--line,rgba(255,255,255,.08));margin:10px 0}
+.chatempty{text-align:center;margin:auto}
+.cmsg{display:flex;gap:8px;align-items:flex-start;max-width:92%}.cmsg.mine{align-self:flex-end;flex-direction:row-reverse}
+.cbody{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:8px 12px;min-width:0}.cmsg.mine .cbody{background:rgba(91,108,255,.18);border-color:rgba(91,108,255,.35)}
+.cbody p{margin:4px 0 0;overflow-wrap:anywhere}.chead{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}.ctag{font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:1px 6px;border-radius:999px;border:1px solid rgba(255,255,255,.25)}
+.cacts{display:flex;gap:10px;margin-top:4px}.linkbtn{background:none;border:0;padding:0;color:var(--muted,#9aa);font:inherit;font-size:.78rem;text-decoration:underline;cursor:pointer}
+.cupdate{align-self:center;max-width:96%;text-align:center;padding:8px 14px;border-radius:12px;background:rgba(45,212,191,.08);border:1px solid rgba(45,212,191,.35);display:block}.cupdate p{margin:4px 0;white-space:normal}.cuplabel{font-size:.75rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}.cupdate .cacts{justify-content:center}
+.chatform{display:flex;gap:8px;align-items:flex-end}.chatform textarea{flex:1;min-width:0;resize:none;min-height:44px;max-height:160px;background:var(--ink);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--text);font:inherit;font-size:1rem}.chatform textarea:focus{border-color:var(--peacock);outline:none}body.chatting .helpfab,body.chatting .helpnudge{display:none!important}
+.chatrow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);color:inherit;text-decoration:none}.chatrow:last-child{border-bottom:0}
+.ubadge{min-width:22px;height:22px;padding:0 7px;border-radius:999px;background:#ff4d6d;color:#fff;font-size:.75rem;font-weight:700;display:inline-grid;place-items:center}
+[data-nav].hasdot{position:relative}[data-nav].hasdot::after{content:'';position:absolute;top:6px;right:calc(50% - 16px);width:9px;height:9px;border-radius:50%;background:#ff4d6d;box-shadow:0 0 0 2px var(--bg,#05050f)}
+blockquote.quote{margin:8px 0 14px;padding:8px 12px;border-left:3px solid rgba(255,255,255,.3);background:rgba(255,255,255,.04);border-radius:6px}
+.txtalerts{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.08)}
+.toast.tap{cursor:pointer}
+.vrules{padding:12px 14px;border-radius:12px;border:1px solid rgba(255,196,77,.4);background:rgba(255,196,77,.07)}.vrules ul{list-style:none;margin:8px 0;padding:0;display:grid;gap:6px}.vrules li{padding-left:26px;position:relative;font-size:.92rem}.vrules li::before{position:absolute;left:0;top:0}.vrules li.yes::before{content:'✅'}.vrules li.no::before{content:'❌'}.vrules .fine{margin:0}
 .spon-tag{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
 
 .back{display:inline-block;margin-bottom:16px;color:var(--muted);text-decoration:none}
@@ -384,6 +402,8 @@ nav.tabs a{font-weight:500}
 .helpfab svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .helpfab.on{background:#1c1c3c;box-shadow:0 10px 28px rgba(0,0,0,.5)}
 .helpnudge{position:fixed;right:84px;bottom:28px;z-index:75;max-width:260px;padding:12px 14px;border-radius:14px;background:#f4f4fb;color:#12122e;box-shadow:0 12px 30px rgba(0,0,0,.4)}
+.helpfab::before{content:'Have a question? Ask me';position:absolute;right:calc(100% + 12px);top:50%;transform:translateY(-50%) translateX(6px);white-space:nowrap;padding:8px 12px;border-radius:12px;background:#f4f4fb;color:#12122e;font-size:.85rem;font-weight:600;box-shadow:0 10px 24px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:opacity .15s,transform .15s}
+@media(hover:hover){.helpfab[aria-expanded=false]:hover::before,.helpfab[aria-expanded=false]:focus-visible::before{opacity:1;transform:translateY(-50%) translateX(0)}}
 .helpnudge p{margin:0 18px 10px 0;font-weight:600;font-size:.92rem}
 .helpnudge .hnx{position:absolute;top:6px;right:8px;border:0;background:none;font-size:1.1rem;color:#555;cursor:pointer}
 .hnbtns{display:flex;gap:8px;flex-wrap:wrap}
@@ -741,7 +761,7 @@ function activity(id){
   const applied=Object.values(S.data.applications).filter(a=>a.applicantId===id).length;
   const done=gigsArr().filter(g=>isCompleted(g)&&(g.posterId===id||g.bookedId===id)).length;
   const reviewed=Object.values(S.data.reviews).filter(r=>r.authorId===id).length;
-  const vids=(p.videos||[]).length;
+  const vids=fileVids(p).length;
   return posted*3+applied+done*5+reviewed+vids*2;
 }
 function level(id){const pts=activity(id);let i=0;LEVELS.forEach((l,k)=>{if(pts>=l.min)i=k;});return{i,name:LEVELS[i].name,pts,next:LEVELS[i+1]||null};}
@@ -752,6 +772,9 @@ function payFee(a){a=Number(a)||0;return a?Math.round((a*0.029+0.30)*100)/100:0;
 function cents(n){return '$'+(Number(n)||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
 /* Contact info stays private until a booking is accepted */
 const CONTACT_RX=[/[\w.+-]+@[\w-]+\.[a-z]{2,}/i,/(?:\+?1[\s.-]?)?\(?\b\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}\b/,/(^|\s)@[a-z0-9_.]{3,}/i,/\b(insta(gram)?|ig handle|snap ?chat|whats ?app|telegram|text me|call me|dm me|my number|phone number|hit me up on)\b/i,/(https?:\/\/|www\.)\S+/i];
+const SOCIAL_RX=/\b(tik ?tok|youtube|you tube|yt|facebook|fb|insta(gram)?|ig|snap(chat)?|twitter|threads|x\.com|twitch|soundcloud|spotify|reels?|follow me|subscribe|my page|my channel)\b/i;
+function capBad(t){return hasContact(t)||SOCIAL_RX.test(String(t||''));}
+function fileVids(p){return ((p&&p.videos)||[]).filter(v=>v&&v.kind==='file');}
 function hasContact(t){return CONTACT_RX.some(r=>r.test(String(t||'')));}
 const CONTACT_MSG="To keep everyone protected, phone numbers, emails, links and social handles can't go here. Contact info is shared automatically once a booking is accepted.";
 function contactOf(id){return S.contacts[id]!==undefined?S.contacts[id]:((profile(id)||{}).contact||'');}
@@ -826,6 +849,16 @@ function toast(msg){
   clearTimeout(toast.t);toast.t=setTimeout(hide,warn?5200:3400);
 }
 
+function alertBanner(n){
+  const t=$('#toast');if(!t||!n)return;
+  const href=n.gigId?'#gig-'+n.gigId:'#alerts';
+  t.className='toast t-ok tap';
+  t.innerHTML=`<span class="ticon" aria-hidden="true"><img src="icons/icon-192.png" alt=""></span><span class="tmsg"><b>${n.chat?'💬 ':''}${esc(String(n.title||'Plug’d').replace(/^🔔\s*/,''))}</b><span>${esc(String(n.body||'Tap to open').slice(0,140))}</span></span>`;
+  t.hidden=false;t.classList.remove('tout');void t.offsetWidth;t.classList.add('tin');
+  const hide=()=>{t.classList.add('tout');setTimeout(()=>{t.hidden=true;t.classList.remove('tout');},240);};
+  t.onclick=()=>{clearTimeout(toast.t);hide();location.hash=href.slice(1);};
+  clearTimeout(toast.t);toast.t=setTimeout(hide,6000);
+}
 /* ---------- data writes ---------- */
 async function save(coll,id,data){
   if(TEST.on&&S.isOwner&&!S.data[coll][id])data={...data,test:true};
@@ -978,9 +1011,11 @@ function gigDetail(id){
   let actions='';
   if(g.status==='booked'){
     actions=`<p>Booked: <a href="#profile-${esc(g.bookedId)}"><b>${esc(nameOf(g.bookedId))}</b></a></p>`;
+    if(mine&&!isPast(g))actions+=`<a class="btn ghost sm" href="#edit-${esc(id)}">Edit gig</a> <button class="btn ghost sm" data-act="addrole" data-id="${esc(id)}">Add another role</button>`;
   }else if(mine){
     actions=`<span class="muted">You posted this. Pick someone from the list.</span>`;
     if(g.status==='open')actions+=` <button class="btn ghost sm" data-act="closegig" data-id="${esc(id)}">Close sign-ups</button>`;
+    if(!isPast(g))actions+=` <a class="btn ghost sm" href="#edit-${esc(id)}">Edit gig</a> <button class="btn ghost sm" data-act="addrole" data-id="${esc(id)}">Add another role</button>`;
   }else if(st[1]==='closed'){
     actions=`<span class="muted">This one is closed.</span>`;
   }else if(app&&app.status==='offered'&&g.offer&&g.offer.applicantId===S.me){
@@ -1023,8 +1058,273 @@ function gigDetail(id){
       ${lineupHtml(g)}
       ${mine?applicantsPanel(g,apps):`<div class="card"><b>${apps.length}</b> <span class="muted">${apps.length===1?'person has':'people have'} signed up</span></div>`}
     </aside>
-  </div>`;
+  </div>
+  ${chatPanel(g)}`;
 }
+/* ---------- gig chat: private chat inside each booked gig ---------- */
+const CH={msgs:{},members:{},reads:{},mutes:{},invites:{},readT:{}};
+const INVITE_WELCOME='Welcome to the gig! Your organizer added you so you can chat with the group and stay up to date on the details. Since your booking was arranged outside of Plug’d, you won’t be able to use Plug’d Pay, open a dispute through the app, or leave a review for the organizer on this gig. You’ll have access to those features for any gig you book through Plug’d.';
+function eventKey(g){return g?(g.eventId||g.id):'';}
+function eventGigs(eid){return gigsArr().filter(g=>g.id===eid||g.eventId===eid);}
+function eventRoot(eid){return S.data.gigs[eid]||eventGigs(eid)[0]||null;}
+function eventOrganizer(eid){const g=eventRoot(eid);return g?g.posterId:'';}
+function eventBooked(eid){return eventGigs(eid).filter(g=>g.status==='booked'&&g.bookedId).map(g=>({id:g.bookedId,role:g.role,gid:g.id}));}
+function eventInvitees(eid){return Object.values(CH.members[eid]||{});}
+function chatMemberIds(eid){const s=new Set();const o=eventOrganizer(eid);if(o)s.add(o);eventBooked(eid).forEach(b=>s.add(b.id));eventInvitees(eid).forEach(m=>s.add(m.uid));return [...s];}
+function inChat(eid,uid){uid=uid||S.me;return !!uid&&!!eid&&chatMemberIds(eid).includes(uid);}
+function isOrganizer(eid){return !!S.me&&eventOrganizer(eid)===S.me;}
+function isInvitee(eid,uid){uid=uid||S.me;return !!(CH.members[eid]||{})[uid]&&eventOrganizer(eid)!==uid&&!eventBooked(eid).some(b=>b.id===uid);}
+function chatMD(eid){const r=S.data.gigs[eid];return r&&r.mdId&&inChat(eid,r.mdId)?r.mdId:'';}
+function canPin(eid){return isOrganizer(eid)||(!!S.me&&chatMD(eid)===S.me);}
+function ymd(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+function eventLastDate(eid){const ds=eventGigs(eid).map(g=>g.date).filter(x=>/^\d{4}-\d{2}-\d{2}$/.test(x||'')).sort();return ds[ds.length-1]||'';}
+function chatOpen(eid){const d=eventLastDate(eid);if(!d)return true;const t=new Date(d+'T12:00');t.setDate(t.getDate()+7);return todayStr()<=ymd(t);}
+function inviteOpen(eid){const d=eventLastDate(eid);return !d||d>=todayStr();}
+function chatList(eid){return Object.values(CH.msgs[eid]||{}).sort((a,b)=>String(a.createdAt||a.at).localeCompare(String(b.createdAt||b.at)));}
+function chatUnread(eid){if(!S.me)return 0;const last=CH.reads[eid]||'';return chatList(eid).filter(m=>m.uid!==S.me&&String(m.createdAt||m.at)>last).length;}
+function myChatIds(){
+  if(!S.me)return [];const s=new Set();
+  gigsArr().forEach(g=>{if(g.status==='cancelled')return;if(g.posterId===S.me&&(g.status==='booked'||CH.members[eventKey(g)]))s.add(eventKey(g));if(g.status==='booked'&&g.bookedId===S.me)s.add(eventKey(g));});
+  Object.keys(CH.members).forEach(e=>{if((CH.members[e]||{})[S.me]&&eventRoot(e))s.add(e);});
+  return [...s].filter(e=>chatMemberIds(e).length>1);
+}
+function chatUnreadTotal(){return myChatIds().reduce((n,e)=>n+chatUnread(e),0);}
+function chatPut(o,row){if(!row||!row.id||!row.eid)return;(o[row.eid]=o[row.eid]||{})[row.id]={...(row.data||{}),id:row.id,eid:row.eid,at:row.created_at||(row.data&&row.data.createdAt)||now()};}
+async function chatLoadAll(){
+  if(!S.me){CH.msgs={};CH.members={};CH.reads={};CH.mutes={};CH.invites={};return;}
+  if(!hasSB())return;
+  try{
+    const [m,c,r,mu,inv]=await Promise.all([
+      SB.from('event_members').select('id,eid,user_id,data'),
+      SB.from('chat').select('id,eid,data,created_at').order('created_at',{ascending:true}).limit(5000),
+      SB.from('chat_reads').select('eid,last_read'),
+      SB.from('chat_mutes').select('eid'),
+      SB.from('event_invites').select('eid,token')]);
+    if(!m.error){const o={};(m.data||[]).forEach(x=>{(o[x.eid]=o[x.eid]||{})[x.user_id]={...(x.data||{}),uid:x.user_id};});CH.members=o;}
+    if(!c.error){const o={};(c.data||[]).forEach(x=>chatPut(o,x));CH.msgs=o;}
+    if(!r.error){const o={};(r.data||[]).forEach(x=>{o[x.eid]=x.last_read;});CH.reads=o;}
+    if(!mu.error){const o={};(mu.data||[]).forEach(x=>{o[x.eid]=true;});CH.mutes=o;}
+    if(!inv.error){const o={};(inv.data||[]).forEach(x=>{o[x.eid]=x.token;});CH.invites=o;}
+  }catch(e){console.warn('chat load',e);}
+}
+function chatIncoming(table,pl){
+  if(table==='chat'){
+    if(pl.eventType==='DELETE'){const id=pl.old&&pl.old.id;Object.keys(CH.msgs).forEach(e=>{if(CH.msgs[e]&&CH.msgs[e][id]){const c={...CH.msgs[e]};delete c[id];CH.msgs[e]=c;}});}
+    else if(pl.new)chatPut(CH.msgs,pl.new);
+  }else if(table==='event_members'){
+    if(pl.eventType==='DELETE'){const id=pl.old&&pl.old.id;Object.keys(CH.members).forEach(e=>{Object.keys(CH.members[e]).forEach(u=>{if(e+'__'+u===id){const c={...CH.members[e]};delete c[u];CH.members[e]=c;}});});}
+    else if(pl.new){const x=pl.new;CH.members[x.eid]={...(CH.members[x.eid]||{}),[x.user_id]:{...(x.data||{}),uid:x.user_id}};}
+  }
+  softRender();
+}
+async function chatSend(eid,text,kind){
+  text=String(text||'').trim().slice(0,1000);if(!text||!S.me)return false;
+  const id=newId('m');const data={uid:S.me,kind:kind||'msg',text,pinned:false,createdAt:now()};
+  if(hasSB()){const {error}=await SB.from('chat').insert({id,eid,data});if(error){writeError(error);return false;}}
+  chatPut(CH.msgs,{id,eid,data,created_at:data.createdAt});
+  markChatRead(eid,true);return true;
+}
+async function chatPin(eid,id,on){
+  const m=(CH.msgs[eid]||{})[id];if(!m||!canPin(eid))return;
+  if(on&&chatList(eid).filter(x=>x.pinned).length>=5){toast('You can pin up to 5 messages. Unpin one first.');return;}
+  const data={...m,pinned:!!on};delete data.id;delete data.eid;delete data.at;if(on)data.pinnedBy=S.me;else delete data.pinnedBy;
+  if(hasSB()){const {error}=await SB.from('chat').update({data}).eq('id',id);if(error){if(/pin limit/.test(error.message||''))toast('You can pin up to 5 messages. Unpin one first.');else writeError(error);return;}}
+  CH.msgs[eid]={...CH.msgs[eid],[id]:{...m,pinned:!!on,pinnedBy:on?S.me:undefined}};render();
+}
+async function chatDelete(eid,id){
+  const m=(CH.msgs[eid]||{})[id];if(!m||!(m.uid===S.me||isOrganizer(eid)))return;
+  if(hasSB()){const {error}=await SB.from('chat').delete().eq('id',id);if(error){writeError(error);return;}}
+  const c={...CH.msgs[eid]};delete c[id];CH.msgs[eid]=c;render();
+}
+async function chatMute(eid,on){
+  const id=eid+'__'+S.me;
+  if(hasSB()){const q=on?SB.from('chat_mutes').upsert({id,eid,user_id:S.me}):SB.from('chat_mutes').delete().eq('id',id);const {error}=await q;if(error){writeError(error);return;}}
+  if(on)CH.mutes[eid]=true;else delete CH.mutes[eid];
+  toast(on?'Chat muted. You’ll still see a dot for new messages, and gig updates still come through.':'Chat alerts are back on.');render();
+}
+function markChatRead(eid,soon){
+  if(!S.me||!eid)return;
+  const last=chatList(eid).reduce((t,m)=>String(m.createdAt||m.at)>t?String(m.createdAt||m.at):t,CH.reads[eid]||'');
+  if(!last||last===(CH.reads[eid]||'')&&!alertsArr().some(n=>n.chat&&n.gigId===eid&&!n.read))return;
+  CH.reads[eid]=last;
+  clearTimeout(CH.readT[eid]);CH.readT[eid]=setTimeout(async()=>{
+    if(hasSB()){try{await SB.from('chat_reads').upsert({id:eid+'__'+S.me,eid,user_id:S.me,last_read:last});}catch(e){}}
+    for(const n of alertsArr().filter(n=>n.chat&&n.gigId===eid&&!n.read)){await xAdd('notifications',n.id,{...strip(n),read:true},{update:true,quiet:true});}
+    renderNav();
+  },soon?50:600);
+}
+function randToken(){const a=new Uint8Array(18);(window.crypto||window.msCrypto).getRandomValues(a);return Array.from(a,b=>('0'+b.toString(16)).slice(-2)).join('');}
+async function ensureInvite(eid,reset){
+  let t=CH.invites[eid];if(t&&!reset)return t;
+  t=randToken();
+  if(hasSB()){const {error}=await SB.from('event_invites').upsert({eid,token:t});if(error){writeError(error);return '';}}
+  CH.invites[eid]=t;return t;
+}
+function inviteLink(eid,t){return location.origin+location.pathname+'#join-'+eid+'.'+t;}
+/* hide the help bubble while the chat box is on screen or being typed in */
+function watchChatForm(){
+  const f=$('.chatform');
+  if(watchChatForm.io){watchChatForm.io.disconnect();watchChatForm.io=null;}
+  if(!f){document.body.classList.remove('chatting');return;}
+  const set=on=>{document.body.classList.toggle('chatting',on);if(on&&typeof HELP!=='undefined'&&HELP.open&&typeof helpToggle==='function')helpToggle(false);};
+  if('IntersectionObserver' in window){watchChatForm.io=new IntersectionObserver(es=>set(es.some(e=>e.isIntersecting)));watchChatForm.io.observe(f);}
+  else set(true);
+}
+document.addEventListener('focusin',e=>{if(e.target&&e.target.id==='chat-text')document.body.classList.add('chatting');});
+function chatTime(m){const t=new Date(m.createdAt||m.at);if(isNaN(t))return '';const today=todayStr()===ymd(t);return (today?'':t.toLocaleDateString('en-US',{month:'short',day:'numeric'})+' · ')+t.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});}
+function chatTextHtml(t){return esc(t).replace(/\n/g,'<br>');}
+function chatPanel(g){
+  const eid=eventKey(g);
+  if(!S.me||!eid||!inChat(eid))return '';
+  const org=isOrganizer(eid);const members=chatMemberIds(eid);const root=eventRoot(eid)||g;
+  const open=chatOpen(eid);const muted=!!CH.mutes[eid];const md=chatMD(eid);
+  const msgs=chatList(eid);const pins=msgs.filter(m=>m.pinned);const shown=msgs.slice(-200);
+  const where=[root.venue,root.city].filter(Boolean).join(', ');
+  const rh=root.rehearsal&&typeof root.rehearsal==='object'?root.rehearsal:null;
+  const info=[
+    root.date?`<span>📅 ${esc(new Date(root.date+'T12:00').toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'}))}</span>`:'',
+    root.time?`<span>⏰ ${fmtT(root.time)}${root.endTime?' – '+fmtT(root.endTime):''}</span>`:'',
+    root.loadIn?`<span>🚚 Load-in ${fmtT(root.loadIn)}</span>`:'',
+    where?`<span>📍 ${esc(where)}</span>`:'',
+    root.attire?`<span>👔 ${esc(root.attire)}</span>`:'',
+    rh&&(rh.date||rh.time)?`<span>🎵 Rehearsal ${rh.date?esc(new Date(rh.date+'T12:00').toLocaleDateString('en-US',{month:'short',day:'numeric'})):''}${rh.time?' '+fmtT(rh.time):''}${rh.place?', '+esc(rh.place):''}</span>`:''
+  ].filter(Boolean).join('');
+  const row=m=>{
+    const mine=m.uid===S.me;
+    const acts=[
+      canPin(eid)&&!m.pinned&&open?`<button class="linkbtn" data-act="chatpin" data-eid="${esc(eid)}" data-id="${esc(m.id)}">Pin</button>`:'',
+      !mine?`<button class="linkbtn" data-act="chatreport" data-eid="${esc(eid)}" data-id="${esc(m.id)}">Report</button>`:'',
+      (mine||org)&&m.kind!=='update'?`<button class="linkbtn" data-act="chatdel" data-eid="${esc(eid)}" data-id="${esc(m.id)}">Delete</button>`:''
+    ].filter(Boolean).join('');
+    if(m.kind==='update')return `<div class="cmsg cupdate"><span class="cuplabel">🔔 Gig update</span><p>${chatTextHtml(m.text)}</p><span class="fine">${esc(chatTime(m))}</span>${acts?`<span class="cacts">${acts}</span>`:''}</div>`;
+    return `<div class="cmsg${mine?' mine':''}">${mine?'':avatar(m.uid)}<div class="cbody"><div class="chead"><b>${esc(mine?'You':nameOf(m.uid))}</b>${m.uid===eventOrganizer(eid)?'<span class="ctag">Organizer</span>':m.uid===md?'<span class="ctag">MD</span>':''}<span class="fine">${esc(chatTime(m))}</span>${m.pinned?'<span class="fine">📌</span>':''}</div><p>${chatTextHtml(m.text)}</p>${acts?`<span class="cacts">${acts}</span>`:''}</div></div>`;
+  };
+  return `<section class="card chat" id="chat">
+    <div class="row between chathead"><h2>Gig chat</h2><span class="row">
+      <button class="btn ghost sm" data-act="chatmembers" data-eid="${esc(eid)}">👥 ${members.length}</button>
+      ${org&&inviteOpen(eid)?`<button class="btn sm" data-act="chatinvite" data-eid="${esc(eid)}">Invite to this gig</button>`:''}
+      ${members.length>1?`<button class="btn ghost sm" data-act="chatmute" data-eid="${esc(eid)}" data-v="${muted?0:1}" aria-pressed="${muted}">${muted?'🔕 Muted':'🔔 Mute'}</button>`:''}
+    </span></div>
+    ${isInvitee(eid)?`<p class="fine chatnote">You were added by the organizer. This booking was arranged outside of Plug’d, so Plug’d Pay, disputes and reviews don’t apply to this gig.</p>`:''}
+    ${info?`<div class="chatinfo">${info}</div>`:''}
+    ${pins.length?`<div class="chatpins"><p class="fine"><b>📌 Pinned</b></p>${pins.map(m=>`<div class="cpin"><span>${chatTextHtml(m.text)}</span>${canPin(eid)?`<button class="linkbtn" data-act="chatunpin" data-eid="${esc(eid)}" data-id="${esc(m.id)}">Unpin</button>`:''}</div>`).join('')}</div>`:''}
+    <div class="chatlog" id="chatlog" aria-live="polite">${shown.length?shown.map(row).join(''):`<p class="muted chatempty">${members.length>1?'No messages yet. Say hi to the team!':'Only you are here so far. Book someone or tap Invite to this gig to add your team.'}</p>`}</div>
+    ${open?(members.length>1?`<form class="chatform" data-form="chat" data-eid="${esc(eid)}"><textarea id="chat-text" rows="1" maxlength="1000" placeholder="Message the team…" aria-label="Message the team"></textarea><button class="btn sm" type="submit">Send</button></form>`:''):`<p class="fine chatnote">This chat closed 7 days after the gig. You can still read it.</p>`}
+  </section>`;
+}
+function openChatMembers(eid){
+  const org=isOrganizer(eid);const o=eventOrganizer(eid);const md=chatMD(eid);
+  const booked=eventBooked(eid);const inv=eventInvitees(eid).filter(m=>m.uid!==o&&!booked.some(b=>b.id===m.uid));
+  const line=(uid,label,canRemove)=>`<div class="applicant"><div class="row between"><a class="poster" href="#profile-${esc(uid)}">${avatar(uid)}<span><b>${esc(nameOf(uid))}</b>${uid===S.me?' (you)':''}<br><span class="fine">${label}${uid===md?' · MD':''}</span></span></a>
+    <span class="row">${org&&uid!==o?`<button class="btn ghost sm" data-act="chatmd" data-eid="${esc(eid)}" data-id="${esc(uid)}" data-v="${uid===md?0:1}">${uid===md?'Remove MD':'Make MD'}</button>`:''}${canRemove?`<button class="btn ghost sm" data-act="chatremove" data-eid="${esc(eid)}" data-id="${esc(uid)}">${uid===S.me?'Leave':'Remove'}</button>`:''}</span></div></div>`;
+  openModal(`<h2 id="modal-title">People in this chat</h2><p class="sub">${org?'Make someone the music director (MD) so they can pin messages too.':'Only the organizer and the MD can pin messages.'}</p>
+    ${line(o,'Organizer',false)}
+    ${booked.map(b=>line(b.id,'Booked on Plug’d · '+esc(b.role||''),false)).join('')}
+    ${inv.map(m=>line(m.uid,'Added by organizer',org||m.uid===S.me)).join('')}
+    ${org&&booked.length?'<p class="fine">To remove someone booked on Plug’d, cancel their booking on the gig.</p>':''}
+    <div class="btns"><button class="btn" data-act="close">Done</button></div>`);
+}
+async function openChatInvite(eid,reset){
+  const t=await ensureInvite(eid,reset);if(!t)return;
+  const link=inviteLink(eid,t);const r=eventRoot(eid);
+  openModal(`<h2 id="modal-title">Invite to this gig</h2><p class="sub">Send this link to people you've already booked for ${esc(r?r.title:'this gig')}. They sign in or make a free profile, tap Accept, and they're in the chat.</p>
+    <label class="full">Invite link<input id="inv-link" readonly value="${esc(link)}"></label>
+    <div class="btns"><button class="btn" data-act="invcopy">Copy link</button>${navigator.share?'<button class="btn ghost" data-act="invshare">Share…</button>':''}</div>
+    <p class="fine">Anyone with this link can join until the gig date, so only send it to your team. If it gets shared by mistake, reset it: the old link stops working, and you can remove anyone who joined.</p>
+    <div class="btns"><button class="btn ghost sm" data-act="invreset" data-eid="${esc(eid)}">Reset link</button><button class="btn ghost sm" data-act="close">Done</button></div>`);
+}
+function openChatReport(eid,id){
+  const m=(CH.msgs[eid]||{})[id];if(!m)return;
+  openModal(`<h2 id="modal-title">Report this message</h2><p class="sub">Reports go only to the Plug’d team.</p><blockquote class="quote">${chatTextHtml(m.text)}</blockquote>
+  <form class="f" data-form="chatreport" data-eid="${esc(eid)}" data-id="${esc(id)}">
+    <label class="full">What's going on?<select id="cr-reason"><option>Harassment or disrespect</option><option>Scam, or asked to pay outside Plug’d</option><option>Social media name or link</option><option>Spam</option><option>Other</option></select></label>
+    <label class="full">Details (optional)<textarea id="cr-text" maxlength="1000"></textarea></label>
+    <div class="btns full"><button type="button" class="btn ghost" data-act="close">Cancel</button><button class="btn" type="submit">Send report</button></div>
+  </form>`);
+}
+/* invite links: #join-<eid>.<token> */
+function pendingJoin(){try{return localStorage.getItem('plugd-join')||'';}catch(e){return '';}}
+function setPendingJoin(v){try{if(v)localStorage.setItem('plugd-join',v);else localStorage.removeItem('plugd-join');}catch(e){}}
+function joinView(code){
+  const [eid,tok]=String(code||'').split('.');const g=eventRoot(eid);
+  if(!eid||!tok)return `<div class="empty">This invite link is incomplete. Ask the organizer to send it again.</div>`;
+  setPendingJoin(code);
+  if(S.me&&inChat(eid)){setPendingJoin('');setTimeout(()=>{location.hash='gig-'+eid;},0);return '';}
+  const head=`<div class="gatelock" aria-hidden="true">🎶</div><p class="eyebrow">You're invited</p><h1>${g?esc(g.title):'A gig on Plug’d'}</h1>${g?`<p class="muted">${esc(fmtDate(g))}${g.city?' · '+esc(g.city):''}</p>`:''}`;
+  if(!S.me)return `<section class="card gate">${head}<p class="gatetext">Your organizer invited you to the gig chat so you can talk with the team and get updates. Sign in or join Plug’d free to accept.</p>
+    <div class="row gatebtns"><button class="btn" data-act="signup">Join free</button><button class="btn ghost" data-act="signin">Sign in</button></div></section>`;
+  return `<section class="card gate">${head}<p class="gatetext">Join the gig chat to talk with the team, see pinned details and get updates when anything changes.</p>
+    <div class="row gatebtns"><button class="btn" data-act="joinaccept" data-id="${esc(code)}">Accept invite</button><a class="btn ghost" href="#gigs">Not now</a></div></section>`;
+}
+async function acceptInvite(code){
+  const [eid,tok]=String(code||'').split('.');
+  if(!S.me){openAuth('signup');return;}
+  if(!profile(S.me)){afterProfile=()=>acceptInvite(code);openProfileModal(true);return;}
+  let res='ok';
+  if(hasSB()){const {data,error}=await SB.rpc('join_event',{p_eid:eid,p_token:tok});if(error){writeError(error);return;}res=data;}
+  else{CH.members[eid]={...(CH.members[eid]||{}),[S.me]:{uid:S.me,joinedAt:now(),invitedBy:eventOrganizer(eid)}};}
+  if(res==='profile'){afterProfile=()=>acceptInvite(code);openProfileModal(true);return;}
+  if(res==='invalid'){setPendingJoin('');openModal(`<h2 id="modal-title">This invite link doesn't work</h2><p class="sub">The organizer may have reset it. Ask them to send you a new one.</p><div class="btns"><button class="btn" data-act="close">OK</button></div>`);return;}
+  if(res==='expired'){setPendingJoin('');openModal(`<h2 id="modal-title">This gig already happened</h2><p class="sub">Invite links stop working after the gig date.</p><div class="btns"><button class="btn" data-act="close">OK</button></div>`);return;}
+  setPendingJoin('');
+  await chatLoadAll();
+  location.hash='gig-'+eid;
+  if(res==='ok')setTimeout(()=>openModal(`<h2 id="modal-title">You're in! 🎶</h2><p class="sub">${esc(INVITE_WELCOME)}</p><div class="btns"><button class="btn" data-act="close">Got it</button></div>`),60);
+}
+/* edit gig */
+const EDIT_SHARED=['date','city','venue','attire','setlist','rehearsal','rehearsalNone'];
+function editGigView(id){
+  const g=S.data.gigs[id];
+  if(!g)return `<a class="back" href="#mine">← My Plugs</a><div class="empty">${S.loading?'Loading…':'This gig was removed or the link is wrong.'}</div>`;
+  if(!S.me||g.posterId!==S.me)return `<a class="back" href="#gig-${esc(id)}">← Back to the gig</a><div class="empty">Only the organizer can edit this gig.</div>`;
+  const booked=g.status==='booked';const others=eventGigs(eventKey(g)).filter(x=>x.id!==id);const rh=g.rehearsal&&typeof g.rehearsal==='object'?g.rehearsal:null;
+  const val=x=>esc(x||'');
+  return `<a class="back" href="#gig-${esc(id)}">← Back to the gig</a><h1>Edit gig</h1><p class="muted" style="margin:8px 0 22px">${booked?`Everyone in the gig chat gets an alert with exactly what changed.`:`People who signed up get an alert if the date or time changes.`}</p>
+  <section class="card"><form class="f" data-form="editgig" data-gig="${esc(id)}">
+    <label class="full">Title<input id="e-title" required maxlength="80" value="${val(g.title)}"></label>
+    <label>City<select id="e-city" required>${cityOptions(g.city,'Choose a city')}</select></label>
+    <label>Venue (optional)<input id="e-venue" maxlength="80" value="${val(g.venue)}"></label>
+    <label>Date<input id="e-date" type="date" required min="${todayStr()}" value="${val(g.date)}"></label>
+    <label>Start time<input id="e-time" type="time" value="${val(g.time)}"></label>
+    <label>End time<input id="e-end" type="time" value="${val(g.endTime)}"></label>
+    <label>Load-in time<input id="e-loadin" type="time" value="${val(g.loadIn)}"></label>
+    <label>Load-out time<input id="e-loadout" type="time" value="${val(g.loadOut)}"></label>
+    <label>Attire / dress code<input id="e-attire" maxlength="80" value="${val(g.attire)}"></label>
+    ${booked?`<p class="hint full">💲 Pay (${esc(payText(g))}) and the gig terms are locked because ${esc(nameOf(g.bookedId))} already agreed to them.</p>`:`<label>Pay ($)<input id="e-pay" type="number" min="0" step="1" inputmode="numeric" value="${esc(String(g.pay||0))}"></label>`}
+    <label class="full">Details<textarea id="e-desc" maxlength="1500">${val(g.description)}</textarea></label>
+    <label class="full">Songs / setlist<textarea id="e-setlist" maxlength="1500" placeholder="One song per line">${val(g.setlist)}</textarea></label>
+    <fieldset class="full subform"><legend>Rehearsal</legend>
+      <label class="check"><input type="checkbox" id="e-reh" ${rh?'checked':''}> There will be a rehearsal</label>
+      <div class="rehfields"><label>Date<input id="e-reh-date" type="date" value="${val(rh&&rh.date)}"></label><label>Time<input id="e-reh-time" type="time" value="${val(rh&&rh.time)}"></label><label class="full">Place<input id="e-reh-place" maxlength="100" value="${val(rh&&rh.place)}"></label></div>
+    </fieldset>
+    ${others.length?`<label class="check full"><input type="checkbox" id="e-all" checked> Also update the date, venue, attire, setlist and rehearsal on the other ${others.length} gig${others.length>1?'s':''} in this event</label>`:''}
+    ${booked?`<p class="fine full">If you change the date or start time, ${esc(nameOf(g.bookedId))} can cancel without any penalty.</p>`:''}
+    <div class="btns full"><a class="btn ghost" href="#gig-${esc(id)}">Cancel</a><button class="btn" type="submit">Save changes</button></div>
+  </form></section>`;
+}
+function payText(g){return g.agreedPay?money(g.agreedPay):g.pay?money(g.pay)+(g.payType&&g.payType!=='flat'?' '+g.payType:''):'unpaid';}
+function songList(t){return String(t||'').split(/\n|,|;/).map(x=>x.replace(/^\s*[\d]+[.)]\s*/,'').trim()).filter(Boolean);}
+function gigChanges(a,b){
+  const out=[];const d=x=>x?new Date(x+'T12:00').toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'}):'';
+  const ch=(label,x,y,f)=>{f=f||(v=>v);x=x||'';y=y||'';if(x===y)return;
+    if(!x)out.push(`${label} set to ${f(y)}.`);else if(!y)out.push(`${label} removed (was ${f(x)}).`);else out.push(`${label} changed from ${f(x)} to ${f(y)}.`);};
+  ch('Title',a.title,b.title);ch('Date',a.date,b.date,d);ch('Start time',a.time,b.time,fmtT);ch('End time',a.endTime,b.endTime,fmtT);
+  ch('Load-in',a.loadIn,b.loadIn,fmtT);ch('Load-out',a.loadOut,b.loadOut,fmtT);
+  const w=g=>[g.venue,g.city].filter(Boolean).join(', ');ch('Location',w(a),w(b));
+  ch('Attire',a.attire,b.attire);
+  if((a.setlist||'')!==(b.setlist||'')){
+    const A=songList(a.setlist),B=songList(b.setlist);const low=s=>s.map(x=>x.toLowerCase());
+    const add=B.filter(x=>!low(A).includes(x.toLowerCase())),rem=A.filter(x=>!low(B).includes(x.toLowerCase()));
+    if(add.length+rem.length&&add.length+rem.length<=3){add.forEach(x=>out.push(`‘${x}’ was added to the setlist.`));rem.forEach(x=>out.push(`‘${x}’ was removed from the setlist.`));}
+    else out.push('The setlist was updated. Check the gig page for the full list.');
+  }
+  const r=g=>{const x=g.rehearsal&&typeof g.rehearsal==='object'?g.rehearsal:null;return x?[x.date?d(x.date):'',x.time?fmtT(x.time):'',x.place||''].filter(Boolean).join(', '):'';};
+  if(r(a)!==r(b)){if(!r(b))out.push('Rehearsal cancelled.');else if(!r(a))out.push(`Rehearsal added: ${r(b)}.`);else out.push(`Rehearsal changed from ${r(a)} to ${r(b)}.`);}
+  if((a.description||'')!==(b.description||''))out.push('The gig details were updated.');
+  return out;
+}
+function changedSinceBooking(g){return !!(g&&g.whenChangedAt&&g.bookedAt&&String(g.whenChangedAt)>String(g.bookedAt));}
+
 /* ---------- alerts, community feed, site settings ---------- */
 const XC=['notifications','posts','reactions','settings','support'];
 S.x={notifications:{},posts:{},reactions:{},settings:{},support:{}};
@@ -1063,7 +1363,10 @@ function xIncoming(coll,row,isDelete){
   if(isDelete){xDrop(coll,row.id);softRender();return;}
   const was=S.x[coll][row.id];xSet(coll,row.id,row.data||{});
   if(coll==='support'&&!was&&S.isOwner&&row.data&&row.data.fromId!==S.me&&!row.data.reply)toast('New question from '+nameOf(row.data.fromId));
-  if(coll==='notifications'&&!was&&row.data&&row.data.to===S.me){toast('🔔 '+row.data.title);popAlert({...row.data,id:row.id});}
+  if(coll==='notifications'&&!was&&row.data&&row.data.to===S.me){
+    const viewing=row.data.chat&&route().startsWith('gig-')&&eventKey(S.data.gigs[route().slice(4)])===row.data.gigId&&document.visibilityState==='visible';
+    if(viewing)markChatRead(row.data.gigId);else{alertBanner(row.data);popAlert({...row.data,id:row.id});}
+  }
   softRender();
 }
 function fmtAgo(t){const d=(Date.now()-new Date(t).getTime())/1000;if(!(d>=0))return '';if(d<60)return 'just now';if(d<3600)return Math.floor(d/60)+' min ago';if(d<86400)return Math.floor(d/3600)+' hr ago';if(d<604800)return Math.floor(d/86400)+' d ago';return new Date(t).toLocaleDateString('en-US',{month:'short',day:'numeric'});}
@@ -1097,6 +1400,7 @@ function alertHelpHtml(){
   if(st==='on')h+=`<p class="fine">✅ Phone alerts are on for this device.</p>`;
   else if(st==='blocked')h+=`<p class="fine">Alerts are blocked for Plug’d. To turn them on, allow notifications for Plug’d in your phone's settings.</p>`;
   else if(st==='off')h+=`<div class="row"><button class="btn sm" data-act="enablepush">Turn on phone alerts</button><span class="fine">Get a pop-up when you get an offer, a sign-up or a cancellation.</span></div>`;
+  h+=`<div class="row between txtalerts"><span><b>Text message alerts</b><br><span class="fine">Get gig updates and chat messages by text. Coming soon. Phone alerts above work the same way for now.</span></span><span class="pill">Coming soon</span></div>`;
   if(ios)h+=`<p class="fine iosnote"><b>On iPhone?</b> Alerts only work from the home-screen app. Tap <b>Share</b> (the square with the arrow), then <b>Add to Home Screen</b>, then open Plug’d from that icon and turn on alerts here.</p>`;
   return h?`<section class="card">${h}</section>`:'';
 }
@@ -1169,13 +1473,17 @@ const FAQ=[
   {q:'How does Plug’d Pay work?',p:['plugd pay','payment methods','payment method','ways to pay','forms of payment','how can i pay','what payments','take payments','accept payments','payment get held','money held','money is held','get held','pay online','pay through plugd','pay through the app','pay in the app','pay on the app','pay on plugd','how does pay work','how does payment work','how do payments work','how do i pay','how to pay','how will i pay','how does the organizer pay','pay the performer','pay the musician','pay them','card fee','credit card','debit card','pay with card','pay by card','pay with a card','hold the money','held money','holds the money','escrow','payment protection','protect my payment','protected payment','is my money safe','is the money safe','stripe','apple pay','online payment'],k:'card hold held release protect protected stripe escrow payment payments online',a:'The organizer’s card is held before the gig and released to the performer after it’s confirmed. The card fee is 2.9% + 30¢. It’s in preview right now, so use cash for real gigs for now.',b:[['Plug’d Pay rules','#rules']]},
   {q:'When do I get paid?',p:['when do i get paid','hit my account','in my account','my bank','direct deposit','deposit','when will i get paid','when do i get my money','when will i get my money','when is the money','when does the money','when do performers get paid','how long to get paid','how long until i get paid','how long does it take to get paid','get my money','receive my money','receive payment','get paid','getting paid','paid after','how do i get paid','how will i be paid','how am i paid','where is my money','wheres my money','havent been paid','have not been paid','still not paid','mark gig completed','mark completed','gig is done','gig is over','after the gig','payout','pay out'],k:'paid payout receive release money',a:'After the gig, tap Mark gig completed. The organizer has 48 business hours to confirm, then Plug’d Pay releases the money. With cash, the organizer pays you directly.',b:[['Plug’d Pay rules','#rules']]},
   {q:'Can I get paid in cash?',p:['in cash','cash app','cashapp','zelle','venmo','paypal','pay cash','paid cash','pay in cash','paid in cash','get cash','take cash','accept cash','cash only','pay directly','paid directly','pay them directly','pay outside the app','without a card','no card','no fees','avoid the fee','avoid fees','skip the fee'],k:'cash zelle venmo direct directly',a:'Yes. Cash means full pay with no fees, paid directly by the organizer, but Plug’d can’t protect that payment.',b:[['Plug’d Pay rules','#rules']]},
-  {q:'Can I cancel a booking?',p:['cancel','cancel my booking','cancel a booking','cancel a gig','cancel my gig','cancel the gig','cancellation','cancellation policy','back out','pull out','drop out','drop the gig','can i get out of','get out of a gig','cant make it','can t make it','cannot make it','wont make it','not going to make it','cant do the gig','cant play','something came up','i got sick','im sick','family emergency','emergency','reschedule','change the date','move the date','change my gig','delete my gig','delete a gig','remove my gig','take down my gig','take down a gig','close my gig'],k:'cancel cancelled canceled canceling cancelling cancellation emergency reschedule',a:'Yes, with Cancel booking on the gig. It’s free more than 72 hours out; later cancels lower your reliability. The gig reopens and everyone is alerted. Your first day-of emergency cancel is free.',b:[['Cancellation rules','#rules']]},
+  {q:'Can I cancel a booking?',p:['cancel','cancel my booking','cancel a booking','cancel a gig','cancel my gig','cancel the gig','cancellation','cancellation policy','back out','pull out','drop out','drop the gig','can i get out of','get out of a gig','cant make it','can t make it','cannot make it','wont make it','not going to make it','cant do the gig','cant play','something came up','i got sick','im sick','family emergency','emergency','reschedule','delete my gig','delete a gig','remove my gig','take down my gig','take down a gig','close my gig'],k:'cancel cancelled canceled canceling cancelling cancellation emergency reschedule',a:'Yes, with Cancel booking on the gig. It’s free more than 72 hours out; later cancels lower your reliability. The gig reopens and everyone is alerted. Your first day-of emergency cancel is free.',b:[['Cancellation rules','#rules']]},
   {q:'What if the organizer cancels on me?',p:['organizer cancelled','venue cancels','if the venue','if the organizer cancels','booker cancels','host cancels','they cancel on me','client cancelled','client canceled','organizer canceled','organizer cancels','organizer cancel','booker cancelled','booker canceled','venue cancelled','venue canceled','they cancelled','they canceled','they cancel','he cancelled','she cancelled','gig was cancelled','gig was canceled','gig got cancelled','gig got canceled','got cancelled','got canceled','cancelled on me','canceled on me','cancel on me','cancels on me','cancelled my gig','canceled my gig','cancelled my booking','canceled my booking','last minute cancel'],k:'',a:'You get an alert right away. A cancel within 72 hours counts against their reliability, and any cancellation fee in the gig terms applies. If it wasn’t fair, tap Report a problem on the gig.',b:[['Cancellation rules','#rules']]},
   {q:'What if something goes wrong?',p:['no show','i have a problem','have a problem','having a problem','having an issue','have an issue','charged a late fee','charged me a late','was charged','got charged','no showed','didnt show','did not show','didnt show up','did not show up','never showed','dont show','didnt come','did not come','never came','didnt pay','did not pay','didnt pay me','did not pay me','not paid','never paid','wont pay','won t pay','refuse to pay','refused to pay','paid me less','short paid','shorted me','refund','money back','get my money back','problem with a gig','problem with the gig','problem with my gig','issue with a gig','issue with the gig','something went wrong','went wrong','report a problem','dispute','charged me a late fee','was late','showed up late','came late','left early','bad gig','not what was promised','not as described','unprofessional','drunk'],k:'refund dispute problem wrong noshow issue late',a:'Tap Report a problem on the gig within 48 business hours. Any money held by Plug’d Pay stays held until the Plug’d team settles it.',b:[['Community rules','#rules']]},
   {q:'Where do I see my gigs and bookings?',p:['my bookings','gigs i signed up for','gigs i signed up','gigs i applied for','gigs i booked','my booking','see my gigs','my gigs page','my offers','my offer','my sign ups','my signups','my applications','my plugs','where are my gigs','where are my bookings','where is my booking','where is my gig','where do i see my','where can i see my','see my bookings','find my gig','find my booking','check my bookings','check my gigs','gigs i posted','gigs i applied','gigs im booked','upcoming bookings','my schedule','my calendar'],k:'bookings offers signups mine applications schedule',a:'Open My Plugs. It shows the gigs you posted, your sign-ups, booking offers and bookings, with what to do next.',b:[['My Plugs','#mine']]},
+  {q:'Can I upload a video from TikTok or Instagram?',p:['from tiktok','from instagram','from youtube','from facebook','tiktok video','instagram video','youtube video','youtube link','video link','paste a link','add a link','link my video','share my reel','my reels','watermark','video got blocked','video blocked','video wont upload','video won t upload','cant upload my video','can t upload my video','upload failed','why was my video blocked','social media video','video rules','what videos can i upload','can i upload a video','how do i upload a video'],k:'watermark',a:'Upload a video you recorded, straight from your phone’s camera roll or your computer. Videos downloaded or saved from TikTok, Instagram, YouTube, Facebook or any social media, or that show an @name, logo or watermark, are blocked.',b:[['Edit profile','#me']]},
+  {q:'How does gig chat work?',p:['gig chat','group chat','the chat','chat with the band','chat with the team','talk to the band','talk to the team','message the group','message the band','message the team','message everyone','group message','band chat','team chat','where is the chat','how do i chat','mute the chat','mute chat','mute the group','too many messages','stop chat alerts','turn off chat','pin a message','pinned message','pin messages','who can pin','music director','make someone md','assign md'],k:'chat pin pinned mute md',a:'Once you’re booked, a private Gig chat opens on the gig page for the organizer and everyone working it. Key details and pinned messages stay at the top. Tap Mute to stop message alerts; gig updates still come through. Only the organizer and the MD can pin.',b:[['My Plugs','#mine']]},
+  {q:'How do I invite my team to a gig?',p:['invite','invite link','invite my band','invite my team','invite people','invite someone','add my band','add my team','add someone to the gig','add people to the chat','add someone to the chat','invite to this gig','add my singer','add my singers','add musicians to the chat','bring my own band','i already have a band','people i already booked','booked outside','join the chat','accept the invite','accept an invite','got an invite'],k:'invite invitation',a:'Open your gig and tap Invite to this gig, then send the link to people you’ve already booked. They sign in or make a free profile, tap Accept, and join the chat. Plug’d Pay, disputes and reviews only apply to people booked through Plug’d.',b:[['My Plugs','#mine']]},
+  {q:'How do I edit my gig?',p:['edit my gig','edit gig','edit the gig','edit a gig','edit my post','change my gig','update my gig','change the gig','fix my gig','change the date','change the time','move the date','change the venue','change the location','change the attire','change the dress code','update the setlist','change the setlist','edit the setlist','add a song','add songs','change the rehearsal','add another role','add a role to my gig','post another role'],k:'edit',a:'Open your gig and tap Edit gig. Everyone in the gig chat gets an alert saying exactly what changed. Pay and gig terms are locked once someone is booked, and if you change the date or time, they can cancel with no penalty.',b:[['My Plugs','#mine']]},
   {q:'Who else is playing the gig?',p:['who else is playing','who else is on','who else is performing','who else is booked','who am i playing with','who will i play with','who is playing','who is in the band','lineup','line up','the band','other musicians','other performers','other people on the gig','rest of the band','band members'],k:'lineup',a:'Once a gig is booked, the gig page shows the lineup: everyone booked for that event.',b:[['My Plugs','#mine']]},
   {q:'Does Plug’d cost anything?',p:['cost anything','post a gig for free','gig for free','post for free','pay to apply','cost to apply','charge to apply','fee to apply','free to apply','cost money to post','cost to post','free to post','money to post','cost money to','cost money','does it cost','is it free','is this free','is the app free','is plugd free','is plug d free','free to use','free to join','how much is plugd','how much is the app','how much is it','how much does plugd cost','how much does it cost','how much does the app cost','how much to join','how much to use','membership','membership fee','subscription','monthly fee','yearly fee','annual fee','sign up fee','signup fee','cost to join','cost to use','pay to join','pay to use','pay to post','pay a fee','charge to post','any fees','hidden fees','what are the fees','what fees','fees','does plugd take a cut','plugd take a cut','take a cut','commission','percentage','how do you make money'],k:'free cost membership subscription join commission cut',a:'Plug’d is free to join during launch. The only fee is the card fee (2.9% + 30¢) when a performer chooses Plug’d Pay.',b:[['Terms & Conditions','#terms']]},
-  {q:'When can I see someone’s contact info?',p:['phone number','reach the organizer','reach the performer','reach the musician','text the','call the','email the','contact the','talk to the','phone numbers','contact info','contact information','contact details','their number','his number','her number','their phone','their email','email address','instagram','ig handle','social media','send my number','give my number','share my number','post my number','my number','dm','direct message','private message','message them','message him','message her','message the organizer','message the performer','message someone','talk to them','talk to the organizer','chat with','contact them','contact the organizer','contact the performer','contact a performer','contact an organizer','reach them','reach out','get in touch','text them','call them','how do i talk to'],k:'contact phone number email instagram handle message private dm text call',a:'Contact info stays private until a booking is accepted, then it unlocks for both of you. Phone numbers and handles can’t be posted anywhere else.',b:[['Community rules','#rules']]},
+  {q:'When can I see someone’s contact info?',p:['phone number','reach the organizer','reach the performer','reach the musician','text the','call the','email the','contact the','talk to the','phone numbers','contact info','contact information','contact details','their number','his number','her number','their phone','their email','email address','instagram','ig handle','social media','send my number','give my number','share my number','post my number','my number','dm','direct message','private message','message them','message him','message her','message the organizer','message the performer','message someone','talk to them','talk to the organizer','chat with','contact them','contact the organizer','contact the performer','contact a performer','contact an organizer','reach them','reach out','get in touch','text them','call them','how do i talk to'],k:'contact phone number email instagram handle message private dm text call',a:'Contact info stays private until a booking is accepted, then it unlocks for both of you. Once you’re booked, you can also message everyone on the gig in its Gig chat.',b:[['Community rules','#rules']]},
   {q:'How do reviews work?',p:['review','reviews','rating','ratings','stars','star rating','leave feedback','give feedback','rate them','rate someone','rate the','leave a review','write a review','bad review','unfair review','remove a review','track record'],k:'review reviews rating ratings stars rate feedback',a:'Reviews open after a gig booked in Plug’d is confirmed. Each side answers a few yes/no questions, then gives stars and a comment.',b:[['Community rules','#rules']]},
   {q:'How do I turn on alerts?',p:['alerts','my alerts','my notifications','alert','notification','notifications','push','push alerts','pop up','popups','pop ups','get notified','be notified','notify me','let me know when','bell','not getting alerts','not getting notifications','no notifications','turn off alerts','turn off notifications','stop notifications','too many notifications'],k:'alert alerts notification notifications notify bell',a:'Tap the bell, then Turn on phone alerts, then Allow. On iPhone, add Plug’d to your home screen first. To turn them off, change it in your phone’s settings.',b:[['Open alerts','#alerts']]},
   {q:'How do I get the app on my phone?',p:['download','on my computer','on a computer','on my laptop','on a laptop','desktop','computer','laptop','web browser','browser','download the app','install','install the app','get the app','get the app on my phone','put it on my phone','on my phone','home screen','add to home screen','app store','google play','play store','iphone app','android app','on my iphone','on my android','iphone','android','is there an app','is there a app','mobile app','phone app','save the app','save it to my phone'],k:'install download app iphone android mobile phone',a:'Plug’d works in any web browser on a phone or computer. To add it to your phone: on iPhone, open it in Safari, tap Share, then Add to Home Screen. On Android, tap Install when Chrome asks.',b:[['Show me how','act:install']]},
@@ -1539,7 +1847,7 @@ function talentList(){
   const cards=ids.map(id=>{const p=S.data.profiles[id];return `<a class="card pro ${p.vip?'isvip':''}" href="#profile-${esc(id)}">
     <div class="pro-head">${avatar(id,'lg')}<div><h3>${esc(p.stageName)}</h3><p class="meta">${esc(rolesOf(p).join(' · '))}${p.city?' · '+esc(p.city):''}</p></div></div>
     <div class="row">${vipHtml(id)}${lvlHtml(id)}${tierHtml(id)}${relHtml(id)}</div>
-    <div class="row">${ratingMini(id)}${(p.videos||[]).length?`<span class="fine">▶ ${(p.videos||[]).length} video${(p.videos||[]).length>1?'s':''}</span>`:''}</div>
+    <div class="row">${ratingMini(id)}${fileVids(p).length?`<span class="fine">▶ ${fileVids(p).length} video${fileVids(p).length>1?'s':''}</span>`:''}</div>
     ${(p.skills||[]).length?`<div class="tags">${(p.skills||[]).slice(0,4).map(s=>`<span class="tag">${esc(s)}</span>`).join('')}</div>`:''}
     ${priceEntries(p).length?`<p class="fine">${priceEntries(p).map(([r,v])=>`${esc(r)}: <b>${esc(v)}</b>`).join(' · ')}</p>`:''}
   </a>`;});
@@ -1549,7 +1857,7 @@ function talentList(){
 
 function videoSrc(v){return v.localUrl||v.url||'';}
 function videosHtml(p){
-  const vs=(p.videos||[]).filter(v=>v&&(v.kind==='file'?(v.url||v.localUrl):safeLink(v.url)));
+  const vs=fileVids(p).filter(v=>v.url||v.localUrl);
   if(!vs.length)return '';
   return `<div class="vids">${vs.map(v=>v.kind==='file'
     ?`<div class="vid"><video controls preload="metadata" playsinline src="${esc(videoSrc(v))}"></video>${v.caption?`<div class="cap">${esc(v.caption)}</div>`:''}</div>`
@@ -1588,7 +1896,7 @@ function profileView(id){
     <div class="row" style="margin-top:14px;gap:16px">${priceEntries(p).length?`<span class="tags">${priceEntries(p).map(([r,v])=>`<span class="tag">${esc(r)}: <b style="color:var(--text)">${esc(v)}</b></span>`).join('')}</span>`:''}${Number(p.minOffer)?`<span class="tag">Takes offers from <b style="color:var(--text)">${money(p.minOffer)}</b></span>`:''}<span class="fine">🔒 Contact info unlocks once a booking is accepted.</span></div>
   </section>
   ${isMe?myLevelCard(lv,p):''}
-  ${(p.videos||[]).length?`<div class="section-title"><h2>Videos</h2></div>${videosHtml(p)}`:(isMe?`<div class="section-title"><h2>Videos</h2></div><div class="empty">Add performance videos so organizers can see and hear you. <a href="#me">Add videos</a></div>`:'')}
+  ${fileVids(p).length?`<div class="section-title"><h2>Videos</h2></div>${videosHtml(p)}`:(isMe?`<div class="section-title"><h2>Videos</h2></div><div class="empty">Add performance videos so organizers can see and hear you. <a href="#me">Add videos</a></div>`:'')}
   ${posted.length?`<div class="section-title"><h2>Open gigs from ${esc(p.stageName)}</h2></div><div class="grid" style="margin-top:0">${posted.map(gigCard).join('')}</div>`:''}
   ${trackRecord(id).length?`<div class="section-title"><h2>Track record</h2><span class="fine">From review answers</span></div><section class="card tr">${trackRecord(id).map(([q,y,n])=>`<div class="trrow"><span>${esc(q.charAt(0).toUpperCase()+q.slice(1))}</span><div class="meter"><i style="width:${Math.round(100*y/n)}%"></i></div><b>${y}/${n}</b></div>`).join('')}</section>`:''}
   <div class="section-title"><h2>Reviews</h2><span class="fine">${r.count} total</span></div>
@@ -1667,6 +1975,13 @@ function postView(){
     <div class="btns full"><button class="btn" type="submit">Post it</button></div>
   </form></section>`;
 }
+function applyPostPrefill(){
+  const pf=S.postPrefill;if(!pf||!$('form[data-form=gig]')||$('#g-title').dataset.pf)return;
+  const set=(id,v)=>{const el=$('#'+id);if(el&&v)el.value=v;};
+  set('g-date',pf.date);set('g-time',pf.time);set('g-end',pf.endTime);set('g-loadin',pf.loadIn);set('g-loadout',pf.loadOut);set('g-city',pf.city);set('g-venue',pf.venue);set('g-attire',pf.attire);set('g-occasion',pf.occasion);set('g-type',pf.eventType);
+  $('#g-title').dataset.pf='1';
+  $('form[data-form=gig]').insertAdjacentHTML('afterbegin',`<p class="hint full ok">Adding another role to <b>${esc(pf.title||'your gig')}</b>. Everyone booked will share one gig chat. <button type="button" class="linkbtn" data-act="clearprefill">Start a separate gig instead</button></p>`);
+}
 function updatePayHint(){
   const el=$('#pay-hint');if(!el)return;
   const g={role:$('#g-role').value,payType:$('#g-paytype').value,pay:Number($('#g-pay').value)||0,eventType:$('#g-type').value,occasion:($('#g-occasion')||{}).value};
@@ -1678,6 +1993,12 @@ function updatePayHint(){
   else{el.className='hint full ok';el.textContent=`Fair: typical pay for ${rangeWho(g.role,g.occasion)} is ${rangeText(c[1],g.payType)}.`;}
 }
 
+function chatsHtml(){
+  const ids=myChatIds().filter(e=>eventRoot(e)).sort((a,b)=>String(eventRoot(a).date||'').localeCompare(String(eventRoot(b).date||'')));
+  if(!ids.length)return '';
+  return `<div class="section-title"><h2>Gig chats</h2></div><section class="card">${ids.map(e=>{const r=eventRoot(e);const n=chatUnread(e);const last=chatList(e).slice(-1)[0];
+    return `<a class="chatrow" href="#gig-${esc(e)}"><span><b>${esc(r.title)}</b>${CH.mutes[e]?' <span class="fine">🔕</span>':''}<br><span class="fine">${esc(fmtDate(r))}${last?' · '+esc((last.kind==='update'?'Update: ':(last.uid===S.me?'You: ':nameOf(last.uid)+': '))+String(last.text).replace(/\s+/g,' ').slice(0,60)):''}</span></span>${n?`<span class="ubadge" aria-label="${n} unread">${n}</span>`:''}</a>`;}).join('')}</section>`;
+}
 function mineView(){
   if(!S.me)return `<h1>My Plugs</h1><div class="empty" style="margin-top:18px">Sign in or join to see your gigs and sign-ups.<br><br><button class="btn" data-act="signup">Join Plug’d free</button></div>`;
   if(!profile(S.me))return `<h1>My Plugs</h1><div class="empty" style="margin-top:18px">Set up your profile to start signing up and posting.<br><br><button class="btn" data-act="setup">Set up my profile</button></div>`;
@@ -1691,6 +2012,7 @@ function mineView(){
   const todo=(list,btn)=>`<section class="card">${list.map(g=>`<div class="applicant"><div class="row between"><span><a href="#gig-${esc(g.id)}"><b>${esc(g.title)}</b></a><br><span class="fine">${fmtDate(g)}</span></span>${btn(g)}</div></div>`).join('')}</section>`;
   return `<div class="row between"><h1>My Plugs</h1>${S.isOwner?`<span class="row"><button class="btn ghost sm" data-act="feedtoggle">💬 Community feed: ${feedOn()?'On':'Off'}</button><button class="btn ghost sm" data-act="testmode">🧪 Test mode: ${TEST.on?'On':'Off'}</button></span>`:''}</div>
   ${S.isOwner?reportsHtml()+supportAdminHtml():mySupportHtml()}
+  ${chatsHtml()}
   ${offers.length?`<div class="section-title"><h2>Booking offers for you</h2></div>${todo(offers,g=>`<span class="row"><b>${money(g.offer.amount)}</b><a class="btn teal sm" href="#gig-${esc(g.id)}">Review offer</a></span>`)}`:''}
   ${toConfirm.length?`<div class="section-title"><h2>Gigs to confirm</h2><span class="fine">Skipping confirmations lowers your visibility</span></div>${todo(toConfirm,g=>g.bookedId===S.me?`<button class="btn teal sm" data-act="confirm" data-id="${esc(g.id)}">Mark completed</button>`:`<span class="row"><span class="fine">Due ${esc(fmtWhen(confirmDeadline(g)))}</span><button class="btn teal sm" data-act="confirm" data-id="${esc(g.id)}">Confirm</button><button class="btn ghost sm" data-act="dispute" data-id="${esc(g.id)}">Report a problem</button></span>`)}`:''}
   ${toPay.length?`<div class="section-title"><h2>Payments</h2></div>${todo(toPay,g=>g.posterId===S.me?`<button class="btn ghost sm" data-act="paid" data-id="${esc(g.id)}">Record payment</button>`:`<button class="btn teal sm" data-act="received" data-id="${esc(g.id)}">I received ${money(g.payment.amount)}</button>`)}`:''}
@@ -1729,12 +2051,20 @@ function videoManager(){
   const p=profile(S.me);if(!p)return '<p class="muted">Save your profile first, then add videos.</p>';
   const vs=p.videos||[];const full=vs.length>=4;
   const canUpload=true;
-  return `${vs.length?`<div class="vids" style="margin-bottom:14px">${vs.map((v,i)=>`<div class="vid">${v.kind==='file'?`<video controls preload="metadata" playsinline src="${esc(videoSrc(v))}"></video>`:`<a class="vlink" href="${esc(safeLink(v.url))}" target="_blank" rel="noopener"><span class="play" aria-hidden="true">▶</span><span>${esc(v.caption||safeLink(v.url))}</span></a>`}<div class="cap"><span class="fine">${esc(v.caption||(v.kind==='file'?'Uploaded video':'Video link'))}</span><button class="btn ghost sm" data-act="rmvideo" data-i="${i}">Remove</button></div></div>`).join('')}</div>`:''}
+  return `${vs.length?`<div class="vids" style="margin-bottom:14px">${vs.map((v,i)=>`<div class="vid">${v.kind==='file'?`<video controls preload="metadata" playsinline src="${esc(videoSrc(v))}"></video>`:`<div class="vlink"><span class="play" aria-hidden="true">!</span><span><b>Link not shown</b><br><span class="fine">Video links are no longer allowed. Remove this and upload the video instead.</span></span></div>`}<div class="cap"><span class="fine">${esc(v.caption||(v.kind==='file'?'Uploaded video':'Video link'))}</span><button class="btn ghost sm" data-act="rmvideo" data-i="${i}">Remove</button></div></div>`).join('')}</div>`:''}
   ${full?'<p class="fine">You have 4 videos, the most a profile can show. Remove one to add another.</p>':`
   <div class="f" style="grid-template-columns:1fr 1fr">
-    <label class="full">Caption<input id="v-cap" maxlength="60" placeholder="Live at Velvet Room, Oct"></label>
-    ${canUpload?`<label>Upload a video (up to 20 MB)<input id="v-file" type="file" accept="video/mp4,video/quicktime,video/webm"></label>`:`<p class="fine"></p>`}
-    <label>Or paste a TikTok, YouTube or Instagram link<span class="row" style="flex-wrap:nowrap"><input id="v-link" type="url" placeholder="https://" style="flex:1;min-width:0"><button type="button" class="btn sm" data-act="addvlink">Add</button></span></label>
+    <div class="vrules full" role="note"><b>Video rules</b>
+      <ul>
+        <li class="yes">Upload a video you recorded, straight from your phone’s camera roll or your computer.</li>
+        <li class="no">No videos downloaded, saved or screen-recorded from TikTok, Instagram, YouTube, Facebook or any other social media.</li>
+        <li class="no">No @names, usernames, social media logos or watermarks anywhere in the video.</li>
+        <li class="no">No names, handles, links or contact info in the caption.</li>
+      </ul>
+      <p class="fine">Plug’d checks every video before it uploads. Videos that break these rules are blocked or removed.</p>
+    </div>
+    <label class="full">Caption (optional)<input id="v-cap" maxlength="60" placeholder="Live at a wedding, October"></label>
+    ${canUpload?`<label class="full">Upload a video from your phone or computer (up to 20 MB)<input id="v-file" type="file" accept="video/mp4,video/quicktime,video/webm"></label>`:`<p class="fine"></p>`}
     <p class="hint full" id="v-status" aria-live="polite"></p>
   </div>`}`;
 }
@@ -1822,11 +2152,12 @@ function openCancel(gid){
   const g=S.data.gigs[gid];if(!g)return;const isBooked=S.me===g.bookedId;const ci=cancelInfo(g);const t=gTerms(g);
   const fee=!isBooked&&ci.late&&Number(t.cancelFeePct)&&g.hold?Math.round(Number(g.hold.amount)*Number(t.cancelFeePct)/100):0;
   let note;
-  if(isBooked)note=ci.grace?'You booked this at the last minute, so you can cancel free for 2 hours after booking.':ci.late?(ci.dayOf?'This is the day of the gig. Choose "Emergency" if it truly is one: the first emergency doesn\'t count against you. Other late cancellations lower your reliability.':'This is inside 72 hours, so it counts against your reliability.'):'This is more than 72 hours before the gig, so there\'s no penalty.';
+  if(isBooked&&changedSinceBooking(g))note='The organizer changed the date or time after you were booked, so you can cancel without any penalty.';
+  else if(isBooked)note=ci.grace?'You booked this at the last minute, so you can cancel free for 2 hours after booking.':ci.late?(ci.dayOf?'This is the day of the gig. Choose "Emergency" if it truly is one: the first emergency doesn\'t count against you. Other late cancellations lower your reliability.':'This is inside 72 hours, so it counts against your reliability.'):'This is more than 72 hours before the gig, so there\'s no penalty.';
   else note=ci.late&&!ci.grace?(fee?`This is inside 72 hours. Under your gig terms, ${esc(nameOf(g.bookedId))} receives ${Number(t.cancelFeePct)}% (${money(fee)}) and the rest is refunded to you. It also counts against your reliability.`:'This is inside 72 hours, so it counts against your reliability.'):'There\'s no penalty for cancelling now.';
   openModal(`<h2 id="modal-title">${isBooked&&ci.dayOf?'Emergency cancel':'Cancel this booking?'}</h2><p class="sub">${esc(g.title)} · ${fmtDate(g)}</p>
   <form class="f" data-form="cancel" data-gig="${esc(gid)}">
-    <label class="full">Reason<select id="c-reason">${(isBooked?['Emergency (illness, family, car trouble)','Schedule conflict','Other']:['Event cancelled or postponed','Venue issue','Booked someone else','Other']).map(o=>`<option>${o}</option>`).join('')}</select></label>
+    <label class="full">Reason<select id="c-reason">${(isBooked?[...(changedSinceBooking(g)?['The date or time changed']:[]),'Emergency (illness, family, car trouble)','Schedule conflict','Other']:['Event cancelled or postponed','Venue issue','Booked someone else','Other']).map(o=>`<option>${o}</option>`).join('')}</select></label>
     <label class="full">Note to ${esc(nameOf(isBooked?g.posterId:g.bookedId))} (optional)<textarea id="c-note" maxlength="500"></textarea></label>
     <p class="fine full">${note} ${g.hold?(isBooked?'Any held money goes back to the booker.':''):''} The gig reopens so ${isBooked?'they can book someone else':'you can book someone else'}, and earlier sign-ups are back in the running.</p>
     <div class="btns full"><button type="button" class="btn ghost" data-act="close">Keep booking</button><button class="btn" type="submit">Cancel booking</button></div>
@@ -1845,7 +2176,7 @@ function openConfirmLate(gid){
 function openReport(uid){
   openModal(`<h2 id="modal-title">Report ${esc(nameOf(uid))}</h2><p class="sub">Reports go only to the Plug’d team.</p>
   <form class="f" data-form="report" data-about="${esc(uid)}">
-    <label class="full">What's going on?<select id="rp-reason"><option>Fake profile or scam</option><option>Asked me to pay or book outside Plug’d</option><option>Harassment or disrespect</option><option>No-show</option><option>Didn't pay</option><option>Other</option></select></label>
+    <label class="full">What's going on?<select id="rp-reason"><option>Fake profile or scam</option><option>Asked me to pay or book outside Plug’d</option><option>Harassment or disrespect</option><option>Shows social media (name, logo or watermark)</option><option>No-show</option><option>Didn't pay</option><option>Other</option></select></label>
     <label class="full">Details<textarea id="rp-text" required maxlength="1000"></textarea></label>
     <div class="btns full"><button type="button" class="btn ghost" data-act="close">Cancel</button><button class="btn" type="submit">Send report</button></div>
   </form>`);
@@ -1903,6 +2234,7 @@ function renderNav(){
     const n=a.dataset.nav;
     const on=r===n||(n==='gigs'&&r.startsWith('gig-'))||(n==='talent'&&r.startsWith('profile-')&&r!=='profile-'+S.me);
     a.classList.toggle('on',on);
+    if(n==='mine')a.classList.toggle('hasdot',chatUnreadTotal()>0);
     if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
   });
   {const nf=document.querySelector('[data-nav=feed]');if(nf)nf.hidden=!(feedOn()||(S.isOwner&&route()==='feed'));}
@@ -1942,12 +2274,17 @@ function render(){
   else if(r==='feed')html=feedView();
   else if(r==='terms')html=termsView();
   else if(r==='privacy')html=privacyView();
+  else if(r.startsWith('edit-'))html=(!S.me&&S.mode==='live')?gateView('post'):editGigView(r.slice(5));
+  else if(r.startsWith('join-'))html=joinView(r.slice(5));
   else if(r.startsWith('gig-'))html=(!S.me&&S.mode==='live')?gateView('gig',r.slice(4)):gigDetail(r.slice(4));
   else if(r.startsWith('profile-'))html=(!S.me&&S.mode==='live')?gateView('profile',r.slice(8)):profileView(r.slice(8));
   else html=gigsView();
   $('#view').innerHTML=testBanner()+(S.note?`<div class="note">${esc(S.note)}</div>`:'')+html+`<footer class="foot fine"><img src="logo-header.png" alt="" height="22"> · <a href="#terms">Terms &amp; Conditions</a> · <a href="#rules">Community rules &amp; Plug’d Pay</a> · <a href="#privacy">Privacy Policy</a> · Free during launch</footer>`;
   {let n=0;document.querySelectorAll('.rules h2').forEach(h=>{if(h.querySelector('.secnum'))return;n++;const m=/^\s*(\d+)\.\s+/.exec(h.textContent);h.innerHTML=h.innerHTML.replace(/^\s*\d+\.\s+/,'');h.insertAdjacentHTML('afterbegin',`<span class="secnum">${route()==='rules'?n:(m?m[1]:n)}</span>`);});}
-  if(r==='post')updatePayHint();
+  if(r==='post'){applyPostPrefill();updatePayHint();}
+  watchChatForm();
+  {const lg=$('#chatlog');if(lg)lg.scrollTop=lg.scrollHeight;
+   if(lg&&r.startsWith('gig-')){const g=S.data.gigs[r.slice(4)];const eid=eventKey(g);if(eid&&(chatUnread(eid)||alertsArr().some(n=>n.chat&&n.gigId===eid&&!n.read)))markChatRead(eid);}}
 }
 function testBanner(){
   if(!(TEST.on&&S.isOwner))return '';
@@ -1963,7 +2300,7 @@ function privacyView(){
       <li><b>Account details:</b> your email address and password (passwords are stored securely and we can't see them).</li>
       <li><b>Your profile:</b> stage or business name, city, roles, prices, lowest offer, skills, bio, videos and anything else you add.</li>
       <li><b>Private contact info:</b> the phone number, email or handle you enter for booked gigs.</li>
-      <li><b>Activity in the app:</b> gigs you post, sign-ups, booking offers, bookings, cancellations, payment records, reviews, reports, alerts and, if it's turned on, community posts, likes and comments.</li>
+      <li><b>Activity in the app:</b> gigs you post, sign-ups, booking offers, bookings, cancellations, gig chat messages and pins, payment records, reviews, reports, alerts and, if it's turned on, community posts, likes and comments.</li>
       <li><b>Device details for alerts:</b> if you turn on phone alerts, a code from your browser that lets us send notifications to that device.</li>
       <li><b>Basic technical data:</b> like any website, our hosting providers may log things such as your IP address, browser type and the time of a visit to keep the Service running and secure.</li>
     </ul>
@@ -2036,6 +2373,8 @@ function rulesView(){
     <ul><li><b>Protect this payment with Plug’d Pay.</b> The booker's card is held before the gig. The standard card fee (about 2.9% + 30¢) comes out of the performer's payment.</li>
     <li><b>Get paid in cash: full payment, no fees.</b> The booker pays the performer directly (cash, Cash App, Zelle and so on). Plug’d Pay does not protect these payments. If the money doesn't arrive, Plug’d can't recover it.</li></ul>
     <p>After the gig, the performer marks it completed. The booker then has <b>48 business hours</b> (weekdays only) to confirm it or report a problem. If they don't respond, the gig completes and the held money is released to the performer automatically. If a problem is reported, the money stays held while Plug’d reviews it with both sides, then it's released or refunded.</p>
+    <h2>Profile videos</h2><p>Videos must be uploaded straight from your phone or computer. Videos downloaded, saved or screen-recorded from TikTok, Instagram, YouTube, Facebook or any other social media aren’t allowed, and no @names, usernames, social media logos or watermarks can appear in a video. Plug’d checks every video before it uploads and removes any that break this rule.</p>
+    <h2>Gig chat</h2><p>Once someone is booked, a private Gig chat opens on the gig for the organizer and everyone working it. Organizers can invite people they booked outside Plug’d with an invite link. Those people can chat and get updates, but Plug’d Pay, disputes and reviews only apply to bookings made through Plug’d. Keep the chat about the gig and be respectful. Any message can be reported, and the organizer can remove people. When the organizer changes the date, time, venue, attire, setlist or rehearsal, everyone gets an alert, and if the date or time changes after you’re booked, you can cancel without penalty. Chats stay open 7 days after the gig, then become read-only.</p>
     <h2>Gig terms and cancellations</h2><p>Bookers can add gig terms when posting: a late fee (a % off per 15 minutes late), an arrive-by time, a dress code, no smoking or drinking, and a cancellation fee. Performers see the terms before accepting, and accepting means agreeing to them. Anything not in the terms can't be taken out of the pay, but it can be part of an honest review.</p>
     <p>Either side can cancel a booking. More than 72 hours before the gig, there's no penalty. Inside 72 hours, a cancellation counts against reliability, and if the booker cancels late, the performer receives the cancellation fee from the gig terms. Gigs booked less than 72 hours out can be cancelled free for 2 hours after booking. A real day-of emergency doesn't count against a performer the first time, and the gig reopens so the booker can find a replacement.</p>
     <h2>Community feed</h2><p>When the feed is on, keep posts friendly and about music: shout-outs, questions, gear, who's playing where. No contact info, no booking or paying outside Plug’d, no harassment. Tap <b>Report</b> on a post to flag it, and Plug’d may remove posts or add strikes.</p>
@@ -2050,7 +2389,9 @@ function softRender(){
   if(r==='post'){renderNav();return;}
   if(r==='me'){renderNav();const vm=$('#vid-manage');if(vm&&!vm.contains(document.activeElement))vm.innerHTML=videoManager();if(!$('#vid-manage')&&profile(S.me)&&!$('form[data-form=profile] :focus'))render();return;}
   const fq=document.activeElement&&document.activeElement.id;
+  const ct=$('#chat-text'),cv=ct?ct.value:'';const lg=$('#chatlog');const nearEnd=!lg||lg.scrollHeight-lg.scrollTop-lg.clientHeight<60;const keep=lg?lg.scrollTop:0;
   render();
+  {const n=$('#chat-text');if(n&&cv){n.value=cv;}if(n&&fq==='chat-text')n.focus();const l2=$('#chatlog');if(l2&&!nearEnd)l2.scrollTop=keep;}
   if(fq==='f-q'||fq==='t-q'){const el=document.getElementById(fq);if(el){el.focus();el.setSelectionRange(el.value.length,el.value.length);}}
 }
 
@@ -2082,15 +2423,64 @@ async function setVideos(list){
   const vm=$('#vid-manage');if(vm)vm.innerHTML=videoManager();
   return true;
 }
+/* ---------- social media check for uploaded videos ---------- */
+const OCR=Object.assign({lib:'https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js',worker:'https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/worker.min.js',core:'https://cdn.jsdelivr.net/npm/tesseract.js-core@5.1.1',lang:'https://cdn.jsdelivr.net/npm/@tesseract.js-data/eng@1.0.0/4.0.0_best_int'},window.PLUGD_OCR||{});
+const SOCIAL_FILE_RX=/tik ?tok|snaptik|ssstik|musicaldown|savetik|tikmate|insta(gram)?|snapinsta|igdownload|igram|savefrom|reels?[_\- ]|youtube|ytmp|y2mate|capcut|facebook|fbdown|snapchat|twitter|twdown/i;
+function socialText(t){
+  t=String(t||'').toLowerCase();
+  const m=t.match(/tik ?tok|instagram|youtube|you tube|capcut|snapchat|facebook|twitch|threads|reels|@[a-z0-9_.]{3,}|\b[a-z][a-z0-9]*[._][a-z0-9][a-z0-9._]{2,}\b/);
+  return m?m[0]:'';
+}
+function loadOCR(){
+  if(window.Tesseract)return Promise.resolve(window.Tesseract);
+  if(loadOCR.p)return loadOCR.p;
+  loadOCR.p=new Promise((res,rej)=>{const sc=document.createElement('script');sc.src=OCR.lib;sc.async=true;sc.onload=()=>window.Tesseract?res(window.Tesseract):rej(new Error('no ocr'));sc.onerror=()=>{loadOCR.p=null;rej(new Error('ocr blocked'));};document.head.appendChild(sc);});
+  return loadOCR.p;
+}
+function seekTo(v,t){return new Promise(res=>{const done=()=>{v.removeEventListener('seeked',done);res();};v.addEventListener('seeked',done);v.currentTime=t;setTimeout(done,4000);});}
+/* Looks at 5 moments of the video for light-colored text like "TikTok" or "@name" (how watermarks look) */
+async function findSocialMark(file,onStep){
+  const url=URL.createObjectURL(file);const v=document.createElement('video');
+  v.muted=true;v.playsInline=true;v.setAttribute('playsinline','');v.preload='auto';v.src=url;
+  let worker=null;
+  try{
+    await new Promise((res,rej)=>{v.onloadeddata=res;v.onerror=()=>rej(new Error('video'));setTimeout(()=>rej(new Error('video timeout')),15000);});
+    try{await v.play();v.pause();}catch(e){}
+    const T=await loadOCR();
+    worker=await T.createWorker('eng',1,{workerPath:OCR.worker,corePath:OCR.core,langPath:OCR.lang});
+    const dur=isFinite(v.duration)&&v.duration>0?v.duration:1;
+    const W=Math.min(720,v.videoWidth||720),H=Math.round(W*((v.videoHeight||1280)/(v.videoWidth||720)));
+    const c=document.createElement('canvas');c.width=W;c.height=H;const ctx=c.getContext('2d',{willReadFrequently:true});
+    const marks=[0.05,0.25,0.5,0.75,0.95];
+    for(let i=0;i<marks.length;i++){
+      if(onStep)onStep(i+1,marks.length);
+      await seekTo(v,Math.max(0,Math.min(dur-0.05,dur*marks[i])));
+      ctx.drawImage(v,0,0,W,H);
+      const img=ctx.getImageData(0,0,W,H),d=img.data;
+      for(let p=0;p<d.length;p+=4){const mx=Math.max(d[p],d[p+1],d[p+2]),mn=Math.min(d[p],d[p+1],d[p+2]);const ink=mn>170&&mx-mn<45;d[p]=d[p+1]=d[p+2]=ink?0:255;d[p+3]=255;}
+      ctx.putImageData(img,0,0);
+      const r=await worker.recognize(c);const hit=socialText(r.data&&r.data.text);
+      if(hit)return {hit};
+    }
+    return {hit:''};
+  }catch(e){console.warn('video check',e);return {hit:'',skipped:true};}
+  finally{try{if(worker)await worker.terminate();}catch(e){}URL.revokeObjectURL(url);}
+}
 async function uploadVideo(input){
   const file=input.files&&input.files[0];if(!file)return;
   const st=$('#v-status');
   if(!/^video\//.test(file.type)){st.className='hint full low';st.textContent='That file isn\'t a video. Choose an MP4, MOV or WebM file.';input.value='';return;}
   if(file.size>20*1024*1024){st.className='hint full low';st.textContent=`That video is ${(file.size/1048576).toFixed(1)} MB. The limit is 20 MB, so trim it or upload a shorter clip.`;input.value='';return;}
   const cap=($('#v-cap')||{}).value||'';
+  if(capBad(cap)){st.className='hint full low';st.textContent='Take out names, handles, links, contact info and social media mentions from the caption, then choose the video again.';input.value='';return;}
   const list=[...((profile(S.me)||{}).videos||[])];
   if(list.length>=4)return;
-  st.className='hint full';st.textContent='Uploading… keep this page open.';input.disabled=true;
+  const bad=msg=>{st.className='hint full low';st.textContent=msg;input.value='';input.disabled=false;};
+  if(SOCIAL_FILE_RX.test(file.name||'')){bad('This video looks like it was saved from social media. Upload the original video from your camera roll, with no @name, logo or watermark.');return;}
+  input.disabled=true;st.className='hint full';st.textContent='Checking your video for social media names…';
+  const chk=await findSocialMark(file,(i,n)=>{st.textContent=`Checking your video for social media names… (${i} of ${n})`;});
+  if(chk.hit){bad(`We spotted “${chk.hit}” in this video. Social media names, logos and watermarks aren’t allowed on Plug’d. Upload the original video from your camera roll instead.`);return;}
+  st.className='hint full';st.textContent='Uploading… keep this page open.';
   try{
     let item;
     if(S.mode==='live'){const ext=((file.name.split('.').pop()||'mp4').toLowerCase().replace(/[^a-z0-9]/g,'')||'mp4');const path=`${S.me}/${Date.now()}.${ext}`;const up=await SB.storage.from('videos').upload(path,file,{contentType:file.type,upsert:false});if(up.error)throw up.error;const url=SB.storage.from('videos').getPublicUrl(path).data.publicUrl;item={kind:'file',path,url,caption:cap.trim().slice(0,60),addedAt:now()};}
@@ -2120,6 +2510,32 @@ document.addEventListener('click',async e=>{
   if(act==='delreact'){if(!canAct())return;b.disabled=true;if(await xDel('reactions',id)){render();}else b.disabled=false;return;}
   if(act==='cancelbooking'){if(canAct())openCancel(id);return;}
   if(act==='report'){if(canAct())openReport(id);return;}
+  {const eid=b.dataset.eid;
+  if(act==='chatpin'||act==='chatunpin'){if(canAct())await chatPin(eid,id,act==='chatpin');return;}
+  if(act==='chatdel'){if(canAct()&&confirm('Delete this message for everyone?'))await chatDelete(eid,id);return;}
+  if(act==='chatreport'){if(canAct())openChatReport(eid,id);return;}
+  if(act==='chatmute'){if(canAct())await chatMute(eid,b.dataset.v==='1');return;}
+  if(act==='chatmembers'){openChatMembers(eid);return;}
+  if(act==='chatinvite'){if(canAct()&&isOrganizer(eid))await openChatInvite(eid,false);return;}
+  if(act==='invreset'){if(canAct()&&isOrganizer(eid)&&confirm('Reset the invite link? The old link will stop working.')){await openChatInvite(eid,true);toast('New invite link made. The old one no longer works.');}return;}
+  if(act==='invcopy'||act==='invshare'){const el=$('#inv-link');if(!el)return;
+    if(act==='invshare'&&navigator.share){try{await navigator.share({title:'Join the gig chat on Plug’d',text:'You’re invited to the gig chat on Plug’d:',url:el.value});}catch(err){}return;}
+    try{await navigator.clipboard.writeText(el.value);toast('Invite link copied.');}catch(err){el.select();try{document.execCommand('copy');toast('Invite link copied.');}catch(e2){toast('Press and hold the link to copy it.');}}return;}
+  if(act==='chatmd'){if(!canAct()||!isOrganizer(eid))return;const on=b.dataset.v==='1';b.disabled=true;
+    if(await patch('gigs',eid,{mdId:on?id:null})){toast(on?nameOf(id)+' is now the MD and can pin messages.':'MD removed.');closeModal();render();}else b.disabled=false;return;}
+  if(act==='chatremove'){if(!canAct())return;const self=id===S.me;
+    if(!confirm(self?'Leave this gig chat?':'Remove '+nameOf(id)+' from this gig chat?'))return;
+    if(hasSB()){const {error}=await SB.from('event_members').delete().eq('id',eid+'__'+id);if(error){writeError(error);return;}}
+    const c={...(CH.members[eid]||{})};delete c[id];CH.members[eid]=c;
+    if(!self&&CH.invites[eid]){await ensureInvite(eid,true);toast(nameOf(id)+' was removed. The invite link was reset so they can’t rejoin.');}
+    else toast(self?'You left the chat.':nameOf(id)+' was removed.');
+    closeModal();if(self)location.hash='gigs';render();return;}
+  if(act==='joinaccept'){if(!canAct())return;b.disabled=true;await acceptInvite(id);b.disabled=false;return;}
+  if(act==='clearprefill'){S.postPrefill=null;render();return;}
+  if(act==='addrole'){const g=S.data.gigs[id];if(!g||g.posterId!==S.me)return;
+    S.postPrefill={date:g.date,time:g.time,endTime:g.endTime,loadIn:g.loadIn,loadOut:g.loadOut,city:g.city,venue:g.venue,attire:g.attire,occasion:g.occasion,eventType:g.eventType,eid:eventKey(g),title:g.title};
+    location.hash='post';return;}
+  }
   if(act==='pdispute'){if(canAct())openPDispute(id);return;}
   if(act==='dismissreport'){if(!S.isOwner)return;b.disabled=true;await dismissReport(id);toast('Report dismissed.');render();return;}
   if(act==='confirm'){
@@ -2173,7 +2589,7 @@ document.addEventListener('click',async e=>{
   if(act==='received'){if(!canAct())return;b.disabled=true;if(await patch('gigs',id,{payment:{receivedAt:now()}})){toast('Marked as received.');render();}else b.disabled=false;return;}
   if(act==='vip'){if(!S.isOwner||!canAct())return;const p=profile(id);if(!p)return;b.disabled=true;if(await patch('profiles',id,{vip:!p.vip})){toast(p.vip?'VIP removed.':'Now a VIP profile.');render();}else b.disabled=false;return;}
   if(act==='addvlink'){
-    if(!canAct())return;const st=$('#v-status');const url=safeLink(($('#v-link')||{}).value);
+    return;const st=$('#v-status');const url=safeLink(($('#v-link')||{}).value);
     if(!url){st.className='hint full low';st.textContent='Paste a full link that starts with https://';return;}
     const list=[...((profile(S.me)||{}).videos||[])];if(list.length>=4)return;
     b.disabled=true;if(await setVideos([...list,{kind:'link',url,caption:(($('#v-cap')||{}).value||'').trim().slice(0,60),addedAt:now()}]))toast('Video link added.');else b.disabled=false;return;
@@ -2230,7 +2646,7 @@ document.addEventListener('submit',async e=>{
     delete data.link;
     const myContact=data.contact;
     if(S.mode==='live'){delete data.contact;const cr=await SB.from('contacts').upsert({user_id:S.me,contact:myContact});if(cr.error){writeError(cr.error);done();return;}S.contacts[S.me]=myContact;}
-    if(hasContact(data.bio)||hasContact((data.skills||[]).join(' '))||hasContact([...f.querySelectorAll('[data-rate-role]')].map(i=>i.value).join(' '))){toast(CONTACT_MSG);done();return;}
+    if(capBad(data.stageName)||capBad(data.bio)||hasContact(data.bio)||hasContact((data.skills||[]).join(' '))||hasContact([...f.querySelectorAll('[data-rate-role]')].map(i=>i.value).join(' '))){toast(CONTACT_MSG);done();return;}
     if(!data.roles.length){toast('Pick at least one thing you do.');done();return;}
     data.rates={};f.querySelectorAll('[data-rate-role]').forEach(i=>{const val=i.value.trim();if(val&&data.roles.includes(i.dataset.rateRole))data.rates[i.dataset.rateRole]=val.slice(0,40);});
     data.rate=Object.values(data.rates)[0]||'';
@@ -2267,8 +2683,12 @@ document.addEventListener('submit',async e=>{
     if(chk('t-dress')&&!data.attire){toast('Add the attire / dress code, or uncheck that term.');done();return;}
     if(chk('t-arrive')&&!data.terms.arriveBy){toast('Add the arrive-by time, or uncheck that term.');done();return;}
     if(hasContact(data.setlist)||hasContact(data.attire)||hasContact(data.rehearsal&&data.rehearsal.place)){toast(CONTACT_MSG);done();return;}
+    {const pf=S.postPrefill;const place=x=>String(x.venue||x.city||'').trim().toLowerCase();
+     if(pf&&pf.eid&&pf.date===data.date&&S.data.gigs[pf.eid])data.eventId=pf.eid;
+     else{const same=gigsArr().find(x=>x.posterId===S.me&&x.date===data.date&&place(x)===place(data)&&x.status!=='cancelled');if(same)data.eventId=eventKey(same);}}
     if(!(await save('gigs',id,data))){done();return;}
-    toast('Posted. It\'s on the calendar.');location.hash='gig-'+id;return;
+    S.postPrefill=null;
+    toast(data.eventId?'Posted. It shares a gig chat with your other role for this event.':'Posted. It\'s on the calendar.');location.hash='gig-'+id;return;
   }
   if(kind==='apply'){
     if(hasContact(v('a-msg'))||hasContact(v('a-rate'))){toast(CONTACT_MSG);done();return;}
@@ -2323,7 +2743,8 @@ document.addEventListener('submit',async e=>{
     const isBooked=S.me===g.bookedId;const ci=cancelInfo(g);const t=gTerms(g);const reason=v('c-reason');const emergency=isBooked&&/^Emergency/.test(reason);
     if(hasContact(v('c-note'))){toast(CONTACT_MSG);done();return;}
     const fee=!isBooked&&ci.late&&Number(t.cancelFeePct)&&g.hold?Math.round(Number(g.hold.amount)*Number(t.cancelFeePct)/100):0;
-    const rec={by:S.me,at:now(),reason,note:v('c-note'),late:ci.late,emergency,fee,amount:g.hold?Number(g.hold.amount)||0:0,performer:g.bookedId};
+    const changedFree=isBooked&&changedSinceBooking(g);
+    const rec={by:S.me,at:now(),reason,note:v('c-note'),late:ci.late&&!changedFree,emergency:emergency&&!changedFree,changedFree,fee,amount:g.hold?Number(g.hold.amount)||0:0,performer:g.bookedId};
     const appId=gid+'__'+g.bookedId;
     if(!(await patch('gigs',gid,{status:'open',bookedId:null,agreedPay:null,payPlan:null,hold:null,offer:null,confirms:null,deduction:null,cancellations:[...(g.cancellations||[]),rec]}))){done();return;}
     if(S.data.applications[appId])await patch('applications',appId,{status:'cancelled'});
@@ -2344,6 +2765,47 @@ document.addEventListener('submit',async e=>{
     if(late){const pct=Math.min(100,Math.ceil(mins/15)*Number(gTerms(g).lateFeePct));upd.deduction={minutes:mins,pct,amount:Math.round(Number(g.hold.amount)*pct/100),at:now()};}
     if(!(await patch('gigs',gid,upd))){done();return;}
     closeModal();toast(late?`Confirmed with a ${upd.deduction.pct}% late fee. ${money(releaseAmount(S.data.gigs[gid]))} released to ${nameOf(g.bookedId)}.`:`Confirmed. ${money(g.hold.amount)} released to ${nameOf(g.bookedId)}.`);render();return;
+  }
+  if(kind==='chat'){
+    const eid=f.dataset.eid;const ta=f.querySelector('#chat-text');const text=(ta&&ta.value||'').trim();
+    if(!text||!inChat(eid)){done();return;}
+    if(!chatOpen(eid)){toast('This chat is read-only now.');done();return;}
+    if(SOCIAL_RX.test(text)||/(^|\s)@[a-z0-9_.]{3,}/i.test(text)||/(https?:\/\/|www\.)\S+/i.test(text)){toast('Social media names, handles and links can’t be posted on Plug’d. Phone numbers are OK in gig chats.');done();return;}
+    if(await chatSend(eid,text,'msg')){const n=$('#chat-text');if(n)n.value='';render();const n2=$('#chat-text');if(n2)n2.focus();}
+    done();return;
+  }
+  if(kind==='chatreport'){
+    const eid=f.dataset.eid,mid=f.dataset.id;const m=(CH.msgs[eid]||{})[mid];if(!m){done();return;}
+    if(!(await addReport({aboutId:m.uid,reporterId:S.me,reason:'Gig chat: '+v('cr-reason'),text:(v('cr-text')?v('cr-text')+'\n\n':'')+'Message: “'+String(m.text).slice(0,600)+'”',gigId:eid,messageId:mid,createdAt:now()}))){done();return;}
+    closeModal();toast('Report sent to the Plug’d team. Thank you.');return;
+  }
+  if(kind==='editgig'){
+    const gid=f.dataset.gig;const g=S.data.gigs[gid];if(!g||g.posterId!==S.me){done();return;}
+    const chk=id=>!!(f.querySelector('#'+id)||{}).checked;
+    const upd={title:v('e-title'),city:v('e-city'),venue:v('e-venue'),date:v('e-date'),time:v('e-time'),endTime:v('e-end'),loadIn:v('e-loadin'),loadOut:v('e-loadout'),
+      attire:v('e-attire'),description:v('e-desc'),setlist:v('e-setlist')};
+    if(chk('e-reh')){upd.rehearsal={date:v('e-reh-date'),time:v('e-reh-time'),place:v('e-reh-place')};upd.rehearsalNone=false;}else{upd.rehearsal=null;upd.rehearsalNone=true;}
+    if([upd.title,upd.venue,upd.attire,upd.description,upd.setlist,upd.rehearsal&&upd.rehearsal.place].some(hasContact)){toast(CONTACT_MSG);done();return;}
+    if(!upd.title||!upd.city||!upd.date){toast('Add a title, city and date.');done();return;}
+    if(upd.date!==g.date&&upd.date<todayStr()){toast("Pick a date that hasn't passed yet.");done();return;}
+    if(g.terms&&g.terms.dressCode&&!upd.attire){toast('Your gig terms require a dress code, so the attire can’t be blank.');done();return;}
+    if(g.status!=='booked'&&f.querySelector('#e-pay')){const pay=Math.max(0,Math.round(Number(v('e-pay'))||0));if(evType(g)==='Paid gig'&&!pay){toast('Paid gigs need a pay amount.');done();return;}upd.pay=pay;}
+    const changes=gigChanges(g,{...g,...upd});
+    if(!changes.length&&upd.pay===g.pay){toast('Nothing changed.');done();return;}
+    const whenChanged=upd.date!==g.date||(upd.time||'')!==(g.time||'');
+    if(g.status==='booked'&&whenChanged)upd.whenChangedAt=now();
+    if(!(await patch('gigs',gid,upd))){done();return;}
+    const eid=eventKey(g);
+    if(chk('e-all')){const shared={};EDIT_SHARED.forEach(k=>{shared[k]=upd[k];});
+      for(const o of eventGigs(eid).filter(x=>x.id!==gid&&x.posterId===S.me)){
+        const su={...shared};if(o.status==='booked'&&su.date!==o.date)su.whenChangedAt=now();
+        if(o.terms&&o.terms.dressCode&&!su.attire)delete su.attire;
+        await patch('gigs',o.id,su);}}
+    if(changes.length&&chatMemberIds(eid).length>1)await chatSend(eid,changes.join('\n'),'update');
+    else if(changes.length&&whenChanged){
+      Object.values(S.data.applications).filter(a=>a.gigId===gid&&(a.status==='pending'||a.status==='offered')).forEach(a=>notify(a.applicantId,'Gig update: '+upd.title,changes.join(' ').slice(0,280),gid,'gigupdate'));
+    }
+    toast(changes.length&&chatMemberIds(eid).length>1?'Saved. Everyone in the gig chat was alerted.':'Saved.');location.hash='gig-'+gid;return;
   }
   if(kind==='report'){
     const about=f.dataset.about;
@@ -2396,9 +2858,11 @@ async function loadAll(quiet){
     res.forEach((r,i)=>{if(r.error)throw r.error;const o={};(r.data||[]).forEach(row=>{o[row.id]={...(row.data||{}),id:row.id};});S.data[COLLS[i]]=o;});
     if(S.me){const cr=await SB.from('contacts').select('user_id,contact');if(!cr.error){const m={};(cr.data||[]).forEach(r=>{m[r.user_id]=r.contact;});S.contacts=m;}}else S.contacts={};
     await xLoadAll();
+    await chatLoadAll();
     S.loading=false;if(S.note.indexOf("couldn't")>-1)S.note='';
   }catch(e){console.warn(e);S.loading=false;S.note="Plug’d couldn't load right now. Check your connection and try again.";}
   quiet?softRender():render();
+  if(S.me&&pendingJoin()&&!route().startsWith('join-'))location.hash='join-'+pendingJoin();
 }
 async function boot(){
   if('serviceWorker' in navigator&&location.protocol==='https:'){navigator.serviceWorker.register('sw.js').catch(()=>{});}
@@ -2425,11 +2889,12 @@ async function boot(){
     if(pl.eventType==='DELETE'){if(pl.old&&pl.old.id)xIncoming(coll,{id:pl.old.id},true);}
     else if(pl.new&&pl.new.id)xIncoming(coll,pl.new,false);
   });});
+  ['chat','event_members'].forEach(t=>{ch.on('postgres_changes',{event:'*',schema:'public',table:t},pl=>chatIncoming(t,pl));});
   ch.subscribe();
   setInterval(()=>{if(document.visibilityState==='visible')loadAll(true);},120000);
 }
 /* ---------- automatic updates ---------- */
-const APP_VERSION='2026-11-20.2';
+const APP_VERSION='2026-11-21.6';
 const UPD={ready:''};
 async function checkUpdate(){
   if(!/^https?:$/.test(location.protocol)||UPD.ready)return;
@@ -2457,7 +2922,7 @@ document.addEventListener('visibilitychange',()=>{
 setInterval(()=>{if(document.visibilityState==='visible')checkUpdate();},10*60*1000);
 setTimeout(checkUpdate,8000);
 boot();
-maybeNudge();
+
 })();
 </script>
 </body>
