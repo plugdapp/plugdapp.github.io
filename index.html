@@ -246,6 +246,7 @@ form.f input,form.f select,form.f textarea{max-width:100%;min-width:0}
 .f input:focus,.f select:focus,.f textarea:focus{border-color:var(--peacock);outline:none}
 .f textarea{min-height:110px;resize:vertical}
 .f .btns{display:flex;gap:10px;justify-content:flex-end}
+.btns{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}#modal .btns{margin-top:20px}#modal .f .btns{margin-top:6px}#modal .applicant:last-of-type{border-bottom:1px solid var(--line)}
 .hint{font-size:.85rem;color:var(--muted);min-height:1.2em}
 .hint.low{color:var(--warn)} .hint.ok{color:var(--good)}
 .starpick{display:flex;gap:4px;flex-direction:row-reverse;justify-content:flex-end}
@@ -2894,7 +2895,7 @@ async function boot(){
   setInterval(()=>{if(document.visibilityState==='visible')loadAll(true);},120000);
 }
 /* ---------- automatic updates ---------- */
-const APP_VERSION='2026-11-21.6';
+const APP_VERSION='2026-11-21.7';
 const UPD={ready:''};
 async function checkUpdate(){
   if(!/^https?:$/.test(location.protocol)||UPD.ready)return;
